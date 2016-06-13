@@ -11,7 +11,11 @@ Box::Box(glm::vec3 const& min, glm::vec3 const& max) :
   m_max{max}{}
 
 float Box::area() const{
-    return (2*((abs(m_min.x-m_max.x))+(abs(m_min.y-m_max.y))+(abs(m_min.z-m_max.z))));
+    return 2*(
+    	abs(m_min.x-m_max.x)*abs(m_min.y-m_max.y)+
+    	abs(m_min.y-m_max.y)*abs(m_min.z-m_max.z)+
+    	abs(m_min.z-m_max.z)*abs(m_min.x-m_max.x)
+    	);
   }
   
 float Box::volume() const{
