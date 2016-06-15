@@ -83,6 +83,6 @@
 
 
 
-  bool Sphere::intersect(Ray const& ray, float& distance) {
-    return glm::intersectRaySphere(ray.origin_, ray.direction_, m_center, m_radius * m_radius, distance);
+  bool Sphere::intersect(Ray const& ray, float& distance) { //ray.direction normalisiert bitte!
+    return glm::intersectRaySphere(ray.origin_, ray.direction_, m_center, m_radius , distance);
   }

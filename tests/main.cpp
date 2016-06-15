@@ -5,6 +5,8 @@
 #include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
+//#include <glm/glm.hpp>
+//#include <glm/glx/intersect.hpp>
 
 
 TEST_CASE("default Konstrukt, getter, area volume","aufgabe5.1-2"){
@@ -113,7 +115,7 @@ TEST_CASE("Konstrukts Sphere, name, color, getter","aufgabe5.3"){
 }
 
 
-TEST_CASE("Shape: print method", "[aufgabe5.5]") {
+TEST_CASE("Shape: print method", "[aufgabe5.4-5]") {
 
 	Box b1{};
   	Box b2 {{1.5f, 2.7f, -4.1f}, {0.0f, 0.0f, 11.0f}};
@@ -126,10 +128,63 @@ TEST_CASE("Shape: print method", "[aufgabe5.5]") {
 	Sphere s3 {"schlaukugl", {0.8f, 0.3f, 0.5f}, {0.8f, 0.3f, 0.5f}, 0.9f};
 	std::cout<<"kugelgasse:\n"<<s1<<"\n"<<s2<<"\n"<<s3<<"\n";
 
-	
 	//Wie teste ich dingsbums Shape cout..
 }
 
+TEST_CASE("intersectRaySphere", "[aufgabe5.6]") {
+  // Ray
+  glm::vec3 ray_origin{0.0f, 0.0f, 0.0f};
+  // ray direction has to be normalized !
+  // you can use : 
+  // v = glm::normalize(some_vector)
+  glm::vec3 ray_direction{0.0f, 0.0f, 1.0f};
+
+  // Sphere
+  glm::vec3 sphere_center{0.0f, 0.0f, 5.0f};
+  float sphere_radius{1.0f};
+
+  float distance{0.0f};
+  auto result = glm::intersectRaySphere(
+    ray_origin, ray_direction,
+    sphere_center,
+    sphere_radius * sphere_radius, // squared radius !!!
+    distance);
+
+  REQUIRE(distance == Approx(4.0f));
+  //Selfmade test
+  	Sphere s3 {"schlaukugl", {0.8f, 0.3f, 0.5f}, {0.0f, 0.0f, 5.0f}, 1.0f};
+  	glm::vec3 ray_direction2{1.0f, 0.0f, 0.0f};
+  	Ray rayman {ray_origin, ray_direction2};
+  	float raymanistweitweg=0.0f;
+	REQUIRE(!(s3.intersect(rayman, raymanistweitweg)));
+	Ray rayman2 {ray_origin, ray_direction};
+	REQUIRE((s3.intersect(rayman2, raymanistweitweg)));
+  	REQUIRE(distance == Approx(4.0f));
+  	
+  	ray_origin +=glm::vec3(0.0f,0.0f,5.0f);
+  	Ray rayman3 {ray_origin,ray_direction2};
+  	REQUIRE((s3.intersect(rayman3, raymanistweitweg)));
+  	REQUIRE(raymanistweitweg == Approx(1.0f));
+
+}
+
+
+/* ------------------ Aufgabe 5.8 ------------------ */
+/*
+TEST_CASE("Destructor: virtual vs. non-virtual", "[aufgabe5.8]") {
+  Color red(255, 0, 0); 
+  glm::vec3 position(0, 0, 0);
+
+  Sphere* s1 = new Sphere("sphere0", red, position, 1.2); 
+  Shape* s2 = new Sphere("sphere1", red, position, 1.2);
+
+  s1->print(std::cout); 
+  std::cout << std::endl;
+  s2->print(std::cout);
+  delete s1; 
+  delete s2;
+}
+*/
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

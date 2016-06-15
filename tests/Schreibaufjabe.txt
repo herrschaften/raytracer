@@ -1,0 +1,12 @@
+Aufgabe 5.7
+Sehen Sie sich folgenden Beispielcode an:
+Color red (255 , 0 , 0);
+glm :: vec3 position (0 ,0);
+std :: shared_ptr < Sphere > s1 =
+std :: make_shared < Sphere >( position , 1.2 , red , " sphere0 " );
+std :: shared_ptr < Shape > s2 =
+std :: make_shared < Sphere >( position , 1.2 , red , " sphere1 " );
+s1 - > print ( std :: cout );
+s2 - > print ( std :: cout );
+Erklären Sie anhand des Beispiels die Begriffe „Statischer Typ einer Variable“
+und „Dynamischer Typ einer Variable“.
