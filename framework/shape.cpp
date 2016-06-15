@@ -6,17 +6,19 @@
   //Default
 	Shape::Shape() :
 	m_name {"Shape"}, 
-	m_color {0.0f, 0.0f, 0.0f} {}
+	m_color {0.0f, 0.0f, 0.0f} 
+	{ std::cout << "Shape-Construction" << m_name << std::endl;}
 
 	//Custom
 	Shape::Shape(std::string const& name, Color const& color) : 
 	m_name {name},
-	m_color {color} {}
+	m_color {color}  
+	{std::cout <<":Shape-Construction: " << m_name << std::endl;}
 
 	  // Destructor 
 	Shape::~Shape() 
 	{
-	  std::cout << "Shape Destructor: " << m_name << std::endl;
+	  std::cout << "Shape-Destruction: " << m_name << std::endl;
 	}
 //GETTER----------------------------------------------------------------------
 

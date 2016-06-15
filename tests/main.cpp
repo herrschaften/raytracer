@@ -116,7 +116,7 @@ TEST_CASE("Konstrukts Sphere, name, color, getter","aufgabe5.3"){
 
 
 TEST_CASE("Shape: print method", "[aufgabe5.4-5]") {
-
+	/*
 	Box b1{};
   	Box b2 {{1.5f, 2.7f, -4.1f}, {0.0f, 0.0f, 11.0f}};
   	Box b3 {"ClevreKiste",{1.0f, 0.5f, 1.0f},{1.5f, 2.7f, -4.1f}, {0.0f, 0.0f, 11.0f}};
@@ -129,6 +129,7 @@ TEST_CASE("Shape: print method", "[aufgabe5.4-5]") {
 	std::cout<<"kugelgasse:\n"<<s1<<"\n"<<s2<<"\n"<<s3<<"\n";
 
 	//Wie teste ich dingsbums Shape cout..
+	*/
 }
 
 TEST_CASE("intersectRaySphere", "[aufgabe5.6]") {
@@ -168,10 +169,7 @@ TEST_CASE("intersectRaySphere", "[aufgabe5.6]") {
 
 }
 
-
-/* ------------------ Aufgabe 5.8 ------------------ */
-/*
-TEST_CASE("Destructor: virtual vs. non-virtual", "[aufgabe5.8]") {
+TEST_CASE("Destructor:", "[aufgabe5.8]") {
   Color red(255, 0, 0); 
   glm::vec3 position(0, 0, 0);
 
@@ -183,8 +181,50 @@ TEST_CASE("Destructor: virtual vs. non-virtual", "[aufgabe5.8]") {
   s2->print(std::cout);
   delete s1; 
   delete s2;
+
+  /*
+  Non virtual:-------------
+  :Shape-Construction: sphere0
+Sphere-Construction: sphere0
+:Shape-Construction: sphere1
+Sphere-Construction: sphere1
+Name: sphere0
+Color RGB: (255, 0, 0)
+Center: (0, 0, 0)
+Radius: 1.2
+
+Name: sphere1
+Color RGB: (255, 0, 0)
+Center: (0, 0, 0)
+Radius: 1.2
+Sphere-Destruction: sphere0
+Shape-Destruction: sphere0
+Shape-Destruction: sphere1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Es wird nicht s1 destructed?
+ Virtual:-------------------------
+ :Shape-Construction: sphere0
+Sphere-Construction: sphere0
+:Shape-Construction: sphere1
+Sphere-Construction: sphere1
+Name: sphere0
+Color RGB: (255, 0, 0)
+Center: (0, 0, 0)
+Radius: 1.2
+
+Name: sphere1
+Color RGB: (255, 0, 0)
+Center: (0, 0, 0)
+Radius: 1.2
+Sphere-Destruction: sphere0
+Shape-Destruction: sphere0
+Sphere-Destruction: sphere1
+Shape-Destruction: sphere1
+
+
+  */
+
 }
-*/
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
