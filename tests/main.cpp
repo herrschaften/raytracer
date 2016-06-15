@@ -1,20 +1,22 @@
+// main.cpp (Programmiersprachen Aufgabenblatt 5)
+
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+#include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
-
 
 
 TEST_CASE("default Konstrukt, getter, area volume","aufgabe5.1-2"){
   //Default: Konstruktor
   auto b1 = std::make_shared<Box> ();
-  REQUIRE (b1->min().x == 1.0f);
-  REQUIRE (b1->min().y == 1.0f);
-  REQUIRE (b1->min().z == 1.0f);
+  REQUIRE (b1->min().x == 0.0f);
+  REQUIRE (b1->min().y == 0.0f);
+  REQUIRE (b1->min().z == 0.0f);
 
-  REQUIRE (b1->max().x == 0.0f);
-  REQUIRE (b1->max().y == 0.0f);
-  REQUIRE (b1->max().z == 0.0f);
+  REQUIRE (b1->max().x == 1.0f);
+  REQUIRE (b1->max().y == 1.0f);
+  REQUIRE (b1->max().z == 1.0f);
 
   REQUIRE (b1->area() == 6*1.0f);
   REQUIRE(b1->volume() == 1.0f);
@@ -26,6 +28,7 @@ TEST_CASE("default Konstrukt, getter, area volume","aufgabe5.1-2"){
 
   REQUIRE (s1->area() == Approx(4*3.1416));
   REQUIRE (s1->volume() == Approx(4.18879));
+  
 }
 
 TEST_CASE("customt Konstrukt, getter, area volume","aufgabe5.1-2"){
@@ -49,6 +52,7 @@ TEST_CASE("customt Konstrukt, getter, area volume","aufgabe5.1-2"){
 
   REQUIRE (s1->area() == Approx(50.265482f));
   REQUIRE (s1->volume() == Approx(33.5103216f));
+
 }
 
 

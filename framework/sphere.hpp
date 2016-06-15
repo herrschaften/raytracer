@@ -1,28 +1,32 @@
-//sphere.hpp abgeleitetet klasse von shape.hpp
-#ifndef SPHERE_HPP
-#define SPHERE_HPP
+// shape.hpp GREAT
+
+#ifndef BUW_SPHERE_HPP
+#define BUW_SPHERE_HPP
+
 #include "shape.hpp"
-#include <math.h>
-#include <glm/vec3.hpp>
+#include "ray.hpp"
 
-//definition von sphere
-
-class Sphere : public Shape{
-public:
+class Sphere : public Shape {
+public: 
   Sphere();
-  Sphere(glm::vec3 const& mpnt, float r);
-  Sphere(const Sphere&);
+  Sphere(glm::vec3 const& ctr, float rad);
+  Sphere(std::string const& name, Color const& color, glm::vec3 const& ctr, float rad); 
+  ~Sphere() override; // Aufgabe 5.8
 
-  float area() const override;// foo.area()
-
-  float volume() const override;
-
-  //getter:
   glm::vec3 const& center() const;
   float radius() const;
+  void center(glm::vec3 const& ctr);
+  void radius(float const& rad);
+
+  float area() const override;
+  float volume() const override;
+  std::ostream& print(std::ostream& os) const override;
+ 
+  bool intersect(Ray const& ray, float& distance);
 
 private:
   glm::vec3 m_center;
   float m_radius;
 };
-#endif //sphere.hpp
+
+#endif // BUW_SPHERE_HPP

@@ -1,25 +1,28 @@
-//box.hpp abgeleitete Klasse von shape.hpp
-#ifndef BOX_HPP
-#define BOX_HPP
-#include "shape.hpp"
-#include <glm/vec3.hpp>
+// shape.hpp GREAT
 
-class Box : public Shape{
-public:
+#ifndef BUW_BOX_HPP
+#define BUW_BOX_HPP
+#include "shape.hpp"
+
+class Box : public Shape {
+public: 
   Box();
   Box(glm::vec3 const& min, glm::vec3 const& max);
-  Box(const Box&);
+  Box(std::string const& name, Color const& color, glm::vec3 const& min, glm::vec3 const& max);
+  
+  glm::vec3 const& max() const;
+  glm::vec3 const& min() const;
+  void max(glm::vec3 const& max);
+  void min(glm::vec3 const& min);
 
   float area() const override;
-  
   float volume() const override;
-
-  //getter:
-  glm::vec3 const& min() const;
-  glm::vec3 const& max() const;
+  std::ostream& print(std::ostream& os) const override; 
+  
 
 private:
   glm::vec3 m_min;
   glm::vec3 m_max;
 };
-#endif //box.hpp
+
+#endif // BUW_BOX_HPP

@@ -1,20 +1,33 @@
-//shape.hpp
-#ifndef SHAPE_HPP
-#define SHAPE_HPP
+// shape.hpp Great
 
-//basisklasse shape deklaration
-//vererbt an:
-//Sphere
-//Box
-//
+#ifndef BUW_SHAPE_HPP
+#define BUW_SHAPE_HPP
+#include "color.hpp"
+#include <glm/glm.hpp>
+#include <glm/vec3.hpp>
+#include <glm/gtx/intersect.hpp>
+#include <cmath>
+#include <string>
+#include <iostream>
 
-class Shape{
+class Shape {
 public:
-  virtual float area() const = 0; // foo.area()
+  Shape();
+  Shape(std::string const& name, Color const& color);
+  virtual ~Shape(); 
+
+  virtual float area() const = 0;
   virtual float volume() const = 0;
+  virtual std::ostream& print(std::ostream& os) const; 
+  
+  std::string name() const;
+  Color const& color() const;
 
-protected:
-
-private:
+protected: 
+  std::string m_name;
+  Color m_color;
 };
-#endif //shape.hpp
+
+std::ostream& operator << (std::ostream& os, Shape const& s);
+
+#endif // BUW_SHAPE_HPP
