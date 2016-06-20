@@ -7,6 +7,6 @@ struct Ray{
 		direction_{dir}
 	{}
 	
-	glm::vec3 origin_={0.0f,0.0f,0.0f};
+	glm::vec3 origin_={0.0f,0.0f,0.0f};//Easy
 	glm::vec3 direction_={1.0f,0.0f,0.0f};
 };
