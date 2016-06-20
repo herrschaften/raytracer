@@ -22,6 +22,12 @@
   m_min {min}, 
   m_max {max} {}
 
+  //Destruktor
+  Box::~Box() 
+  {
+    std::cout << "Box-Destruction: " << Shape::name()<< std::endl;
+  }
+
 //GETTER----------------------------------------------------------------------
 
   glm::vec3 const& Box::max() const 

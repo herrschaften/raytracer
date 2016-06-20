@@ -23,7 +23,7 @@ public:
   std::string name() const;
   Color const& color() const;
 
-protected: 
+private: 
   std::string m_name;
   Color m_color;
 };

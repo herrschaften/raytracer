@@ -10,3 +10,11 @@ s1 - > print ( std :: cout );
 s2 - > print ( std :: cout );
 Erklären Sie anhand des Beispiels die Begriffe „Statischer Typ einer Variable“
 und „Dynamischer Typ einer Variable“.
+
+5.9
+Klassenhierarchie:
+Objekte die hierarchisch druch Vererbung(virtual) in direkter Beziehung stehen.
+Agregation
+
+Objekthierarchie:
+Objekte die in Form von Kompositionen in indirekter Zusammengehörigkeit stehen.

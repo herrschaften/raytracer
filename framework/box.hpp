@@ -9,7 +9,8 @@ public:
   Box();
   Box(glm::vec3 const& min, glm::vec3 const& max);
   Box(std::string const& name, Color const& color, glm::vec3 const& min, glm::vec3 const& max);
-  
+  ~Box()override;
+
   glm::vec3 const& max() const;
   glm::vec3 const& min() const;
   void max(glm::vec3 const& max);

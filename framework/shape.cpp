@@ -13,7 +13,9 @@
 	Shape::Shape(std::string const& name, Color const& color) : 
 	m_name {name},
 	m_color {color}  
-	{std::cout <<":Shape-Construction: " << m_name << std::endl;}
+	{
+		std::cout <<":Shape-Construction: " << m_name << std::endl;
+	}
 
 	  // Destructor 
 	Shape::~Shape() 

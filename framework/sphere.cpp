@@ -9,26 +9,26 @@
   Shape {"Sphere", {0.0f, 0.0f, 0.0f}},
   m_center {0.0f, 0.0f, 0.0f}, 
   m_radius {1.0f} 
-  {std::cout << "Sphere-Construction: " << m_name<< std::endl;}
+  {std::cout << "Sphere-Construction: " << name()<< std::endl;}
 
   // Custom 1
   Sphere::Sphere(glm::vec3 const& ctr, float rad) :
   Shape {"Sphere", {0.0f, 0.0f, 0.0f}}, 
   m_center {ctr},
   m_radius {rad} 
-  {std::cout << "Sphere-Construction: " << m_name<< std::endl;}
+  {std::cout << "Sphere-Construction: " << name()<< std::endl;}
 
   //Custom 2
   Sphere::Sphere(std::string const& name, Color const& color, glm::vec3 const& ctr, float rad) :
   Shape {name, color},
   m_center {ctr}, 
   m_radius {rad} 
-  {std::cout << "Sphere-Construction: " << m_name<< std::endl;}
+  {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}
 
   //Destruktor
   Sphere::~Sphere() 
   {
-    std::cout << "Sphere-Destruction: " << m_name<< std::endl;
+    std::cout << "Sphere-Destruction: " << Shape::name()<< std::endl;
   }
 
 //GETTER----------------------------------------------------------------------
