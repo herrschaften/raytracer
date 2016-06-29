@@ -225,8 +225,8 @@ clean: source/CMakeFiles/auf65.dir/clean
 # Target rules for target source/CMakeFiles/example.dir
 
 # All Build rule for target.
-source/CMakeFiles/example.dir/all: framework/CMakeFiles/framework.dir/all
 source/CMakeFiles/example.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
+source/CMakeFiles/example.dir/all: framework/CMakeFiles/framework.dir/all
 	$(MAKE) -f source/CMakeFiles/example.dir/build.make source/CMakeFiles/example.dir/depend
 	$(MAKE) -f source/CMakeFiles/example.dir/build.make source/CMakeFiles/example.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  2
@@ -261,8 +261,8 @@ clean: source/CMakeFiles/example.dir/clean
 # Target rules for target source/CMakeFiles/raytracer.dir
 
 # All Build rule for target.
-source/CMakeFiles/raytracer.dir/all: framework/CMakeFiles/framework.dir/all
 source/CMakeFiles/raytracer.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
+source/CMakeFiles/raytracer.dir/all: framework/CMakeFiles/framework.dir/all
 	$(MAKE) -f source/CMakeFiles/raytracer.dir/build.make source/CMakeFiles/raytracer.dir/depend
 	$(MAKE) -f source/CMakeFiles/raytracer.dir/build.make source/CMakeFiles/raytracer.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  29
@@ -312,8 +312,8 @@ tests/preinstall:
 # Target rules for target tests/CMakeFiles/tests.dir
 
 # All Build rule for target.
-tests/CMakeFiles/tests.dir/all: framework/CMakeFiles/framework.dir/all
 tests/CMakeFiles/tests.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
+tests/CMakeFiles/tests.dir/all: framework/CMakeFiles/framework.dir/all
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/depend
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  30

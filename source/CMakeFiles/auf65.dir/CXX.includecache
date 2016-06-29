@@ -7,4 +7,28 @@
 #IncludeRegexTransform: 
 
 /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/source/auf65.cpp
+iostream
+-
+fstream
+-
+string
+-
+material.hpp
+/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/source/material.hpp
+map
+-
+sstream
+-
+
+framework/color.hpp
+iostream
+-
+
+framework/material.hpp
+ostream
+-
+color.hpp
+framework/color.hpp
+string
+-
 
