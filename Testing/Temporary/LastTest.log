@@ -1,0 +1,106 @@
+Start testing: Jun 29 17:52 CEST
+----------------------------------------------------------
+1/1 Testing: tests
+1/1 Test: tests
+Command: "/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/build/Release/tests"
+Directory: /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer
+"tests" start time: Jun 29 17:52 CEST
+Output:
+----------------------------------------------------------
+:Shape-Construction: Box
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+Sphere-Destruction: Sphere
+Shape-Destruction: Sphere
+Box-Destruction: Box
+Shape-Destruction: Box
+:Shape-Construction: Box
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+Sphere-Destruction: Sphere
+Shape-Destruction: Sphere
+Box-Destruction: Box
+Shape-Destruction: Box
+:Shape-Construction: Box
+:Shape-Construction: Box
+Box-Destruction: Box
+Shape-Destruction: Box
+Box-Destruction: Box
+Shape-Destruction: Box
+:Shape-Construction: Box
+:Shape-Construction: Box
+:Shape-Construction: Box
+Boxengasse:
+Name: Box
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Minimum: (0, 0, 0)
+Maximum: (1, 1, 1)
+
+Name: Box
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Minimum: (1.5, 2.7, -4.1)
+Maximum: (0, 0, 11)
+
+Name: Box
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Minimum: (1, 0.5, 1)
+Maximum: (1.5, 2.7, -4.1)
+
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+kugelgasse:
+Name: Sphere
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Center: (0, 0, 0)
+Radius: 1
+
+Name: Sphere
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Center: (0.8, 0.3, 0.5)
+Radius: 7.2
+
+Name: Sphere
+Material: (name: Default
+ka: (0,0,0),kd: (0,0,0),ks: (0,0,0),m: 0
+
+Center: (0.8, 0.3, 0.5)
+Radius: 0.9
+
+Sphere-Destruction: Sphere
+Shape-Destruction: Sphere
+Sphere-Destruction: Sphere
+Shape-Destruction: Sphere
+Sphere-Destruction: Sphere
+Shape-Destruction: Sphere
+Box-Destruction: Box
+Shape-Destruction: Box
+Box-Destruction: Box
+Shape-Destruction: Box
+Box-Destruction: Box
+Shape-Destruction: Box
+===============================================================================
+All tests passed (26 assertions in 4 test cases)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"tests" end time: Jun 29 17:52 CEST
+"tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 29 17:52 CEST

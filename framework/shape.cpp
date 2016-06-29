@@ -6,13 +6,13 @@
   //Default
 	Shape::Shape() :
 	m_name {"Shape"}, 
-	m_color {0.0f, 0.0f, 0.0f} 
+	m_mat {} 
 	{ std::cout << "Shape-Construction" << m_name << std::endl;}
 
 	//Custom
-	Shape::Shape(std::string const& name, Color const& color) : 
+	Shape::Shape(std::string const& name, Material const& mat) : 
 	m_name {name},
-	m_color {color}  
+	m_mat {mat}  
 	{
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
 	}
@@ -31,9 +31,9 @@
 
 //SETTER----------------------------------------------------------------------
 
-	Color const& Shape::color() const 
+	Material const& Shape::material() const 
 	{
-	  return m_color; 
+	  return m_mat; 
 	}
 
 //FUNKTIONEN---------------------------------------------------------------------
@@ -43,9 +43,7 @@
 	{
 	  os << "Name: " << m_name << "\n" 
 
-	  << "Color RGB: (" << m_color.r << ", " 
-	  << m_color.g << ", " 
-	  << m_color.b << ")" << std::endl;
+	  << "Material: (" << m_mat<< std::endl;
 	  return os;
 	}
 

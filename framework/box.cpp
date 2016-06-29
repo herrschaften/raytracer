@@ -6,19 +6,19 @@
   //Default
   //name:Box, Color: 0,0,0, Seitenlänge: 1
   Box::Box() : 
-  Shape {"Box", {0.0f, 0.0f, 0.0f}}, 
+  Shape {"Box", {}}, 
   m_min {0.0f, 0.0f, 0.0f}, 
   m_max {1.0f, 1.0f, 1.0f} {}
 
   // Custom 1 
   Box::Box(glm::vec3 const& min, glm::vec3 const& max) :
-  Shape {"Box", {0.0f, 0.0f, 0.0f}}, 
+  Shape {"Box", {}}, 
   m_min {min}, 
   m_max {max} {}
 
   // Custom 2
-  Box::Box(std::string const& name, Color const& color, glm::vec3 const& min, glm::vec3 const& max) : 
-  Shape {name, color},
+  Box::Box(std::string const& name, Material const& mat, glm::vec3 const& min, glm::vec3 const& max) : 
+  Shape {name, mat},
   m_min {min}, 
   m_max {max} {}
 
@@ -80,6 +80,3 @@
 
     return os;
   }
-
-  
-

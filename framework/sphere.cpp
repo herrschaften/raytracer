@@ -6,21 +6,21 @@
   //Default 
   //name:Sphere, Color: 0,0,0, center: 0, radius: 1
   Sphere::Sphere() :
-  Shape {"Sphere", {0.0f, 0.0f, 0.0f}},
+  Shape {"Sphere", {}},
   m_center {0.0f, 0.0f, 0.0f}, 
   m_radius {1.0f} 
   {std::cout << "Sphere-Construction: " << name()<< std::endl;}
 
   // Custom 1
   Sphere::Sphere(glm::vec3 const& ctr, float rad) :
-  Shape {"Sphere", {0.0f, 0.0f, 0.0f}}, 
+  Shape {"Sphere", {}}, 
   m_center {ctr},
   m_radius {rad} 
   {std::cout << "Sphere-Construction: " << name()<< std::endl;}
 
   //Custom 2
-  Sphere::Sphere(std::string const& name, Color const& color, glm::vec3 const& ctr, float rad) :
-  Shape {name, color},
+  Sphere::Sphere(std::string const& name, Material const& mat, glm::vec3 const& ctr, float rad) :
+  Shape {name, mat},
   m_center {ctr}, 
   m_radius {rad} 
   {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}
