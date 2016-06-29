@@ -1,5 +1,7 @@
 add_executable(example example.cpp)
 
+add_executable(auf65 auf65.cpp)
+
 target_link_libraries(example ${FRAMEWORK_NAME} ${LIBRARIES})
 add_dependencies(example glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
 

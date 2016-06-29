@@ -67,6 +67,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 SET(CMAKE_DEPEND_INFO_FILES
   "external/glfw-3.0.3/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "framework/CMakeFiles/framework.dir/DependInfo.cmake"
+  "source/CMakeFiles/auf65.dir/DependInfo.cmake"
   "source/CMakeFiles/example.dir/DependInfo.cmake"
   "source/CMakeFiles/raytracer.dir/DependInfo.cmake"
   "tests/CMakeFiles/tests.dir/DependInfo.cmake"

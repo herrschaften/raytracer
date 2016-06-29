@@ -176,6 +176,19 @@ framework/fast:
 .PHONY : framework/fast
 
 #=============================================================================
+# Target rules for targets named auf65
+
+# Build rule for target.
+auf65: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 auf65
+.PHONY : auf65
+
+# fast build rule for target.
+auf65/fast:
+	$(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/build
+.PHONY : auf65/fast
+
+#=============================================================================
 # Target rules for targets named example
 
 # Build rule for target.
@@ -229,6 +242,7 @@ help:
 	@echo "... test"
 	@echo "... glfw"
 	@echo "... framework"
+	@echo "... auf65"
 	@echo "... example"
 	@echo "... raytracer"
 	@echo "... tests"

@@ -89,7 +89,7 @@ external/glfw-3.0.3/src/preinstall:
 external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) -f external/glfw-3.0.3/src/CMakeFiles/glfw.dir/build.make external/glfw-3.0.3/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) -f external/glfw-3.0.3/src/CMakeFiles/glfw.dir/build.make external/glfw-3.0.3/src/CMakeFiles/glfw.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
 	@echo "Built target glfw"
 .PHONY : external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 
@@ -139,7 +139,7 @@ framework/preinstall:
 framework/CMakeFiles/framework.dir/all:
 	$(MAKE) -f framework/CMakeFiles/framework.dir/build.make framework/CMakeFiles/framework.dir/depend
 	$(MAKE) -f framework/CMakeFiles/framework.dir/build.make framework/CMakeFiles/framework.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  2 3 4 5 6 7 8 9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  3 4 5 6 7 8 9 10
 	@echo "Built target framework"
 .PHONY : framework/CMakeFiles/framework.dir/all
 
@@ -171,11 +171,13 @@ clean: framework/CMakeFiles/framework.dir/clean
 # Directory level rules for directory source
 
 # Convenience name for "all" pass in the directory.
+source/all: source/CMakeFiles/auf65.dir/all
 source/all: source/CMakeFiles/example.dir/all
 source/all: source/CMakeFiles/raytracer.dir/all
 .PHONY : source/all
 
 # Convenience name for "clean" pass in the directory.
+source/clean: source/CMakeFiles/auf65.dir/clean
 source/clean: source/CMakeFiles/example.dir/clean
 source/clean: source/CMakeFiles/raytracer.dir/clean
 .PHONY : source/clean
@@ -185,14 +187,49 @@ source/preinstall:
 .PHONY : source/preinstall
 
 #=============================================================================
+# Target rules for target source/CMakeFiles/auf65.dir
+
+# All Build rule for target.
+source/CMakeFiles/auf65.dir/all:
+	$(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/depend
+	$(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  1
+	@echo "Built target auf65"
+.PHONY : source/CMakeFiles/auf65.dir/all
+
+# Include target in all.
+all: source/CMakeFiles/auf65.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+source/CMakeFiles/auf65.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 source/CMakeFiles/auf65.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles 0
+.PHONY : source/CMakeFiles/auf65.dir/rule
+
+# Convenience name for target.
+auf65: source/CMakeFiles/auf65.dir/rule
+.PHONY : auf65
+
+# clean rule for target.
+source/CMakeFiles/auf65.dir/clean:
+	$(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/clean
+.PHONY : source/CMakeFiles/auf65.dir/clean
+
+# clean rule for target.
+clean: source/CMakeFiles/auf65.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target source/CMakeFiles/example.dir
 
 # All Build rule for target.
-source/CMakeFiles/example.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 source/CMakeFiles/example.dir/all: framework/CMakeFiles/framework.dir/all
+source/CMakeFiles/example.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f source/CMakeFiles/example.dir/build.make source/CMakeFiles/example.dir/depend
 	$(MAKE) -f source/CMakeFiles/example.dir/build.make source/CMakeFiles/example.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  2
 	@echo "Built target example"
 .PHONY : source/CMakeFiles/example.dir/all
 
@@ -224,11 +261,11 @@ clean: source/CMakeFiles/example.dir/clean
 # Target rules for target source/CMakeFiles/raytracer.dir
 
 # All Build rule for target.
-source/CMakeFiles/raytracer.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 source/CMakeFiles/raytracer.dir/all: framework/CMakeFiles/framework.dir/all
+source/CMakeFiles/raytracer.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f source/CMakeFiles/raytracer.dir/build.make source/CMakeFiles/raytracer.dir/depend
 	$(MAKE) -f source/CMakeFiles/raytracer.dir/build.make source/CMakeFiles/raytracer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  28
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  29
 	@echo "Built target raytracer"
 .PHONY : source/CMakeFiles/raytracer.dir/all
 
@@ -275,11 +312,11 @@ tests/preinstall:
 # Target rules for target tests/CMakeFiles/tests.dir
 
 # All Build rule for target.
-tests/CMakeFiles/tests.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 tests/CMakeFiles/tests.dir/all: framework/CMakeFiles/framework.dir/all
+tests/CMakeFiles/tests.dir/all: external/glfw-3.0.3/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/depend
 	$(MAKE) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  29
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/CMakeFiles  30
 	@echo "Built target tests"
 .PHONY : tests/CMakeFiles/tests.dir/all
 

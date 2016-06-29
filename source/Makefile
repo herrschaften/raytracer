@@ -150,6 +150,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+source/CMakeFiles/auf65.dir/rule:
+	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f CMakeFiles/Makefile2 source/CMakeFiles/auf65.dir/rule
+.PHONY : source/CMakeFiles/auf65.dir/rule
+
+# Convenience name for target.
+auf65: source/CMakeFiles/auf65.dir/rule
+.PHONY : auf65
+
+# fast build rule for target.
+auf65/fast:
+	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/build
+.PHONY : auf65/fast
+
+# Convenience name for target.
 source/CMakeFiles/example.dir/rule:
 	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f CMakeFiles/Makefile2 source/CMakeFiles/example.dir/rule
 .PHONY : source/CMakeFiles/example.dir/rule
@@ -176,6 +190,30 @@ raytracer: source/CMakeFiles/raytracer.dir/rule
 raytracer/fast:
 	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f source/CMakeFiles/raytracer.dir/build.make source/CMakeFiles/raytracer.dir/build
 .PHONY : raytracer/fast
+
+auf65.o: auf65.cpp.o
+.PHONY : auf65.o
+
+# target to build an object file
+auf65.cpp.o:
+	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/auf65.cpp.o
+.PHONY : auf65.cpp.o
+
+auf65.i: auf65.cpp.i
+.PHONY : auf65.i
+
+# target to preprocess a source file
+auf65.cpp.i:
+	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/auf65.cpp.i
+.PHONY : auf65.cpp.i
+
+auf65.s: auf65.cpp.s
+.PHONY : auf65.s
+
+# target to generate assembly for a file
+auf65.cpp.s:
+	cd /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer && $(MAKE) -f source/CMakeFiles/auf65.dir/build.make source/CMakeFiles/auf65.dir/auf65.cpp.s
+.PHONY : auf65.cpp.s
 
 example.o: example.cpp.o
 .PHONY : example.o
@@ -231,6 +269,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... auf65"
 	@echo "... edit_cache"
 	@echo "... example"
 	@echo "... install"
@@ -240,6 +279,9 @@ help:
 	@echo "... raytracer"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... auf65.o"
+	@echo "... auf65.i"
+	@echo "... auf65.s"
 	@echo "... example.o"
 	@echo "... example.i"
 	@echo "... example.s"
