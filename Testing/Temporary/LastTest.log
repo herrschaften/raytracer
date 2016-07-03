@@ -1,10 +1,10 @@
-Start testing: Jun 29 17:52 CEST
+Start testing: Jul 03 20:33 CEST
 ----------------------------------------------------------
 1/1 Testing: tests
 1/1 Test: tests
 Command: "/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/build/Release/tests"
 Directory: /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer
-"tests" start time: Jun 29 17:52 CEST
+"tests" start time: Jul 03 20:33 CEST
 Output:
 ----------------------------------------------------------
 :Shape-Construction: Box
@@ -92,15 +92,18 @@ Box-Destruction: Box
 Shape-Destruction: Box
 Box-Destruction: Box
 Shape-Destruction: Box
+:Shape-Construction: Sphere
+Sphere-Construction: Sphere
+:Shape-Construction: Box
 ===============================================================================
-All tests passed (26 assertions in 4 test cases)
+All tests passed (34 assertions in 5 test cases)
 
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"tests" end time: Jun 29 17:52 CEST
+"tests" end time: Jul 03 20:33 CEST
 "tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jun 29 17:52 CEST
+End testing: Jul 03 20:33 CEST

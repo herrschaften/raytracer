@@ -867,6 +867,8 @@ color.hpp
 framework/color.hpp
 material.hpp
 framework/material.hpp
+ray.hpp
+framework/ray.hpp
 glm/glm.hpp
 -
 glm/vec3.hpp
@@ -883,6 +885,4 @@ iostream
 framework/sphere.hpp
 shape.hpp
 framework/shape.hpp
-ray.hpp
-framework/ray.hpp
 

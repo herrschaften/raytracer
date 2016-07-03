@@ -30,15 +30,13 @@ string
 glm/vec3.hpp
 -
 
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.cpp
-shape.hpp
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.hpp
-
 /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.hpp
 color.hpp
 /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/color.hpp
 material.hpp
 /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/material.hpp
+ray.hpp
+/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/ray.hpp
 glm/glm.hpp
 -
 glm/vec3.hpp
@@ -51,16 +49,6 @@ string
 -
 iostream
 -
-
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/sphere.cpp
-sphere.hpp
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/sphere.hpp
-
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/sphere.hpp
-shape.hpp
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.hpp
-ray.hpp
-/home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/ray.hpp
 
 external/glm-0.9.5.3/glm/common.hpp
 detail/func_common.hpp

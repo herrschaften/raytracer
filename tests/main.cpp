@@ -136,6 +136,44 @@ TEST_CASE("Shape: print method", "[aufgabe5.4-5]") {
 	//Wie teste ich dingsbums Shape cout..
 	
 }
+
+TEST_CASE("Intersect it", "[aufgabe6.3]") {
+
+  Sphere* s = new Sphere(); 
+  Box* b = new Box();
+
+  Shape* sh = s;
+
+  glm::vec3 ray_direction{1.0f, 0.0f, 0.0f};
+  glm::vec3 ray_origin{0.0f, 0.0f, 0.0f};
+  Ray rayman {ray_origin, ray_direction};
+  float dis=0;
+
+  REQUIRE(s->intersect(rayman,dis));
+  REQUIRE(sh->intersect(rayman,dis));
+
+  ray_origin={1.0f, 0.0f, 0.0f};
+  ray_direction={0.0f, 1.0f, 0.0f};
+  rayman={ray_origin, ray_direction};
+  sh = s;
+  REQUIRE(!(s->intersect(rayman,dis)));
+  REQUIRE(!(sh->intersect(rayman,dis)));
+
+  sh=b;
+  ray_direction={1.0f, 0.0f, 0.0f};
+  ray_origin={0.0f, 0.0f, 0.0f};
+  rayman={ray_origin, ray_direction};
+  REQUIRE(b->intersect(rayman,dis));
+  REQUIRE(sh->intersect(rayman,dis));
+
+  ray_direction={1.0f, 0.0f, 0.0f};
+  ray_origin={1.1f, 1.1f, 1.1f};
+  rayman={ray_origin, ray_direction};
+  REQUIRE(!(b->intersect(rayman,dis)));
+  REQUIRE(!(sh->intersect(rayman,dis)));
+
+}
+
 /*
 TEST_CASE("intersectRaySphere", "[aufgabe5.6]") {
   // Ray

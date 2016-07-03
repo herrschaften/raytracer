@@ -10,6 +10,7 @@ framework/CMakeFiles/framework.dir/box.cpp.o: framework/box.cpp
 framework/CMakeFiles/framework.dir/box.cpp.o: framework/box.hpp
 framework/CMakeFiles/framework.dir/box.cpp.o: framework/color.hpp
 framework/CMakeFiles/framework.dir/box.cpp.o: framework/material.hpp
+framework/CMakeFiles/framework.dir/box.cpp.o: framework/ray.hpp
 framework/CMakeFiles/framework.dir/box.cpp.o: framework/shape.hpp
 framework/CMakeFiles/framework.dir/box.cpp.o: external/glm-0.9.5.3/glm/common.hpp
 framework/CMakeFiles/framework.dir/box.cpp.o: external/glm-0.9.5.3/glm/detail/_fixes.hpp
@@ -185,6 +186,7 @@ framework/CMakeFiles/framework.dir/renderer.cpp.o: external/glm-0.9.5.3/glm/vect
 
 framework/CMakeFiles/framework.dir/shape.cpp.o: framework/color.hpp
 framework/CMakeFiles/framework.dir/shape.cpp.o: framework/material.hpp
+framework/CMakeFiles/framework.dir/shape.cpp.o: framework/ray.hpp
 framework/CMakeFiles/framework.dir/shape.cpp.o: framework/shape.cpp
 framework/CMakeFiles/framework.dir/shape.cpp.o: framework/shape.hpp
 framework/CMakeFiles/framework.dir/shape.cpp.o: external/glm-0.9.5.3/glm/common.hpp

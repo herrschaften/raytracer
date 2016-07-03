@@ -11,6 +11,7 @@ framework/CMakeFiles/framework.dir/box.cpp.o
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/box.hpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/color.hpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/material.hpp
+ /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/ray.hpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.hpp
  external/glm-0.9.5.3/glm/common.hpp
  external/glm-0.9.5.3/glm/detail/_fixes.hpp
@@ -186,6 +187,7 @@ framework/CMakeFiles/framework.dir/renderer.cpp.o
 framework/CMakeFiles/framework.dir/shape.cpp.o
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/color.hpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/material.hpp
+ /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/ray.hpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.cpp
  /home/phil/Desktop/Dropbox/Pro/programmiersprachen-raytracer/framework/shape.hpp
  external/glm-0.9.5.3/glm/common.hpp
