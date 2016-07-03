@@ -4,12 +4,14 @@
 #define BUW_SHAPE_HPP
 #include "color.hpp"
 #include "material.hpp"
+#include "ray.hpp"
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <cmath>
 #include <string>
 #include <iostream>
+
 
 class Shape {
 public:
@@ -20,10 +22,8 @@ public:
   virtual float area() const = 0;
   virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
-  /*
-    //intersect
-  virtual bool intersect(Ray const&, float distance) const =0;
-  */
+  virtual bool intersect ( Ray const & r , float & distance ) const = 0;
+  
 
   std::string name() const;
   Material const& material() const;

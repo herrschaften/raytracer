@@ -4,7 +4,6 @@
 #define BUW_SPHERE_HPP
 
 #include "shape.hpp"
-#include "ray.hpp"
 
 class Sphere : public Shape {
 public: 
@@ -21,8 +20,7 @@ public:
   float area() const override;
   float volume() const override;
   std::ostream& print(std::ostream& os) const override;
- 
-  bool intersect(Ray const& ray, float& distance);
+  bool intersect ( Ray const & r , float & distance ) const override;
 
 private:
   glm::vec3 m_center;

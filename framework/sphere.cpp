@@ -1,6 +1,7 @@
 // sphere.cpp GREAT
 
 #include "sphere.hpp"
+
  //KONSTRUTOREN----------------------------------------------------------------------
   
   //Default 
@@ -86,6 +87,6 @@
 
 
 
-  bool Sphere::intersect(Ray const& ray, float& distance) { //ray.direction normalisiert bitte!
-    return glm::intersectRaySphere(ray.origin_, ray.direction_, m_center, m_radius , distance);
+  bool Sphere::intersect ( Ray const & r , float & distance ) const { //ray.direction normalisiert bitte!
+    return glm::intersectRaySphere(r.origin_, r.direction_, m_center, m_radius , distance);
   }
