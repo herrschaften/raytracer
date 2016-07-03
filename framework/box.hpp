@@ -19,6 +19,7 @@ public:
   float area() const override;
   float volume() const override;
   std::ostream& print(std::ostream& os) const override; 
+   bool intersect(Ray const& ray, float& distance);
   
 
 private:

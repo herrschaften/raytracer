@@ -20,7 +20,11 @@ public:
   virtual float area() const = 0;
   virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
-  
+  /*
+    //intersect
+  virtual bool intersect(Ray const&, float distance) const =0;
+  */
+
   std::string name() const;
   Material const& material() const;
 
