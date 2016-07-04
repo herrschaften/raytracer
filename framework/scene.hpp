@@ -1,19 +1,24 @@
 //toBe GREAT
-#include <shape.hpp>
-//#include <camera>
-//#include <light>
-#include <material.hpp>
+
+#ifndef SCENE_HPP
+#define SCENE_HPP
+#include <vector>
+#include <map>
+#include "shape.hpp"
+#include "material.hpp"
+//#include "light.hpp"
+//#include "camera.hpp"
 
 struct Scene{
-	//Assets:
+//Assets:
 	//-Licht
-	//std::vector <Light> SceneLights;
+		//std::vector <Light> SceneLights;
 	//-Shapes
-	std::vector <Shape> SceneShapes;
+		std::vector <Shape*> SceneShapes;
 	//-Camera
-	Camera SceneCam;
+		//Camera SceneCam;
 	//-Material
-	std::map<Name, Material> SceneMaterials;
+		std::map<std::string, Material*> SceneMaterials;
 	//-Optional Hit
-	//OptionlHit intersect(Ray const&)const;
+		//OptionlHit intersect(Ray const&)const;
 };

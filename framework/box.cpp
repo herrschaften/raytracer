@@ -85,6 +85,7 @@
   bool Box::intersect ( Ray const & r , float & distance ) const
   {  //Source: http://www.scratchapixel.com/lessons/3d-basic-rendering/
      //minimal-ray-tracer-rendering-simple-shapes/ray-box-intersection
+      //eventuell robusterbauen
       float tmin = (m_min.x - r.origin_.x) / r.direction_.x; 
       float tmax = (m_max.x - r.origin_.x) / r.direction_.x; 
    
@@ -117,6 +118,7 @@
    
       if (tzmax < tmax) 
           tmax = tzmax; 
+      distance=tmin;
     //distance anpassen!!
       
       return true; 
