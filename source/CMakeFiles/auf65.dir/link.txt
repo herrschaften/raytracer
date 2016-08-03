@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11    CMakeFiles/auf65.dir/auf65.cpp.o  -o ../build/Release/auf65 -rdynamic 

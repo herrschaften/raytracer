@@ -1,5 +1,4 @@
 //toBe GREAT
-
 #ifndef SCENE_HPP
 #define SCENE_HPP
 #include <vector>
@@ -22,3 +21,4 @@ struct Scene{
 	//-Optional Hit
 		//OptionlHit intersect(Ray const&)const;
 };
+#endif// blaiu

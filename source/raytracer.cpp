@@ -2,13 +2,16 @@
 #include <renderer.hpp>
 #include <fensterchen.hpp>
 
+#include "raytracer.hpp"
+
 int main(int argc, char* argv[])
 {
   unsigned const width = 600;
   unsigned const height = 600;
   std::string const filename = "./checkerboard.ppm";
 
-  Renderer app(width, height, filename);
+  
+  /*Renderer app(width, height, filename);
 
   std::thread thr([&app]() { app.render(); });
 
@@ -25,7 +28,7 @@ int main(int argc, char* argv[])
     win.update();
   }
 
-  thr.join();
+  thr.join();*/
 
   return 0;
 }

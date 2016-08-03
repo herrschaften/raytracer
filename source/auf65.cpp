@@ -5,9 +5,13 @@
 #include "material.hpp"
 #include <map>
 #include <sstream>
+#include "raytracer.hpp"
 
 
-int main () {
+int main(int argc, char* argv[]) {
+  Raytracer rat("heier", 1280, 156, "daa");
+
+/*
   std::string line;
   std::ifstream myfile ("../Material.sdf");
 
@@ -50,7 +54,7 @@ int main () {
     myfile.close();
   }
 
-  else std::cout << "Unable to open file"; 
+  else std::cout << "Unable to open file";*/
 
   return 0;
 }
