@@ -9,8 +9,21 @@
 
 
 int main(int argc, char* argv[]) {
-  Raytracer rat("heier", 1280, 156, "daa");
+  /*
+  ######################################
+  //Beispielaufruf
+  mit:
+    -Input Path (mit n vielen ".txt"-Dateien)
+    -width
+    -height
+    -Output Path (für n viel Bilder)
 
+  ######################################
+  */
+  Raytracer rat("./pathin", 1280, 156, ".pathout"); 
+
+
+//Unnütz folgt hier..:
 /*
   std::string line;
   std::ifstream myfile ("../Material.sdf");

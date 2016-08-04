@@ -7,8 +7,11 @@
   
   //Default
   
-
-  // Custom 1 
+   /*Custom 1 
+  ######################################
+  Setzt Raytracer Custom auf. Kann nun
+  in gewünschter Auflösung beliebig viele
+  ".sdf" Dateien nacheinander Rendern! */
   Raytracer::Raytracer(std::string const& inpath, unsigned int width, unsigned int height, std::string const& outpath):
 	  m_in {inpath}, 
 	  m_width {width}, 
@@ -16,24 +19,38 @@
 	  m_out{outpath}
 	  {}
 
+
   //Destruktor
+
 //FUNKTIONEN----------------------------------------------------------------------
-	void Raytracer::render()
+  /*FKT 1
+  ######################################	
+  Aufruf zum rendern. Fkt organisiert in 
+  Form einer Schleife alle zu rendernden
+  Dateien und übergibt die Scenen dazu an
+  den Renderer weiter!*/
+  void Raytracer::render()
 	{
-		
-		Scene scene; 
     /*
     ######################################
     Idee.: per while schleife durch Ordner 
-    und die jeweilige .txt datei an den 
+    und die jeweilige.txt datei an den 
     Renderer schicken...
     mit boost oder doch lieber Vector oder 
-    andere Lösung... später!
-    ######################################
+!   andere Lösung... später!
+    ######################################*/
 
-    */
-    scene = SDFLoader::load("../file.txt");
-    //renderer(scene, resolution, output);
+    std::string file="../file.txt";
+    bool done = false;
+    while (!done)  //durch n files
+    {
+      if (true) //eine ".txt"
+      {
+        Scene scene = SDFLoader::load(file);
+        //renderer(scene, resolution, output);
+      }
+      done = true;
+    }
 
     /*
 		if(!fs::exists(m_in) || !fs::is_directory(m_in)) return;
