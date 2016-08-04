@@ -21,7 +21,6 @@ private:
   unsigned int m_height;
   std::string m_out;
 
-  Scene m_scene;
 
 
 

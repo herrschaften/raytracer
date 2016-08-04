@@ -20,7 +20,8 @@ int main(int argc, char* argv[]) {
 
   ######################################
   */
-  Raytracer rat("./pathin", 1280, 156, ".pathout"); 
+  Raytracer rat("./pathin", 1200, 860, ".pathout"); 
+  rat.render();
 
 
 //Unnütz folgt hier..:

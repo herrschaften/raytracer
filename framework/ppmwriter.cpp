@@ -15,7 +15,7 @@
 #include <cmath>
 #include <algorithm>
 
-PpmWriter::PpmWriter(std::size_t w, std::size_t h, std::string const& file)
+PpmWriter::PpmWriter(std::string const& file, std::size_t w, std::size_t h)
   : file_(file),
     width_(w),
     height_(h) {

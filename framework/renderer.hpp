@@ -1,12 +1,3 @@
-// -----------------------------------------------------------------------------
-// Copyright  : (C) 2014 Andreas-C. Bernstein
-// License    : MIT (see the file LICENSE)
-// Maintainer : Andreas-C. Bernstein <andreas.bernstein@uni-weimar.de>
-// Stability  : experimental
-//
-// Renderer
-// -----------------------------------------------------------------------------
-
 #ifndef BUW_RENDERER_HPP
 #define BUW_RENDERER_HPP
 
@@ -15,26 +6,26 @@
 #include "ppmwriter.hpp"
 #include <string>
 #include <glm/glm.hpp>
-
+#include "scene.hpp"
 class Renderer
 {
 public:
-  Renderer(unsigned w, unsigned h, std::string const& file);
+  Renderer(Scene const& scene, unsigned int width, unsigned int height, std::string const& ofile);
 
   void render();
   void write(Pixel const& p);
 
   inline std::vector<Color> const& colorbuffer() const
   {
-    return colorbuffer_;
+    return m_colorbuffer;
   }
 
 private:
-  unsigned width_;
-  unsigned height_;
-  std::vector<Color> colorbuffer_;
-  std::string filename_;
-  PpmWriter ppm_;
+  unsigned int m_width;
+  unsigned int m_height;
+  std::vector<Color> m_colorbuffer;
+  std::string m_outfile;
+  PpmWriter m_ppm;
 };
 
 #endif // #ifndef BUW_RENDERER_HPP
