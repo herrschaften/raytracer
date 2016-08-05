@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
   ######################################
   */
-  Raytracer rat("./zurendern", 1200, 860, "./output"); 
+  Raytracer rat("./zurendern", 1200, 860, "./output");  //Vom Pfad in dem ihr die Datei startet bruda
   rat.render();
 
 

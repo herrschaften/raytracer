@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11    CMakeFiles/auf65.dir/auf65.cpp.o  -o ../build/Release/auf65 -rdynamic ../framework/libframework.a ../external/glfw-3.0.3/src/libglfw3.a -lX11 -lpthread -lXrandr -lXi -lXxf86vm -lrt -lm -lGL 

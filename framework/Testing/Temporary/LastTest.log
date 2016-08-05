@@ -1,0 +1,21 @@
+Start testing: Aug 05 20:23 CEST
+----------------------------------------------------------
+1/1 Testing: tests
+1/1 Test: tests
+Command: "/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/build/Release/tests"
+Directory: /home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework
+"tests" start time: Aug 05 20:23 CEST
+Output:
+----------------------------------------------------------
+===============================================================================
+No tests ran
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"tests" end time: Aug 05 20:23 CEST
+"tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 05 20:23 CEST

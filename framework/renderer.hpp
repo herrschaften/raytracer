@@ -7,6 +7,7 @@
 #include <string>
 #include <glm/glm.hpp>
 #include "scene.hpp"
+#include "hit.hpp"
 class Renderer
 {
 public:
@@ -14,6 +15,7 @@ public:
 
   void render();
   void write(Pixel const& p);
+  Hit ohit(Ray const& ray) const;
 
   inline std::vector<Color> const& colorbuffer() const
   {

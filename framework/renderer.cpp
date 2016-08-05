@@ -55,3 +55,10 @@ void Renderer::write(Pixel const& p)
   m_ppm.write(p);
   
 }
+
+Hit Renderer::ohit(Ray const& ray) const
+{
+  Hit hitze;
+  return hitze;
+}
+

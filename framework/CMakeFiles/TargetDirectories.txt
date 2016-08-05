@@ -1,0 +1,6 @@
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/source/CMakeFiles/auf65.dir
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/source/CMakeFiles/example.dir
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/framework/CMakeFiles/framework.dir
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/external/glfw-3.0.3/src/CMakeFiles/glfw.dir
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/source/CMakeFiles/raytracer.dir
+/home/phil/Desktop/Dropbox/Aktuelle Aufgaben/SoftwareI/ThPhRayMan/raytracer/framework/tests/CMakeFiles/tests.dir
