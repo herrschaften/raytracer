@@ -3,6 +3,7 @@
 #ifndef BUW_BOX_HPP
 #define BUW_BOX_HPP
 #include "shape.hpp"
+#include "hit.hpp"
 
 class Box : public Shape {
 public: 
@@ -19,7 +20,8 @@ public:
   float area() const override;
   float volume() const override;
   std::ostream& print(std::ostream& os) const override; 
-  bool intersect ( Ray const & r , float & distance ) const override;
+  Hit intersect(Ray const& ray) const override; //Lo und Lucas
+  //bool intersect ( Ray const & r , float & distance ) const override;
   
 
 private:

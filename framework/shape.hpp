@@ -2,7 +2,7 @@
 
 #ifndef BUW_SHAPE_HPP
 #define BUW_SHAPE_HPP
-#include "color.hpp"
+
 #include "material.hpp"
 #include "ray.hpp"
 #include <glm/glm.hpp>
@@ -12,6 +12,7 @@
 #include <string>
 #include <iostream>
 
+struct Hit;
 
 class Shape {
 public:
@@ -22,7 +23,8 @@ public:
   virtual float area() const = 0;
   virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
-  virtual bool intersect ( Ray const & r , float & distance ) const = 0;
+  //virtual bool intersect ( Ray const & r , float & distance ) const = 0;
+  virtual Hit intersect(Ray const& ray) const = 0; //Lucas und LO
   
 
   std::string name() const;

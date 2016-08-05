@@ -85,8 +85,27 @@
     return os;
   }
 
+Hit Sphere::intersect(Ray const& ray) const
+  {
+    Hit spherehit;
+
+    spherehit.m_hit = glm::intersectRaySphere(ray.origin_, ray.direction_,
+      m_center, m_radius, spherehit.m_intersection, spherehit.m_normal);
+
+    std::cout<< "Spherehit at: " <<spherehit.m_intersection.x  << ", "
+     << spherehit.m_intersection.y  << ", "<< spherehit.m_intersection.z << "\n";
+    if (spherehit.m_hit)
+    {
+      spherehit.m_distance = glm::distance(ray.origin_, spherehit.m_intersection);
+      spherehit.m_shape = std::make_shared<Sphere> (*this);
+    }
+      
+    return spherehit;
+  }
 
 
+/*
   bool Sphere::intersect ( Ray const & r , float & distance ) const { //ray.direction normalisiert bitte!
     return glm::intersectRaySphere(r.origin_, r.direction_, m_center, m_radius , distance);
   }
+  */
