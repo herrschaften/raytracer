@@ -9,7 +9,7 @@
 //#include <glm/glm.hpp>
 //#include <glm/glx/intersect.hpp>
 
-
+/*
 TEST_CASE("default Konstrukt, getter, area volume","aufgabe5.1-2"){
   //Default: Konstruktor
   auto b1 = std::make_shared<Box> ();
@@ -119,7 +119,7 @@ TEST_CASE("Konstrukts Sphere, name, color, getter","aufgabe5.3"){
 
 }
 
-*/
+*//*
 TEST_CASE("Shape: print method", "[aufgabe5.4-5]") {
 	
 	Box b1{};
@@ -172,7 +172,7 @@ TEST_CASE("Intersect it", "[aufgabe6.3]") {
   REQUIRE(!(b->intersect(rayman,dis)));
   REQUIRE(!(sh->intersect(rayman,dis)));
 
-}
+}*/
 
 /*
 TEST_CASE("intersectRaySphere", "[aufgabe5.6]") {

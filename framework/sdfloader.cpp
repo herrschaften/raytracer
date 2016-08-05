@@ -95,8 +95,7 @@ Scene SDFLoader::load(std::string const& inpath)
   }
  
   else std::cout << "Unable to open file"; 
-  */
- 
+  */ 
   return scene;
 } 
 	
