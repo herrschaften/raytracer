@@ -26,6 +26,13 @@
   m_radius {rad} 
   {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}
 
+  //Custom 3
+  Sphere::Sphere(std::string const& name, Material* const& mat, glm::vec3 const& ctr, float rad) :
+  Shape {name, mat},
+  m_center {ctr}, 
+  m_radius {rad} 
+  {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}
+
   //Destruktor
   Sphere::~Sphere() 
   {

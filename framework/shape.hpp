@@ -18,6 +18,7 @@ class Shape {
 public:
   Shape();
   Shape(std::string const& name, Material const& mat);
+  Shape(std::string const& name, Material* const& mat);
   virtual ~Shape(); 
 
   virtual float area() const = 0;

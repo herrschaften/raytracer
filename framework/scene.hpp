@@ -5,13 +5,14 @@
 #include <map>
 #include "shape.hpp"
 #include "material.hpp"
-//#include "light.hpp"
+#include "light.hpp"
 //#include "camera.hpp"
 
-struct Scene{
+struct Scene
+{
 //Assets:
 	//-Licht
-		//std::vector <Light> SceneLights;
+		std::vector <Light> SceneLights;
 	//-Shapes
 		std::vector <Shape*> SceneShapes;
 	//-Camera

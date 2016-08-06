@@ -21,6 +21,12 @@
   m_min {min}, 
   m_max {max} {}
 
+  // Custom 3
+  Box::Box(std::string const& name, Material* const& mat, glm::vec3 const& min, glm::vec3 const& max) : 
+  Shape {name, mat},
+  m_min {min}, 
+  m_max {max} {}
+
   //Destruktor
   Box::~Box() 
   {
@@ -80,68 +86,103 @@
     return os;
   }
 
-Hit Box::intersect(Ray const& ray) const //Lo und Lucas
+Hit Box::intersect(Ray const& ray) const
 {
- 
+
     Hit boxhit;
+    
+    double t1 = (m_min.x - ray.origin_.x)*ray.inv_direction.x;
+    double t2 = (m_max.x - ray.origin_.x)*ray.inv_direction.x;
+    double tmin = std::min(t1, t2);
+    double tmax = std::max(t1, t2);
+
+    t1 = (m_min.y - ray.origin_.y)*ray.inv_direction.y;
+    t2 = (m_max.y - ray.origin_.y)*ray.inv_direction.y;
+    tmin = std::max(tmin, std::min(t1, t2));
+    tmax = std::min(tmax, std::max(t1, t2));
+
+    t1 = (m_min.z - ray.origin_.z)*ray.inv_direction.z;
+    t2 = (m_max.z - ray.origin_.z)*ray.inv_direction.z;
+    tmin = std::max(tmin, std::min(t1, t2));
+    tmax = std::min(tmax, std::max(t1, t2));
+
+
+
+    if (tmax > std::max(0.0, tmin))
+    {   
+        boxhit.m_hit = true;
+        boxhit.m_distance = sqrt(tmin*tmin*(
+                                ray.direction_.x*ray.direction_.x +
+                                ray.direction_.y*ray.direction_.y +
+                                ray.direction_.z*ray.direction_.z));
+
+        boxhit.m_shape = std::make_shared<Box> (*this);
+        boxhit.m_intersection = glm::vec3{tmin*ray.direction_.x, tmin*ray.direction_.y, tmin*ray.direction_.z};
+    }
+
+    /* Alte!
+
+  float txmin = (m_min.x - ray.origin.x) / ray.direction.x; 
+    float txmax = (m_max.x - ray.origin.x) / ray.direction.x; 
  
-    float txmin = (m_min.x - ray.origin_.x) / ray.direction_.x; 
-    float txmax = (m_max.x - ray.origin_.x) / ray.direction_.x; 
-  
     if (txmin > txmax) std::swap(txmin, txmax); 
     float tmin = txmin;
     float tmax = txmax;
-  
-    float tymin = (m_min.y - ray.origin_.y) / ray.direction_.y; 
-    float tymax = (m_max.y - ray.origin_.y) / ray.direction_.y; 
-  
+ 
+    float tymin = (m_min.y - ray.origin.y) / ray.direction.y; 
+    float tymax = (m_max.y - ray.origin.y) / ray.direction.y; 
+ 
     if (tymin > tymax) std::swap(tymin, tymax); 
-  
+ 
     if ((tmin > tymax) || (tymin > tmax)) 
         boxhit.m_hit = false; 
-  
+ 
     if (tymin > tmin) 
         tmin = tymin; 
-  
+ 
     if (tymax < tmax) 
         tmax = tymax; 
-  
-    float tzmin = (m_min.z - ray.origin_.z) / ray.direction_.z; 
-    float tzmax = (m_max.z - ray.origin_.z) / ray.direction_.z; 
-  
+ 
+    float tzmin = (m_min.z - ray.origin.z) / ray.direction.z; 
+    float tzmax = (m_max.z - ray.origin.z) / ray.direction.z; 
+ 
     if (tzmin > tzmax) std::swap(tzmin, tzmax); 
-  
+ 
     if ((tmin > tzmax) || (tzmin > tmax)) 
         boxhit.m_hit = false; 
-  
+ 
     if (tzmin > tmin) 
         tmin = tzmin; 
-  
+ 
     if (tzmax < tmax) 
         tmax = tzmax; 
-  
+ 
     boxhit.m_hit = true;
- 
- 
+   
+    
     if (boxhit.m_hit)
     {
-        boxhit.m_distance = sqrt((txmin-ray.origin_.x)*(txmin-ray.origin_.x)+
-                                (tymin-ray.origin_.y)*(tymin-ray.origin_.y)+
-                                (tzmin-ray.origin_.z)*(tzmin-ray.origin_.z)
+        boxhit.m_distance = sqrt((txmin-ray.origin.x)*(txmin-ray.origin.x)+
+                                (tymin-ray.origin.y)*(tymin-ray.origin.y)+
+                                (tzmin-ray.origin.z)*(tzmin-ray.origin.z)
                                 );
- 
+
         boxhit.m_shape = std::make_shared<Box> (*this);
+        boxhit.m_intersection = glm::vec3{tmin*ray.m_dir.x, tmin*ray.m_dir.y, tmin*ray.m_dir.z};
     }
- 
-     
- 
- 
- 
+
+    //nur zum pushen hinzugefügt
+    */
+
+    
+
+
+
     /*
     if (tmax > std::max(0.0, tmin)) {
         boxhit.m_distance = 
         );
- 
+
         boxhit.m_intersection = glm::vec3{
             tmin*ray.m_dir.x, tmin*ray.m_dir.y, tmin*ray.m_dir.z
             };
@@ -150,7 +191,7 @@ Hit Box::intersect(Ray const& ray) const //Lo und Lucas
         boxhit.m_hit = true;
     }
     */
- 
+
     return boxhit;
 }
 /*

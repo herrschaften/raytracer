@@ -17,6 +17,14 @@
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
 	}
 
+	//Custom
+	Shape::Shape(std::string const& name, Material* const& mat) : 
+	m_name {name},
+	m_mat {*mat}  
+	{
+		std::cout <<":Shape-Construction: " << m_name << std::endl;
+	}
+
 	  // Destructor 
 	Shape::~Shape() 
 	{
