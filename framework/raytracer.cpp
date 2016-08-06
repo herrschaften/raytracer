@@ -58,7 +58,7 @@
     /how-do-i-find-files-with-a-specific-extension
     -in-a-directory-that-is-provided-by
     ######################################*/
-    std::cout <<"Deine mutter rotzt in der gegnd umher";
+    std::cout <<"Deine mutter rotzt in der gegnd umher\n";
     DIR *dir = opendir(m_in.c_str());         //In Input-path
     dirent *entry;                            
     unsigned int count=1;
@@ -77,10 +77,10 @@
           outputfile =outputfile.substr(0, outputfile.size()-3);//delete txt
           outputfile+="ppm";
 
-          std::cout << "-outputfile: " << outputfile<< std::endl;
-
           Renderer rendi(scene, m_width, m_height, outputfile); 
           std::thread thr([&rendi]() { rendi.render(); });
+          
+
         //folgendes nachher löschen, nur zur Ansicht schön..----------------
           Window win(glm::ivec2(m_width,m_height));
 
@@ -97,6 +97,7 @@
             win.update();
           }
           thr.join();
+          std::cout << "-rendered: " << outputfile<< std::endl;
         //-------------------------------------------------------------------
           count++;
         }
