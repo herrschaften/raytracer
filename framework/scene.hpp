@@ -7,7 +7,6 @@
 #include "material.hpp"
 #include "light.hpp"
 //#include "camera.hpp"
-
 struct Scene
 {
 //Assets:
