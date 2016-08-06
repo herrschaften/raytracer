@@ -16,6 +16,7 @@ public:
   void render();
   void write(Pixel const& p);
   Hit ohit(Ray const& ray) const;
+  Color givacolor(Ray const& ray);
 
   inline std::vector<Color> const& colorbuffer() const
   {
