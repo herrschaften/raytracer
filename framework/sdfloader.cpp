@@ -1,107 +1,133 @@
-// SDFLoader.cpp
-// Tohrbe GREAT
-
-
-
 #include <string>
+#include "scene.hpp"
+#include "sdfloader.hpp"
 #include <fstream>
 #include <sstream>
-#include "sdfloader.hpp"
-#include "scene.hpp"
 
-/*Freie Funktion
-######################################
-Läd Szene nach SDF-Prinzip...
-Arbeit folgt!
-######################################*/
-Scene SDFLoader::load(std::string const& inpath)
-{
-	Scene scene;
-	/*
-	std::string line;
-  std::ifstream myfile (inpath);
- 
+Scene SDFLoader::load(std::string const& inpath){
+    Scene scene;
+    std::string line;
+    std::ifstream myfile(inpath);
+
     if (myfile.is_open())
-    { 
+    {   
         while (getline(myfile,line))
-        {
+        {   
+            std::cout <<"Deine mutter rotzt in der gegnd umher Vol.i" <<"\n";
             std::stringstream ss;
-            ss<<line;                 //erste Zeile im Stream
+            ss<<line;                   //erste Zeile im Stream
             std::string firstWord;
             ss>>firstWord;
             if (firstWord=="define")
-            {
+            {   
+                std::cout << "Definiere: ";
                 ss>>firstWord;
                 if(firstWord == "material")
-                {
-                    Material mat;
-                    ss >> mat.name;
- 
-                    ss >> mat.ka.r;
-                    ss >> mat.ka.g;
-                    ss >> mat.ka.b;
- 
-                    ss >> mat.kd.r;
-                    ss >> mat.kd.g;
-                    ss >> mat.kd.b;
- 
-                    ss >> mat.ks.r;
-                    ss >> mat.ks.g;
-                    ss >> mat.ks.b;
- 
-                    ss >> mat.m;
-                    scene.SceneMaterials.insert(mat);
-                }
+                {   
+                    std::string matname;
+                    Color ka;
+                    Color kd;
+                    Color ks;
+                    float faktor;
+
+                    std::cout << "Material: ";
+
+                    ss >> matname;
+
+                    ss >> ka.r;
+                    ss >> ka.g;
+                    ss >> ka.b;
+
+                    ss >> kd.r;
+                    ss >> kd.g;
+                    ss >> kd.b;
+
+                    ss >> ks.r;
+                    ss >> ks.g;
+                    ss >> ks.b;
+
+                    ss >> faktor;
+
+                    Material* material = new Material(matname, ka, kd, ks, faktor);
+
+
+                    scene.SceneMaterials.insert(std::pair<std::string, Material*>(matname, material));
+                }           
                 else if(firstWord == "shape")
                 {
                     ss>>firstWord;
- 
+                    std::cout << "Shape: ";
+
                     if(firstWord == "box")
-                    {
-                        Box box;
-                        ss >> box.name;
- 
-                        ss >> box.m_min.x;
-                        ss >> box.m_min.y;
-                        ss >> box.m_min.z;
- 
-                        ss >> box.m_max.x;
-                        ss >> box.m_max.y;
-                        ss >> box.m_max.z;
- 
-                        ss >> box.ks.r;
-                         
-                        scene.shapes.push_back(box);
+                    {   
+                        std::cout << "Box: ";
+                        std::string boxname;
+                        glm::vec3 min;
+                        glm::vec3 max;
+                        std::string materialname;
+
+
+                        ss >> boxname;
+                        ss >> min.x;
+                        ss >> min.y;
+                        ss >> min.z;
+
+                        ss >> max.x;
+                        ss >> max.y;
+                        ss >> max.z;
+
+                        ss >> materialname;
+
+
+                        Material* material = new Material;
+                        material = (scene.SceneMaterials.find(materialname)->second);
+                        std::cout << "Box2: ";
+
+                        Box* box = new Box(boxname, material, min, max);
+                        std::cout << "Box3: ";
+                        
+                        scene.SceneShapes.push_back(box);
+                        std::cout << "Box4: ";
+
                     }
+                    
                     else if(firstWord == "sphere")
-                    {
-                        Sphere sphere;
-                        ss >> sphere.name;
- 
-                        ss >> sphere.m_center.x;
-                        ss >> sphere.m_center.y;
-                        ss >> sphere.m_center.z;
- 
-                        ss >> sphere.m_radius;
- 
-                        ss >> sphere.material;
-                         
-                        scene.shapes.push_back(sphere);
+                    {   
+                        std::string spherename;
+                        glm::vec3 center;
+                        float radius;
+                        std::string materialname;
+                        
+
+                        ss >> spherename;
+
+                        ss >> center.x;
+                        ss >> center.y;
+                        ss >> center.z;
+
+                        ss >> radius;
+                        ss >> materialname;
+
+
+                        Material* material1 = new Material;
+                        material1 = (scene.SceneMaterials.find(materialname)->second);
+
+                        Sphere* sphere = new Sphere(spherename, material1, center, radius);
+                        
+                        scene.SceneShapes.push_back(sphere);
                     }
+                    
                 }
             }
         }
+
     myfile.close();
+
   }
- 
+
   else std::cout << "Unable to open file"; 
-  */ 
+
+ 
+
   return scene;
-} 
-	
-	/*
-Scene SDFLoader::load(std::string const& inpath){
-    Scene scene;
-    
 }
-	*/
