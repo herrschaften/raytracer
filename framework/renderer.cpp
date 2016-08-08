@@ -25,7 +25,7 @@ Renderer::Renderer(Scene const& scene, unsigned int width, unsigned int height, 
 Organisiert die Pixel Farbgebung! */
 void Renderer::render()
 {
-  float distance = 100; // to be set
+  float distance = 200; // to be set
   //Was ost ,ot ungerader eingabe?
   float height = (-float(m_height)/2); 
 
@@ -94,13 +94,51 @@ Ermittelt die Fabrbe! */
 Color Renderer::givacolor(Ray const& ray)
 {
   Hit Hitze = ohit(ray);
-  if(Hitze.m_hit==true)
+  Color clr;
+
+  if(Hitze.m_hit==true) //Treffer?
   {
-    return Hitze.m_shape->material().ka;   
+    //
+    clr +=(m_scene.ambient*(Hitze.m_shape->material().ka)); //+=I_a*k_a //Check Color.hpp & ambient
+    
+    //Überprüfe nun alle direkten Lichtwege:
+    
+    for(auto& light : m_scene.SceneLights) 
+    {
+      glm::vec3 direction=glm::normalize(light->m_point-Hitze.m_intersection);
+      glm::vec3 origin= Hitze.m_intersection+glm::normalize(Hitze.m_normal)*0.0001f; //Damit es sich nicht selbst trifft...
+      Ray raylight = Ray(origin,direction);
+
+      Hit LightHitze = ohit(raylight);
+      
+      int distance= glm::length(Hitze.m_intersection-light->m_point);
+      
+      if (LightHitze.m_distance>distance) //2in 1 überprüfen //LUKAS LOS 
+      {
+        //vo?
+        /*
+        double fDiffuse = glm::dot(raylight.direction_, intersection.ray.direction_);//l*n
+        fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
+        //VO?
+        */
+        float fak=(glm::dot(glm::normalize(Hitze.m_normal), direction));;
+        if (fak<0)
+        {
+          fak=0;
+        }
+        clr+=light->m_color * Hitze.m_shape->material().kd * fak; //Farben * Skalarprodukt; //Betrag?
+       }//else//Kein direktes Licht...!
+
+      
+    }
+
+    return clr;   
   }
-  std::cout << "ohit erfolgt, sollte leer sein." << "\n";
-  return Color (0.2,0.2,0.2); //Ambient light?
-}        
+  std::cout << "Hinterm Mond gibts kein Licht wennd du nichts triffst.\n";
+  clr+=m_scene.ambient; //Ambient light?
+  return clr; 
+}    
+      
 
 
  /*Fkt: ohit
