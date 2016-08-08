@@ -116,15 +116,52 @@ Scene SDFLoader::load(std::string const& inpath){
                         
                         scene.SceneShapes.push_back(sphere);
                     }
-                    
                 }
+                else if(firstWord == "light")
+                {
+                ss>>firstWord;
+                std::string lightname;
+                Color lightcolor;
+                glm::vec3 lightpoint;
+
+                std::cout << "Lichter: "<< "\n";
+
+                if(firstWord != "ambient")
+                {   
+                    std::cout << "Diffuse: "<< "\n";
+                    ss >> lightname;
+                    ss >> lightpoint.x;
+                    ss >> lightpoint.y;
+                    ss >> lightpoint.z;
+
+                    ss >> lightcolor.r;
+                    ss >> lightcolor.g;
+                    ss >> lightcolor.b;
+                
+                    Light* light = new Light(lightname, lightcolor, lightpoint);
+
+                    scene.SceneLights.push_back(light);
+
+                  
+                }
+                else{
+                    
+                    ss >> lightname; //ambient needs no lightname -> its just a color.
+                    ss >> lightcolor.r;
+                    ss >> lightcolor.g;
+                    ss >> lightcolor.b;
+
+                    scene.ambient = lightcolor;
+                    std::cout << "rot wert des momentanen Ambient lichts: " << scene.ambient.r << "\n";
+
+                }
+            }
             }
         }
 
     myfile.close();
 
   }
-
   else std::cout << "Unable to open file"; 
 
  
