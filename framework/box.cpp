@@ -1,5 +1,8 @@
 // box.cpp GREAT
 #include "box.hpp"
+#include <cmath>
+#include <catch.hpp>
+#include <algorithm>
 //KONSTRUTOREN----------------------------------------------------------------------
   
   //Default
@@ -118,7 +121,31 @@ Hit Box::intersect(Ray const& ray) const
 
         boxhit.m_shape = std::make_shared<Box> (*this);
         boxhit.m_intersection = glm::vec3{tmin*ray.direction_.x, tmin*ray.direction_.y, tmin*ray.direction_.z};
+        
+        if ((boxhit.m_intersection.x)==Approx(m_max.x))
+        {
+           boxhit.m_normal=glm::vec3(1.0f,0.0f,0.0f); // right 
+        }else if ((boxhit.m_intersection.x)==Approx(m_min.x))
+        {
+          boxhit.m_normal=glm::vec3(-1.0f,0.0f,0.0f); //left
+        }else if ((boxhit.m_intersection.y)==Approx(m_max.y))
+        {
+          boxhit.m_normal=glm::vec3(0.0f,1.0f,0.0f); //fup
+        }else if ((boxhit.m_intersection.y)==Approx(m_min.y))
+        {
+          boxhit.m_normal=glm::vec3(0.0f,-1.0f,0.0f); //down
+        }else if ((boxhit.m_intersection.z)==Approx(m_max.z))
+        {
+          boxhit.m_normal=glm::vec3(0.0f,0.0f,1.0f); //front
+        }else
+        {
+          boxhit.m_normal=glm::vec3(0.0f,0.0f,-1.0f); //back
+        }
+
+
+        
     }
+
 
     /* Alte!
 
