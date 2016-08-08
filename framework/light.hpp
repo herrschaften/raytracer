@@ -10,11 +10,22 @@
 
 struct Light
 {
-	//constructors
-	//Light(std::string const& name, Color const& clr, unsigned int intensity, glm::vec3 const& pnt)
-	std::string name;
+	Light():
+		m_name{"default"},
+		m_color {},
+		m_point {0.0}
+		{}
+
+
+	Light(std::string const& name, Color const& clr, glm::vec3 const& pnt):
+		m_name{name},
+		m_color {clr},
+		m_point {pnt}
+		{}
+
+
+	std::string m_name;
 	glm::vec3 m_point;
-	double m_inten;
 	Color m_color;
 
 
