@@ -11,7 +11,8 @@ struct Scene
 {
 //Assets:
 	//-Licht
-		std::vector <Light> SceneLights;
+		std::vector <Light*> SceneLights;
+		Color ambient;
 	//-Shapes
 		std::vector <Shape*> SceneShapes;
 	//-Camera
