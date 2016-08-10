@@ -17,7 +17,8 @@ Renderer::Renderer(Scene const& scene, unsigned int width, unsigned int height, 
   m_height(height), 
   m_colorbuffer(width*height, Color(0.0, 0.0, 0.0)), 
   m_outfile(ofile),
-  m_ppm(m_width, m_height)
+  m_ppm(m_width, m_height),
+  m_processing(false)
   {}
 
  /*Fkt: renderer
@@ -25,6 +26,8 @@ Renderer::Renderer(Scene const& scene, unsigned int width, unsigned int height, 
 Organisiert die Pixel Farbgebung! */
 void Renderer::render()
 {
+  m_processing=true;
+
   float distance = 200; // to be set
   //Was ost ,ot ungerader eingabe?
   float height = (-float(m_height)/2); 
@@ -44,6 +47,8 @@ void Renderer::render()
     height++;
   }
   m_ppm.save(m_outfile);
+
+   m_processing=false;
 }
 
 /*void Renderer::render()

@@ -23,6 +23,11 @@ public:
     return m_colorbuffer;
   }
 
+  inline bool const& processing() const
+  {
+    return m_processing;
+  }
+
 private:
   Scene m_scene;
   unsigned int m_width;
@@ -30,6 +35,6 @@ private:
   std::vector<Color> m_colorbuffer;
   std::string m_outfile;
   PpmWriter m_ppm;
+  bool m_processing;
 };
-
 #endif // #ifndef BUW_RENDERER_HPP
