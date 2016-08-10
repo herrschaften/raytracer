@@ -1,29 +1,27 @@
-// raytracer.hpp
-// Tohrbe GREAT
-
+/*raytracer.hpp 
+Feel free to be rat-race!
+*/
 #ifndef BUW_RAYTRACER_HPP
 #define BUW_RAYTRACER_HPP
 
-//#include  <dirent.h>
 #include <string>
 #include "scene.hpp"
 
 class Raytracer{
 public: 
-	//Custom-Constructor
-	Raytracer(std::string const& inpath, unsigned int width, unsigned int height, std::string const& outpath) ; 
-	
-	//~Box()override;
+	//KONSTRUTOREN----------------------------------------------------------------------
+	Raytracer(	std::string const& inpath, 
+				unsigned int width, unsigned int height, 
+				std::string const& outpath);
+
+	//FUNKTIONEN-------------------------------------------------------------------------
 	void render();
+
 private:
   std::string m_in;
   unsigned int m_width;
   unsigned int m_height;
   std::string m_out;
-
-
-
-
 };
 
 #endif // BUW_BOX_HPP
