@@ -97,5 +97,5 @@ Feel free to be rat-race!
       }
     }
     std::cout << "Kein weiterer File zu rendern!\n";
-}
+  }
   
