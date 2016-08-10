@@ -1,37 +1,45 @@
+/*sdfloader.cpp 
+Feel free to load.
+*/
 #include <string>
 #include "scene.hpp"
 #include "sdfloader.hpp"
 #include <fstream>
 #include <sstream>
 
-Scene SDFLoader::load(std::string const& inpath){
+Scene SDFLoader::load(std::string const& inpath)
+{
     Scene scene;
+
     std::string line;
     std::ifstream myfile(inpath);
 
     if (myfile.is_open())
     {   
+        std::cout <<"Deine mutter rotzt in der gegnd umher Vol.i" <<"\n";
         while (getline(myfile,line))
         {   
-            std::cout <<"Deine mutter rotzt in der gegnd umher Vol.i" <<"\n";
             std::stringstream ss;
-            ss<<line;                   //erste Zeile im Stream
+            ss<<line;                   //First Line in
             std::string firstWord;
-            ss>>firstWord;
+            ss>>firstWord;              //First Word in
+
             if (firstWord=="define")
             {   
                 std::cout << "Definiere: ";
                 ss>>firstWord;
-                if(firstWord == "material")
+                if(firstWord == "material")//##############-Material
                 {   
+                    //Material-Info------
                     std::string matname;
                     Color ka;
                     Color kd;
                     Color ks;
                     float faktor;
+                    //-------------------
 
-                    std::cout << "Material: ";
-
+                    std::cout << "Material\n";
+                    //Einlesen:
                     ss >> matname;
 
                     ss >> ka.r;
@@ -48,24 +56,22 @@ Scene SDFLoader::load(std::string const& inpath){
 
                     ss >> faktor;
 
+                    //Einspeichern
                     Material* material = new Material(matname, ka, kd, ks, faktor);
-
-
                     scene.m_materials.insert(std::pair<std::string, Material*>(matname, material));
                 }           
-                else if(firstWord == "shape")
+                else if(firstWord == "shape")//##############-Shape
                 {
                     ss>>firstWord;
                     std::cout << "Shape: ";
 
-                    if(firstWord == "box")
+                    if(firstWord == "box") //##############-Box
                     {   
-                        std::cout << "Box: ";
+                        std::cout << "Box\n";
                         std::string boxname;
                         glm::vec3 min;
                         glm::vec3 max;
                         std::string materialname;
-
 
                         ss >> boxname;
                         ss >> min.x;
@@ -78,27 +84,23 @@ Scene SDFLoader::load(std::string const& inpath){
 
                         ss >> materialname;
 
-
+                        //Einspeichern
                         Material* material = new Material;
                         material = (scene.m_materials.find(materialname)->second);
-                        std::cout << "Box2: ";
-
+                    
                         Box* box = new Box(boxname, material, min, max);
-                        std::cout << "Box3: ";
                         
                         scene.m_shapes.push_back(box);
-                        std::cout << "Box4: ";
-
                     }
                     
-                    else if(firstWord == "sphere")
+                    else if(firstWord == "sphere") //##############-Sphere
                     {   
+                        std::cout << "Sphere\n";
                         std::string spherename;
                         glm::vec3 center;
                         float radius;
                         std::string materialname;
                         
-
                         ss >> spherename;
 
                         ss >> center.x;
@@ -108,7 +110,7 @@ Scene SDFLoader::load(std::string const& inpath){
                         ss >> radius;
                         ss >> materialname;
 
-
+                        //Einspeichern
                         Material* material1 = new Material;
                         material1 = (scene.m_materials.find(materialname)->second);
 
@@ -117,54 +119,48 @@ Scene SDFLoader::load(std::string const& inpath){
                         scene.m_shapes.push_back(sphere);
                     }
                 }
-                else if(firstWord == "light")
+                else if(firstWord == "light") //##############-Light
                 {
-                ss>>firstWord;
-                std::string lightname;
-                Color lightcolor;
-                glm::vec3 lightpoint;
+                    ss>>firstWord;
+                    std::string lightname;
+                    Color lightcolor;
+                    glm::vec3 lightpoint;
 
-                std::cout << "Lichter: "<< "\n";
+                    std::cout << "Lights: ";
 
-                if(firstWord != "ambient")
-                {   
-                    std::cout << "Diffuse: "<< "\n";
-                    ss >> lightname;
-                    ss >> lightpoint.x;
-                    ss >> lightpoint.y;
-                    ss >> lightpoint.z;
+                    if(firstWord != "ambient") //##############-stand.Light
+                    {   
+                        std::cout << "Diffuse\n";
+                        ss >> lightname;
+                        ss >> lightpoint.x;
+                        ss >> lightpoint.y;
+                        ss >> lightpoint.z;
 
-                    ss >> lightcolor.r;
-                    ss >> lightcolor.g;
-                    ss >> lightcolor.b;
-                
-                    Light* light = new Light(lightname, lightcolor, lightpoint);
-
-                    scene.m_lights.push_back(light);
-
-                  
-                }
-                else{
+                        ss >> lightcolor.r;
+                        ss >> lightcolor.g;
+                        ss >> lightcolor.b;
                     
-                    ss >> lightname; //ambient needs no lightname -> its just a color.
-                    ss >> lightcolor.r;
-                    ss >> lightcolor.g;
-                    ss >> lightcolor.b;
+                        //Einspeichern
+                        Light* light = new Light(lightname, lightcolor, lightpoint);
+                        scene.m_lights.push_back(light);
+                    }
+                    else                                //##############-ambi. Light
+                    {                               
+                        std::cout << "Ambient\n";
+                        ss >> lightname; //ambient needs no lightname -> its just a color.
+                        ss >> lightcolor.r;
+                        ss >> lightcolor.g;
+                        ss >> lightcolor.b;
 
-                    scene.m_ambient = lightcolor;
-                    std::cout << "rot wert des momentanen Ambient lichts: " << scene.m_ambient.r << "\n";
-
+                        //Einspeichern
+                        scene.m_ambient = lightcolor;
+                    }
                 }
-            }
             }
         }
-
     myfile.close();
-
   }
   else std::cout << "Unable to open file"; 
-
- 
 
   return scene;
 }
