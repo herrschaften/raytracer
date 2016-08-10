@@ -1,4 +1,6 @@
-//toBe GREAT
+/*scene.hpp 
+Feel free in any scenario?!
+*/
 #ifndef SCENE_HPP
 #define SCENE_HPP
 #include <vector>
