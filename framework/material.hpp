@@ -1,3 +1,6 @@
+/*box.hpp 
+Feel free to be materialize?!
+*/
 #ifndef MATERIAL_HPP
 #define MATERIAL_HPP
 
@@ -5,19 +8,17 @@
 #include "color.hpp"
 #include <string>
 
-struct Material //Aufgabe 6.4
+struct Material
 {	
 //KONSTRUTOREN----------------------------------------------------------------------
-  
-  //Default
+ 	//Default
 	Material():
 	name 	{"Default"}, 
 	ka  	{0.0f,0.0f,0.0f},
 	kd  	{0.0f,0.0f,0.0f},
 	ks  	{0.0f,0.0f,0.0f},
 	m   	{0.0f}{}
-
-	//Custom 
+ 	//Custom 
 	Material(std::string const& Name, Color const& k1, Color const& k2, Color const& k3, float M):
 	name	{Name},
 	ka 		{k1},
@@ -25,8 +26,7 @@ struct Material //Aufgabe 6.4
 	ks 		{k3},
 	m 		{M}{}
 
-//Funktionen-------------------------------------------------------------------------
-	//print
+//FRIENDA-------------------------------------------------------------------------
 	friend std::ostream& operator<<(std::ostream& os, Material const& mat ) 
 	{
 		os << "name: " << mat.name << "\n"
@@ -37,13 +37,13 @@ struct Material //Aufgabe 6.4
 		return os;
 	}
 
-	//Variablen
+//VARIABLEN
 	std::string name;
 
-	Color ka;
-	Color kd;
-	Color ks;
-	
-	float m;
+	Color ka; //ambient
+	Color kd; //diffuse
+	Color ks; //specular
+
+	float m; //reflectrionthingi?
 };
 #endif
