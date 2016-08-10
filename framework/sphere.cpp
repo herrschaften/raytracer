@@ -97,10 +97,7 @@ Hit Sphere::intersect(Ray const& ray) const
     Hit spherehit;
 
     spherehit.m_hit = glm::intersectRaySphere(ray.m_origin, ray.m_direction,
-      m_center, m_radius, spherehit.m_point, spherehit.m_normal);
-
-    std::cout<< "Spherehit at: " <<spherehit.m_point.x  << ", "
-     << spherehit.m_point.y  << ", "<< spherehit.m_point.z << "\n";
+      m_center, m_radius, spherehit.m_point, spherehit.m_normal); //Indirekte param.
 
     if (spherehit.m_hit)
     {
