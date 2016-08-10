@@ -105,13 +105,13 @@ Color Renderer::givacolor(Ray const& ray)
     
     for(auto& light : m_scene.SceneLights) 
     {
-      glm::vec3 direction=glm::normalize(light->m_point-Hitze.m_intersection);
-      glm::vec3 origin= Hitze.m_intersection+glm::normalize(Hitze.m_normal)*0.0001f; //Damit es sich nicht selbst trifft...
+      glm::vec3 direction=glm::normalize(light->m_point-Hitze.m_point);
+      glm::vec3 origin= Hitze.m_point+glm::normalize(Hitze.m_normal)*0.0001f; //Damit es sich nicht selbst trifft...
       Ray raylight = Ray(origin,direction);
 
       Hit LightHitze = ohit(raylight);
       
-      int distance= glm::length(Hitze.m_intersection-light->m_point);
+      int distance= glm::length(Hitze.m_point-light->m_point);
       
       if (LightHitze.m_distance>distance) //2in 1 überprüfen //LUKAS LOS 
       {
