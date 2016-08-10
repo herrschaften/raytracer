@@ -49,54 +49,53 @@ Feel free to be rat-race!
     std::string suffix=".txt";
     auto fit=[&suffix](const std::string& s) //Lambda: Checks entry for suffix
       { 
-      return((s.size() >= suffix.size() )&& (equal(suffix.rbegin(), suffix.rend(), s.rbegin())));};
+      return((s.size() >= suffix.size() )&& (equal(suffix.rbegin(), suffix.rend(), s.rbegin())));
+      };
 
     unsigned int count=1;
-    while((entry = readdir(dir))!=nullptr)    //durch alle files
+    while((entry = readdir(dir))!=nullptr)    //Durch alle Files
     {
-       if(fit(entry->d_name))
-        { //Ablauf für eine SDF-Datei:
+      if(fit(entry->d_name))
+      { //Ablauf für eine SDF-Datei:
 
-          std::cout << "<Datei: " << count << std::endl; 
-          std::string filepath= std::string(m_in)+"/"+entry->d_name;
-          std::cout << "-SDFLoader:" << filepath << std::endl;
-          Scene scene = SDFLoader::load(filepath); 
-      
-          std::string outputfile=
-            std::string(m_out)          //Pfad
-            +"/out"                     //Präfix
-            +std::string(entry->d_name) //Name
-            .substr(0, std::string(entry->d_name).size()-3)
-            +"ppm";                     //Suffix
+        std::cout << "<Datei: " << count << std::endl; 
+        std::string filepath= std::string(m_in)+"/"+entry->d_name;
+        std::cout << "-SDFLoader:" << filepath << std::endl;
+        Scene scene = SDFLoader::load(filepath);    //LOAD
+    
+        std::string outputfile=
+          std::string(m_out)          //Pfad
+          +"/out"                     //Präfix
+          +std::string(entry->d_name) //Name
+          .substr(0, std::string(entry->d_name).size()-3)
+          +"ppm";                     //Suffix
 
-          Renderer rendi(scene, m_width, m_height, outputfile); 
-          std::thread thr([&rendi]() { rendi.render(); });
-          
+        Renderer rendi(scene, m_width, m_height, outputfile); 
+        std::thread thr([&rendi]() { rendi.render(); }); //RENDER
+        
+      //------------------------------------------------------------------- 
+      //folgendes nachher löschen ? 
+        Window win(glm::ivec2(m_width,m_height));
 
-        //folgendes nachher löschen, nur zur Ansicht schön..----------------
-          Window win(glm::ivec2(m_width,m_height));
-
-          while (rendi.processing()) 
+        while (rendi.processing()) 
+        {
+          if (win.isKeyPressed(GLFW_KEY_ESCAPE)) 
           {
-            if (win.isKeyPressed(GLFW_KEY_ESCAPE)) 
-            {
-                win.stop();
-            }
-
-            glDrawPixels( m_width, m_height, GL_RGB, GL_FLOAT
-            , rendi.colorbuffer().data());
-
-            win.update();
+              win.stop();
           }
-          thr.join();
-          std::cout << "-rendered: " << outputfile<< std::endl;
-        //-------------------------------------------------------------------
-          count++;
+
+          glDrawPixels( m_width, m_height, GL_RGB, GL_FLOAT
+          , rendi.colorbuffer().data());
+
+          win.update();
         }
+        thr.join();
+        
+      //-------------------------------------------------------------------
+        std::cout << "-rendered: " << outputfile<< std::endl;         
+        count++;
+      }
     }
-
-   //closedir(dir);
-
-
-  }
+    std::cout << "Kein weiterer File zu rendern!\n";
+}
   
