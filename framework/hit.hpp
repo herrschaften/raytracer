@@ -1,3 +1,6 @@
+/*hit.hpp 
+Feel free to hit!
+*/
 #ifndef HIT_HPP
 #define HIT_HPP
 #include "shape.hpp"
@@ -8,16 +11,13 @@ class Shape;
 
 struct Hit
 {
-
+	//KONSTRUTOREN----------------------------------------------------------------
 	Hit();
-
 	Hit(bool hit, double distance, glm::vec3 const& intersection,
         glm::vec3 const& normal, std::shared_ptr<Shape> shape);
 
-	//Copyconstructor fehlt noch
-
-
-    bool m_hit;
+	//VARIABLEN-------------------------------------------------------------------
+    bool m_hit; 
     double m_distance;
     glm::vec3 m_point;
     glm::vec3 m_normal;

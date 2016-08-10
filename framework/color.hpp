@@ -18,6 +18,8 @@ struct Color
   //KONSTRUTOREN----------------------------------------------------------------
   Color() : r(0), g(0), b(0) {}
   Color(float red, float green, float blue) : r(red), g(green), b(blue) {}
+
+  //VARIABLEN-------------------------------------------------------------------
   float r;
   float g;
   float b;
@@ -37,7 +39,7 @@ struct Color
     b -= other.b;
     return *this;
   }
-  Color& operator*=(Color other)
+  Color& operator*=(Color const& other)
   {
       r *= other.r;
       g *= other.g;
