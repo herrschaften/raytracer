@@ -1,5 +1,6 @@
-// raytracer.cpp 
-// Thorbe GREAT
+/*raytracer.cpp 
+Feel free to be rat-race!
+*/
 #include "raytracer.hpp"
 #include "sdfloader.hpp"
 #include "renderer.hpp"
@@ -8,19 +9,13 @@
 #include <algorithm>
 #include <string>
 #include <dirent.h>
-
 //
-
 #include <thread>
 #include <fensterchen.hpp>
 
-
-//
 //KONSTRUTOREN----------------------------------------------------------------------
-  
   //Default
-  
-   /*Custom 1 
+   /*CUSTOM 1 
   ######################################
   Setzt Raytracer Custom auf. Kann nun
   in gewünschter Auflösung beliebig viele
@@ -32,23 +27,13 @@
 	  m_out{outpath}
 	  {}
 
-
-  //Destruktor
-
 //FUNKTIONEN----------------------------------------------------------------------
- 
-  /*FKT 1
+  /*RENDER 1
   ######################################	
   Aufruf zum rendern. Fkt organisiert in 
   Form einer Schleife alle zu rendernden
   Dateien und übergibt die Scenen dazu an
   den Renderer weiter!*/
-
-  bool has_suffix(const std::string& s, const std::string& suffix) //ausgelagerte Funktion in Lambda?
-  {
-    return (s.size() >= suffix.size()) && equal(suffix.rbegin(), suffix.rend(), s.rbegin());    
-  }
-
   void Raytracer::render()
 	{
     /*
@@ -58,24 +43,31 @@
     /how-do-i-find-files-with-a-specific-extension
     -in-a-directory-that-is-provided-by
     ######################################*/
-    std::cout <<"Deine mutter rotzt in der gegnd umher\n";
     DIR *dir = opendir(m_in.c_str());         //In Input-path
-    dirent *entry;                            
-    unsigned int count=1;
+    dirent *entry;    
 
+    std::string suffix=".txt";
+    auto fit=[&suffix](const std::string& s) //Lambda: Checks entry for suffix
+      { 
+      return((s.size() >= suffix.size() )&& (equal(suffix.rbegin(), suffix.rend(), s.rbegin())));};
+
+    unsigned int count=1;
     while((entry = readdir(dir))!=nullptr)    //durch alle files
     {
-        
-       if(has_suffix(entry->d_name, ".txt"))  // ".txt"?
+       if(fit(entry->d_name))
         { //Ablauf für eine SDF-Datei:
+
           std::cout << "<Datei: " << count << std::endl; 
-          std::string filepath= /*std::string(".")+*/std::string(m_in)+"/"+entry->d_name;
+          std::string filepath= std::string(m_in)+"/"+entry->d_name;
           std::cout << "-SDFLoader:" << filepath << std::endl;
           Scene scene = SDFLoader::load(filepath); 
-          
-          std::string outputfile=std::string(m_out)+"/out"+entry->d_name;
-          outputfile =outputfile.substr(0, outputfile.size()-3);//delete txt
-          outputfile+="ppm";
+      
+          std::string outputfile=
+            std::string(m_out)          //Pfad
+            +"/out"                     //Präfix
+            +std::string(entry->d_name) //Name
+            .substr(0, std::string(entry->d_name).size()-3)
+            +"ppm";                     //Suffix
 
           Renderer rendi(scene, m_width, m_height, outputfile); 
           std::thread thr([&rendi]() { rendi.render(); });
@@ -84,7 +76,7 @@
         //folgendes nachher löschen, nur zur Ansicht schön..----------------
           Window win(glm::ivec2(m_width,m_height));
 
-          while (!win.shouldClose()) 
+          while (rendi.processing()) 
           {
             if (win.isKeyPressed(GLFW_KEY_ESCAPE)) 
             {
