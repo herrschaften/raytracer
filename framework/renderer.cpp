@@ -37,6 +37,12 @@ void Renderer::render()
     for (unsigned x = 0; x < m_width; ++x) {    //Vertikal
       
       Pixel p(x,y);
+
+      //For Preview
+      p.color=Color(1.0,1.0,1.0);
+      write(p); 
+
+      //
       Ray rayman {{0,0,0}, glm::normalize(glm::vec3(width, height, distance))};
       std::cout << rayman.m_direction.x << "  " << rayman.m_direction.y << "  " << rayman.m_direction.z<<"\n";
       p.color=givacolor(rayman);
