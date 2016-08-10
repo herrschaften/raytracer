@@ -16,6 +16,7 @@ public:
 
 	//FUNKTIONEN-------------------------------------------------------------------------
 	void render();
+	//...erweitern?...
 
 private:
   std::string m_in;
