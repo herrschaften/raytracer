@@ -10,7 +10,7 @@ struct Ray{
 	Ray():
 		m_origin{0.0f},
 		m_direction{0.0}
-		{}
+		{} 
 	Ray(glm::vec3 const& orig, glm::vec3 const& dir):
 		m_origin{orig},
 		m_direction{dir},
