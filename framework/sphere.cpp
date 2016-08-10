@@ -96,7 +96,7 @@ Hit Sphere::intersect(Ray const& ray) const
   {
     Hit spherehit;
 
-    spherehit.m_hit = glm::intersectRaySphere(ray.origin_, ray.direction_,
+    spherehit.m_hit = glm::intersectRaySphere(ray.m_origin, ray.m_direction,
       m_center, m_radius, spherehit.m_point, spherehit.m_normal);
 
     std::cout<< "Spherehit at: " <<spherehit.m_point.x  << ", "
@@ -104,7 +104,7 @@ Hit Sphere::intersect(Ray const& ray) const
 
     if (spherehit.m_hit)
     {
-      spherehit.m_distance = glm::distance(ray.origin_, spherehit.m_point);
+      spherehit.m_distance = glm::distance(ray.m_origin, spherehit.m_point);
       spherehit.m_shape = std::make_shared<Sphere> (*this);
     }
       

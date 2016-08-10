@@ -35,7 +35,7 @@ void Renderer::render()
       
       Pixel p(x,y);
       Ray rayman {{0,0,0}, glm::normalize(glm::vec3(width, height, distance))};
-      std::cout << rayman.direction_.x << "  " << rayman.direction_.y << "  " << rayman.direction_.z<<"\n";
+      std::cout << rayman.m_direction.x << "  " << rayman.m_direction.y << "  " << rayman.m_direction.z<<"\n";
       p.color=givacolor(rayman);
       write(p);
 

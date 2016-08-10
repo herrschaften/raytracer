@@ -114,18 +114,18 @@ Feel free to be a box!
 
     Hit boxhit;
     
-    double t1 = (m_min.x - ray.origin_.x)*ray.inv_direction.x;
-    double t2 = (m_max.x - ray.origin_.x)*ray.inv_direction.x;
+    double t1 = (m_min.x - ray.m_origin.x)*ray.m_inv_direction.x;
+    double t2 = (m_max.x - ray.m_origin.x)*ray.m_inv_direction.x;
     double tmin = std::min(t1, t2);
     double tmax = std::max(t1, t2);
 
-    t1 = (m_min.y - ray.origin_.y)*ray.inv_direction.y;
-    t2 = (m_max.y - ray.origin_.y)*ray.inv_direction.y;
+    t1 = (m_min.y - ray.m_origin.y)*ray.m_inv_direction.y;
+    t2 = (m_max.y - ray.m_origin.y)*ray.m_inv_direction.y;
     tmin = std::max(tmin, std::min(t1, t2));
     tmax = std::min(tmax, std::max(t1, t2));
 
-    t1 = (m_min.z - ray.origin_.z)*ray.inv_direction.z;
-    t2 = (m_max.z - ray.origin_.z)*ray.inv_direction.z;
+    t1 = (m_min.z - ray.m_origin.z)*ray.m_inv_direction.z;
+    t2 = (m_max.z - ray.m_origin.z)*ray.m_inv_direction.z;
     tmin = std::max(tmin, std::min(t1, t2));
     tmax = std::min(tmax, std::max(t1, t2));
 
@@ -133,12 +133,12 @@ Feel free to be a box!
     {   
         boxhit.m_hit = true;
         boxhit.m_distance = sqrt(tmin*tmin*(
-                                ray.direction_.x*ray.direction_.x +
-                                ray.direction_.y*ray.direction_.y +
-                                ray.direction_.z*ray.direction_.z));
+                                ray.m_direction.x*ray.m_direction.x +
+                                ray.m_direction.y*ray.m_direction.y +
+                                ray.m_direction.z*ray.m_direction.z));
 
         boxhit.m_shape = std::make_shared<Box> (*this);
-        boxhit.m_point = glm::vec3{tmin*ray.direction_.x, tmin*ray.direction_.y, tmin*ray.direction_.z};
+        boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z};
         
         if ((boxhit.m_point.x)==Approx(m_max.x))
         {
