@@ -1,3 +1,6 @@
+/*renderer.hpp 
+Feel free to render!
+*/
 #ifndef BUW_RENDERER_HPP
 #define BUW_RENDERER_HPP
 
@@ -8,22 +11,29 @@
 #include <glm/glm.hpp>
 #include "scene.hpp"
 #include "hit.hpp"
+
 class Renderer
 {
 public:
-  Renderer(Scene const& scene, unsigned int width, unsigned int height, std::string const& ofile);
+  //KONSTRUTOREN----------------------------------------------------------------------
+  //Custom 1
+  Renderer( Scene const& scene, 
+            unsigned int width, 
+            unsigned int height, 
+            std::string const& ofile);
 
+  //FUNKTIONEN------------------------------------------------------------------------
   void render();
   void write(Pixel const& p);
-  Hit ohit(Ray const& ray) const;
-  Color givacolor(Ray const& ray);
 
-  inline std::vector<Color> const& colorbuffer() const
+  Hit ohit(Ray const& ray) const; //Optional Hit
+  Color givacolor(Ray const& ray);
+  
+  inline std::vector<Color> const& colorbuffer() const //für Preview
   {
     return m_colorbuffer;
   }
-
-  inline bool const& processing() const
+  inline bool const& processing() const //für Preview
   {
     return m_processing;
   }
