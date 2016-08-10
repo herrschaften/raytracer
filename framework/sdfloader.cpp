@@ -51,7 +51,7 @@ Scene SDFLoader::load(std::string const& inpath){
                     Material* material = new Material(matname, ka, kd, ks, faktor);
 
 
-                    scene.SceneMaterials.insert(std::pair<std::string, Material*>(matname, material));
+                    scene.m_materials.insert(std::pair<std::string, Material*>(matname, material));
                 }           
                 else if(firstWord == "shape")
                 {
@@ -80,13 +80,13 @@ Scene SDFLoader::load(std::string const& inpath){
 
 
                         Material* material = new Material;
-                        material = (scene.SceneMaterials.find(materialname)->second);
+                        material = (scene.m_materials.find(materialname)->second);
                         std::cout << "Box2: ";
 
                         Box* box = new Box(boxname, material, min, max);
                         std::cout << "Box3: ";
                         
-                        scene.SceneShapes.push_back(box);
+                        scene.m_shapes.push_back(box);
                         std::cout << "Box4: ";
 
                     }
@@ -110,11 +110,11 @@ Scene SDFLoader::load(std::string const& inpath){
 
 
                         Material* material1 = new Material;
-                        material1 = (scene.SceneMaterials.find(materialname)->second);
+                        material1 = (scene.m_materials.find(materialname)->second);
 
                         Sphere* sphere = new Sphere(spherename, material1, center, radius);
                         
-                        scene.SceneShapes.push_back(sphere);
+                        scene.m_shapes.push_back(sphere);
                     }
                 }
                 else if(firstWord == "light")
@@ -140,7 +140,7 @@ Scene SDFLoader::load(std::string const& inpath){
                 
                     Light* light = new Light(lightname, lightcolor, lightpoint);
 
-                    scene.SceneLights.push_back(light);
+                    scene.m_lights.push_back(light);
 
                   
                 }
@@ -151,8 +151,8 @@ Scene SDFLoader::load(std::string const& inpath){
                     ss >> lightcolor.g;
                     ss >> lightcolor.b;
 
-                    scene.ambient = lightcolor;
-                    std::cout << "rot wert des momentanen Ambient lichts: " << scene.ambient.r << "\n";
+                    scene.m_ambient = lightcolor;
+                    std::cout << "rot wert des momentanen Ambient lichts: " << scene.m_ambient.r << "\n";
 
                 }
             }

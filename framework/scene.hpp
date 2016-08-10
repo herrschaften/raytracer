@@ -6,20 +6,17 @@
 #include "shape.hpp"
 #include "material.hpp"
 #include "light.hpp"
-//#include "camera.hpp"
+
 struct Scene
 {
 //Assets:
 	//-Licht
-		std::vector <Light*> SceneLights;
-		Color ambient;
+		std::vector <Light*> m_lights;
+		Color m_ambient;
 	//-Shapes
-		std::vector <Shape*> SceneShapes;
-	//-Camera
-		//Camera SceneCam;
+		std::vector <Shape*> m_shapes;
 	//-Material
-		std::map<std::string, Material*> SceneMaterials;
-	//-Optional Hit
-		//OptionlHit intersect(Ray const&)const;
+		std::map<std::string, Material*> m_materials;
+
 };
-#endif// blaiu
+#endif

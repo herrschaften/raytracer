@@ -85,10 +85,10 @@ Feel free to render!
     if(Hitze.m_hit==true) //Treffer?
     {
        Color clr= //+=I_a*k_a
-       (m_scene.ambient) * (Hitze.m_shape->material().ka); 
+       (m_scene.m_ambient) * (Hitze.m_shape->material().ka); 
       
       //Überprüfe nun alle direkten Lichtwege
-      for(auto& light : m_scene.SceneLights) 
+      for(auto& light : m_scene.m_lights) 
       {
         Ray raylight
         {
@@ -119,7 +119,7 @@ Feel free to render!
       }
       return clr;   
     }//else{Hit=false:
-    return m_scene.ambient; //Ambient Light?
+    return m_scene.m_ambient; //Ambient Light?
   }    
         
 
@@ -132,7 +132,7 @@ Feel free to render!
   {
     Hit hit;
     Hit temphit;
-    for ( auto &i : m_scene.SceneShapes )
+    for ( auto &i : m_scene.m_shapes )
     {
       temphit= i->intersect(ray);
       if(temphit.m_distance<hit.m_distance)
