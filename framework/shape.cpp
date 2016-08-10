@@ -1,13 +1,15 @@
-// shape.cpp GREAT
-
+/*shape.cpp 
+Feel free to shape yourself.
+*/
 #include "shape.hpp"
 //KONSTRUTOREN----------------------------------------------------------------------
-  
   //Default
 	Shape::Shape() :
 	m_name {"Shape"}, 
 	m_mat {} 
-	{ std::cout << "Shape-Construction" << m_name << std::endl;}
+	{ 
+		std::cout << "Shape-Construction" << m_name << std::endl;
+	}
 
 	//Custom
 	Shape::Shape(std::string const& name, Material const& mat) : 
@@ -25,28 +27,26 @@
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
 	}
 
-	  // Destructor 
+	// Destructor 
 	Shape::~Shape() 
 	{
 	  std::cout << "Shape-Destruction: " << m_name << std::endl;
 	}
-//GETTER----------------------------------------------------------------------
 
+//GETTER----------------------------------------------------------------------
 	std::string Shape::name() const 
 	{
 	  return m_name;
 	}
 
 //SETTER----------------------------------------------------------------------
-
 	Material const& Shape::material() const 
 	{
 	  return m_mat; 
 	}
 
 //FUNKTIONEN---------------------------------------------------------------------
-
-	  // print 1
+	// print 1
 	std::ostream& Shape::print(std::ostream& os) const 
 	{
 	  os << "Name: " << m_name << "\n" 
@@ -55,7 +55,7 @@
 	  return os;
 	}
 
-	  // print 2
+	// print 2
 	std::ostream& operator << (std::ostream& os, Shape const& s) 
 	{
 	  return s.print(os);

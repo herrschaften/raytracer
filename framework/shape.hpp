@@ -1,5 +1,6 @@
-// shape.hpp Great
-
+/*shape.hpp 
+Feel free to shape yourself.
+*/
 #ifndef BUW_SHAPE_HPP
 #define BUW_SHAPE_HPP
 
@@ -16,18 +17,18 @@ struct Hit;
 
 class Shape {
 public:
+  //KONSTRUTOREN----------------------------------------------------------------------
   Shape();
   Shape(std::string const& name, Material const& mat);
   Shape(std::string const& name, Material* const& mat);
   virtual ~Shape(); 
 
+  //FUNKTIONEN------------------------------------------------------------------------
   virtual float area() const = 0;
   virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
-  //virtual bool intersect ( Ray const & r , float & distance ) const = 0;
-  virtual Hit intersect(Ray const& ray) const = 0; //Lucas und LO
+  virtual Hit intersect(Ray const& ray) const = 0;
   
-
   std::string name() const;
   Material const& material() const;
 
