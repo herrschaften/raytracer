@@ -3,6 +3,7 @@ Feel free to render!
 */
 #include "renderer.hpp"
 #include <glm/glm.hpp>
+#include <math.h>//asin
 
 //KONSTRUTOREN----------------------------------------------------------------------
    /*Custom 1 
@@ -26,9 +27,11 @@ Feel free to render!
   Organisiert die Pixel Farbgebung! */
   void Renderer::render()
   {
-    m_processing=true;
 
-    float distance = 200; // to be set ?
+    m_processing=true;
+    
+    float distance =-(float(m_width)/2)/tan(m_scene.m_camera.m_fovx/2);
+    std::cout<<distance<<"\n";
     float height = (-float(m_height)/2); 
 
     for (unsigned y = 0; y < m_height; ++y) {     //Horizontal
@@ -36,13 +39,14 @@ Feel free to render!
       
       for (unsigned x = 0; x < m_width; ++x) {    //Vertikal
         Pixel p(x,y);
+        std::cout<<"Pixel"<<x<<","<<y<<"\n";
 
         //For Preview
         p.color=Color(1.0,1.0,1.0);
         write(p); 
 
         //Erzeuge Ray
-        Ray rayman {{0,0,0}, glm::normalize(glm::vec3(width, height, distance))};
+        Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
         p.color=givacolor(rayman);
 
         write(p);
@@ -132,6 +136,7 @@ Feel free to render!
   {
     Hit hit;
     Hit temphit;
+
     for ( auto &i : m_scene.m_shapes )
     {
       temphit= i->intersect(ray);
