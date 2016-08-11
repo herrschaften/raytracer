@@ -32,8 +32,8 @@ Feel free to render!
     
     float distance =-(float(m_width)/2)/tan(m_scene.m_camera.m_fovx/2);
     std::cout<<distance<<"\n";
+    
     float height = (-float(m_height)/2); 
-
     for (unsigned y = 0; y < m_height; ++y) {     //Horizontal
       float width = (-float(m_width)/2);
       
@@ -94,10 +94,11 @@ Feel free to render!
       //Überprüfe nun alle direkten Lichtwege
       for(auto& light : m_scene.m_lights) 
       {
+        glm::vec3 direct=glm::normalize(light->m_point-Hitze.m_point);
         Ray raylight
         {
-          Hitze.m_point+(glm::normalize(Hitze.m_normal)*0.0001f), //nicht selbst Treffen
-          glm::normalize(light->m_point-Hitze.m_point)
+          Hitze.m_point+(direct*0.001f), //nicht selbst Treffen
+          direct
         };       
 
         int distance= glm::length(Hitze.m_point-light->m_point);
