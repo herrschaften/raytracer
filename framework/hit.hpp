@@ -14,7 +14,7 @@ struct Hit
 	//KONSTRUTOREN----------------------------------------------------------------
 	Hit();
 	Hit(bool hit, double distance, glm::vec3 const& intersection,
-        glm::vec3 const& normal, std::shared_ptr<Shape> shape);
+        glm::vec3 const& normal, std::shared_ptr<Shape> const& shape);
 
 	//VARIABLEN-------------------------------------------------------------------
     bool m_hit; 

@@ -1,6 +1,8 @@
 /*ray.hpp 
 Feel free to be a Rayman!
 */
+#ifndef RAY_HPP
+#define RAY_HPP
 
 #include <glm/vec3.hpp> //toBe GREAT
 
@@ -22,3 +24,4 @@ struct Ray{
 	glm::vec3 m_direction={1.0f,0.0f,0.0f};
 	glm::vec3 m_inv_direction;
 };
+#endif
