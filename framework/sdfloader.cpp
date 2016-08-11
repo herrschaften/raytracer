@@ -57,7 +57,7 @@ Scene SDFLoader::load(std::string const& inpath)
                     ss >> faktor;
 
                     //Einspeichern
-                    Material* material = new Material(matname, ka, kd, ks, faktor);
+                    Material* material=new Material(matname, ka, kd, ks, faktor);
                     scene.m_materials.insert(std::pair<std::string, Material*>(matname, material));
                 }           
                 else if(firstWord == "shape")//##############-Shape
@@ -91,9 +91,7 @@ Scene SDFLoader::load(std::string const& inpath)
                         Box* box = new Box(boxname, material, min, max);
                         
                         scene.m_shapes.push_back(box);
-                    }
-                    
-                    else if(firstWord == "sphere") //##############-Sphere
+                    }else if(firstWord == "sphere") //##############-Sphere
                     {   
                         std::cout << "Sphere\n";
                         std::string spherename;
@@ -155,6 +153,18 @@ Scene SDFLoader::load(std::string const& inpath)
                         //Einspeichern
                         scene.m_ambient = lightcolor;
                     }
+                }else if(firstWord == "camera")//##############-Camera
+                {
+                    std::string camname;
+                    float fovx;
+
+                    std::cout << "Camera\n";
+
+                    ss >> camname;
+                    ss >> fovx;
+                
+                    //Einspeichern
+                    scene.m_camera=Camera(camname,fovx);
                 }
             }
         }

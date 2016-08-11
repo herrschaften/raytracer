@@ -8,6 +8,8 @@ Feel free in any scenario?!
 #include "shape.hpp"
 #include "material.hpp"
 #include "light.hpp"
+#include "camera.hpp"
+
 
 struct Scene
 {
@@ -19,6 +21,9 @@ struct Scene
 		std::vector <Shape*> m_shapes;
 	//-Material
 		std::map<std::string, Material*> m_materials;
+	//-Camera
+		Camera m_camera;
+
 
 };
 #endif
