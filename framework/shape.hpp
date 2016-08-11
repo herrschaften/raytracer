@@ -5,13 +5,13 @@ Feel free to shape yourself.
 #define BUW_SHAPE_HPP
 
 #include "material.hpp"
-#include "ray.hpp"
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <cmath>
 #include <string>
 #include <iostream>
+#include "ray.hpp"
 
 struct Hit;
 

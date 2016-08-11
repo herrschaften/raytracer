@@ -13,7 +13,7 @@ public:
   Box();
   Box(glm::vec3 const& min, glm::vec3 const& max);
   Box(std::string const& name, Material const& mat, glm::vec3 const& min, glm::vec3 const& max);
-  Box(std::string const& name, Material* const& mat, glm::vec3 const& min, glm::vec3 const& max);
+  Box(std::string const& name,Material* const& mat, glm::vec3 const& min, glm::vec3 const& max);
   ~Box()override;
 
   //GETTER----------------------------------------------------------------------
