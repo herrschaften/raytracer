@@ -3,12 +3,15 @@ Feel free to load.
 */
 #include <string>
 #include "scene.hpp"
+#include "composite.hpp"
 #include "sdfloader.hpp"
 #include <fstream>
 #include <sstream>
 
 Scene SDFLoader::load(std::string const& inpath)
 {
+    typedef std::shared_ptr<Shape> shape_pointer;
+
     Scene scene;
 
     std::string line;
@@ -88,9 +91,18 @@ Scene SDFLoader::load(std::string const& inpath)
                         Material* material = new Material;
                         material = (scene.m_materials.find(materialname)->second);
                     
-                        Box* box = new Box(boxname, material, min, max);
+                        //Box* box = new Box(boxname, material, min, max);
+                        shape_pointer box= std::make_shared<Box>(boxname, material, min, max);
                         
                         scene.m_shapes.push_back(box);
+                        
+                        //Composite...?
+                        /*
+                        shape_pointer box1= std::make_shared<Box>(boxname, material, min, max);
+                        std::cout<<"Hier1\n";
+                        scene.m_composite->add(box1);
+                        std::cout<<"Hier4\n";
+                        */
                     }else if(firstWord == "sphere") //##############-Sphere
                     {   
                         std::cout << "Sphere\n";
@@ -112,9 +124,12 @@ Scene SDFLoader::load(std::string const& inpath)
                         Material* material1 = new Material;
                         material1 = (scene.m_materials.find(materialname)->second);
 
-                        Sphere* sphere = new Sphere(spherename, material1, center, radius);
+                        shape_pointer sphere= std::make_shared<Sphere>(spherename, material1, center, radius);
                         
                         scene.m_shapes.push_back(sphere);
+                        //Sphere* sphere = new Sphere(spherename, material1, center, radius);
+                        
+                        //scene.m_shapes.push_back(sphere);
                     }
                 }
                 else if(firstWord == "light") //##############-Light

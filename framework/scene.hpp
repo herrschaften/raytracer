@@ -5,6 +5,7 @@ Feel free in any scenario?!
 #define SCENE_HPP
 #include <vector>
 #include <map>
+#include "composite.hpp"
 #include "shape.hpp"
 #include "material.hpp"
 #include "light.hpp"
@@ -18,7 +19,9 @@ struct Scene
 		std::vector <Light*> m_lights;
 		Color m_ambient;
 	//-Shapes
-		std::vector <Shape*> m_shapes;
+		typedef std::shared_ptr<Shape> shape_pointer;
+		std::shared_ptr<Composite> m_composite;
+		std::vector <shape_pointer> m_shapes;
 	//-Material
 		std::map<std::string, Material*> m_materials;
 	//-Camera
