@@ -11,24 +11,24 @@ Feel free to be a box!
   
   //Default
   Box::Box() : 
-  Shape {"Box", {}}, 
+  Shape {"Box",{}}, 
   m_min {0.0f, 0.0f, 0.0f}, 
   m_max {1.0f, 1.0f, 1.0f} {}
 
   // Custom 1 
   Box::Box(glm::vec3 const& min, glm::vec3 const& max) :
-  Shape {"Box", {}}, 
+  Shape {"Box",{}}, 
   m_min {min}, 
   m_max {max} {}
 
-  // Custom 2
+  /*// Custom 2
   Box::Box(std::string const& name, Material const& mat, glm::vec3 const& min, glm::vec3 const& max) : 
   Shape {name, mat},
   m_min {min}, 
-  m_max {max} {}
+  m_max {max} {}*/
 
   // Custom 3
-  Box::Box(std::string const& name, Material* const& mat, glm::vec3 const& min, glm::vec3 const& max) : 
+  Box::Box(std::string const& name, std::shared_ptr<Material> mat, glm::vec3 const& min, glm::vec3 const& max) : 
   Shape {name, mat},
   m_min {min}, 
   m_max {max} {}

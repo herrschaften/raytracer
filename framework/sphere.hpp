@@ -14,7 +14,7 @@ public:
   Sphere();
   Sphere(glm::vec3 const& ctr, float rad);
   Sphere(std::string const& name, Material const& mat, glm::vec3 const& ctr, float rad); 
-  Sphere(std::string const& name, Material* const& mat, glm::vec3 const& ctr, float rad);//Scne Mater
+  Sphere(std::string const& name, std::shared_ptr<Material> mat, glm::vec3 const& ctr, float rad);//Scne Mater
   ~Sphere() override; // Aufgabe 5.8
 
   //FUNKTIONEN------------------------------------------------------------------

@@ -12,17 +12,18 @@ Feel free to shape yourself.
 	}
 
 	//Custom
+	/*
 	Shape::Shape(std::string const& name, Material const& mat) : 
 	m_name {name},
-	m_mat {mat}  
+	m_mat {std::make_shared<Material> mat}  
 	{
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
-	}
+	}*/
 
 	//Custom
-	Shape::Shape(std::string const& name, Material* const& mat) : 
+	Shape::Shape(std::string const& name, std::shared_ptr<Material> mat) : 
 	m_name {name},
-	m_mat {*mat}  
+	m_mat {mat}  
 	{
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
 	}
@@ -38,9 +39,7 @@ Feel free to shape yourself.
 	{
 	  return m_name;
 	}
-
-//SETTER----------------------------------------------------------------------
-	Material const& Shape::material() const 
+	std::shared_ptr<Material> Shape::material() const 
 	{
 	  return m_mat; 
 	}

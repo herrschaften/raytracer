@@ -10,24 +10,24 @@ Feel free to sphere around.
   Shape {"Sphere", {}},
   m_center {0.0f, 0.0f, 0.0f}, 
   m_radius {1.0f} 
-  {std::cout << "Sphere-Construction: " << name()<< std::endl;}
+  {}
 
   // Custom 1
   Sphere::Sphere(glm::vec3 const& ctr, float rad) :
-  Shape {"Sphere", {}}, 
+  Shape {"Sphere",{}}, 
   m_center {ctr},
   m_radius {rad} 
   {std::cout << "Sphere-Construction: " << name()<< std::endl;}
 
-  //Custom 2
+  /*//Custom 2
   Sphere::Sphere(std::string const& name, Material const& mat, glm::vec3 const& ctr, float rad) :
   Shape {name, mat},
   m_center {ctr}, 
   m_radius {rad} 
-  {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}
+  {std::cout << "Sphere-Construction: " << Shape::name()<< std::endl;}*/
 
   //Custom 3
-  Sphere::Sphere(std::string const& name, Material* const& mat, glm::vec3 const& ctr, float rad) :
+  Sphere::Sphere(std::string const& name, std::shared_ptr<Material> mat, glm::vec3 const& ctr, float rad) :
   Shape {name, mat},
   m_center {ctr}, 
   m_radius {rad} 

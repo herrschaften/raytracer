@@ -90,7 +90,7 @@ Feel free to render!
     if(Hitze.m_hit==true) //Treffer?
     {
        Color clr= //+=I_a*k_a
-       (m_scene.m_ambient) * (Hitze.m_shape->material().ka); 
+       (m_scene.m_ambient) * (Hitze.m_shape->material()->ka); 
       
       //Überprüfe nun alle direkten Lichtwege
       for(auto& light : m_scene.m_lights) 
@@ -119,7 +119,7 @@ Feel free to render!
           
           clr+= 
           light->m_color 
-          *Hitze.m_shape->material().kd 
+          *Hitze.m_shape->material()->kd 
           *faktor; 
           
           glm::vec3 view= glm::normalize(raylight.m_origin);
@@ -130,10 +130,10 @@ Feel free to render!
             cosb = 0;
           }
 
-          float faktor2 = pow(cosb,Hitze.m_shape->material().m);
+          float faktor2 = pow(cosb,Hitze.m_shape->material()->m);
           
           clr+= light->m_color
-            *Hitze.m_shape->material().ks
+            *Hitze.m_shape->material()->ks
             *faktor2;
           //Reflektion?
         }//else{Schatten

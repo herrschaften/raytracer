@@ -60,8 +60,8 @@ Scene SDFLoader::load(std::string const& inpath)
                     ss >> faktor;
 
                     //Einspeichern
-                    Material* material=new Material(matname, ka, kd, ks, faktor);
-                    scene.m_materials.insert(std::pair<std::string, Material*>(matname, material));
+                    std::shared_ptr<Material> material=std::make_shared<Material>(matname, ka, kd, ks, faktor);
+                    scene.m_materials.insert(std::pair<std::string, std::shared_ptr<Material>>(matname, material));
                 }           
                 else if(firstWord == "shape")//##############-Shape
                 {
@@ -88,12 +88,9 @@ Scene SDFLoader::load(std::string const& inpath)
                         ss >> materialname;
 
                         //Einspeichern
-                        Material* material = new Material;
-                        material = (scene.m_materials.find(materialname)->second);
-                    
-                        //Box* box = new Box(boxname, material, min, max);
+                        std::shared_ptr<Material> material=(scene.m_materials.find(materialname)->second);
+        
                         shape_pointer box= std::make_shared<Box>(boxname, material, min, max);
-                        
                         scene.m_shapes.push_back(box);
                         
                         //Composite...?
@@ -121,11 +118,9 @@ Scene SDFLoader::load(std::string const& inpath)
                         ss >> materialname;
 
                         //Einspeichern
-                        Material* material1 = new Material;
-                        material1 = (scene.m_materials.find(materialname)->second);
+                        std::shared_ptr<Material> material=(scene.m_materials.find(materialname)->second);
 
-                        shape_pointer sphere= std::make_shared<Sphere>(spherename, material1, center, radius);
-                        
+                        shape_pointer sphere= std::make_shared<Sphere>(spherename, material, center, radius);
                         scene.m_shapes.push_back(sphere);
                         //Sphere* sphere = new Sphere(spherename, material1, center, radius);
                         

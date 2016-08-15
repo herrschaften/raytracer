@@ -11,6 +11,7 @@ Feel free to shape yourself.
 #include <cmath>
 #include <string>
 #include <iostream>
+#include <memory>
 #include "ray.hpp"
 
 struct Hit;
@@ -19,8 +20,8 @@ class Shape {
 public:
   //KONSTRUTOREN----------------------------------------------------------------------
   Shape();
-  Shape(std::string const& name, Material const& mat);
-  Shape(std::string const& name, Material* const& mat);
+  //Shape(std::string const& name, Material const& mat);
+  Shape(std::string const& name, std::shared_ptr<Material> mat);
   virtual ~Shape(); 
 
   //FUNKTIONEN------------------------------------------------------------------------
@@ -30,11 +31,11 @@ public:
   virtual Hit intersect(Ray const& ray) const = 0;
   
   std::string name() const;
-  Material const& material() const;
+  std::shared_ptr<Material> material() const;
 
 private: 
   std::string m_name;
-  Material m_mat;
+  std::shared_ptr<Material> m_mat;
 };
 
 std::ostream& operator << (std::ostream& os, Shape const& s);
