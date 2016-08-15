@@ -30,7 +30,7 @@ Feel free to render!
 
     m_processing=true;
     
-    float distance =-(float(m_width)/2)/tan(m_scene.m_camera.m_fovx/2);
+    float distance =-(float(m_width)/2)/tan(M_PI*m_scene.m_camera.m_fovx/(2*180)); //IN Grad
     std::cout<<distance<<"\n";
     
     float height = (-float(m_height)/2); 
@@ -111,15 +111,30 @@ Feel free to render!
             glm::dot(glm::normalize(Hitze.m_normal) , raylight.m_direction)
           );
 
-          if (faktor<0)
+          if (faktor<0) //Unter Oberfläche?
           {
             faktor=0;
           }
-
+          
           clr+= 
           light->m_color 
           *Hitze.m_shape->material().kd 
           *faktor; 
+          
+          glm::vec3 view= glm::normalize(raylight.m_origin);
+          glm::vec3 ref(glm::normalize(glm::reflect(raylight.m_direction, Hitze.m_normal)));
+          float cosb = glm::dot(ref, view); 
+          if(cosb<0)
+          {
+            cosb = 0;
+          }
+
+          float faktor2 = pow(cosb,Hitze.m_shape->material().m);
+          
+          clr+= light->m_color
+            *Hitze.m_shape->material().ks
+            *faktor2;
+          //Reflektion?
         }//else{Schatten
       }
       return clr;   

@@ -11,6 +11,8 @@ Feel free to render!
 #include <glm/glm.hpp>
 #include "scene.hpp"
 #include "hit.hpp"
+#include "camera.hpp"
+
 
 class Renderer
 {
