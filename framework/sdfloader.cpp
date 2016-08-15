@@ -154,7 +154,7 @@ Scene SDFLoader::load(std::string const& inpath)
                         ss >> lightcolor.b;
                     
                         //Einspeichern
-                        Light* light = new Light(lightname, lightcolor, lightpoint);
+                        std::shared_ptr<Light> light= std::make_shared<Light>(lightname, lightcolor, lightpoint);
                         scene.m_lights.push_back(light);
                     }
                     else                                //##############-ambi. Light
