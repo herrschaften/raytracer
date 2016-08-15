@@ -7,7 +7,7 @@ Feel free to be a box!
 #include "shape.hpp"
 #include "hit.hpp"
 
-class Box : public Shape {
+class Box : public Shape{
 public: 
   //KONSTRUTOREN----------------------------------------------------------------
   Box();

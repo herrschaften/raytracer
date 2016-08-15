@@ -48,6 +48,7 @@ Feel free to render!
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
         p.color=givacolor(rayman);
+        std::cout<<"Hier2?\n";
 
         write(p);
         width++;
@@ -84,8 +85,8 @@ Feel free to render!
   Ermittelt die Fabrbe! */
   Color Renderer::givacolor(Ray const& ray)
   {
-    Hit Hitze = ohit(ray);
-
+     Hit Hitze =ohit(ray);
+     
     if(Hitze.m_hit==true) //Treffer?
     {
        Color clr= //+=I_a*k_a
@@ -137,6 +138,9 @@ Feel free to render!
           //Reflektion?
         }//else{Schatten
       }
+     
+
+      std::cout<<"Hier1\n";
       return clr;   
     }//else{Hit=false:
     return m_scene.m_ambient; //Ambient Light?
@@ -158,7 +162,8 @@ Feel free to render!
       temphit= i->intersect(ray);
       if(temphit.m_distance<hit.m_distance)
       {
-        hit =  temphit;
+        hit = temphit;
+        hit.m_shape=i; //Unschön... aber ist jetzt so basta
       }
     } 
     return hit;
