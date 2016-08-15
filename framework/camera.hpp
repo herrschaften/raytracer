@@ -19,6 +19,7 @@ struct Camera
 	//VARIABLEN-------------------------------------------------------------------
     std::string m_name;
     float m_fovx;
+    
     glm::vec3 m_eye; //<eye>, <dir>
     glm::vec3 m_dir;
     glm::vec3 m_up;
