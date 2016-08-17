@@ -47,7 +47,7 @@ Feel free to render!
 
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
-        p.color=givacolor(rayman);
+        p.color=raytrace(rayman, 1);
         std::cout<<"Hier2?\n";
 
         write(p);
@@ -83,7 +83,7 @@ Feel free to render!
    /*Fkt: givacolor
   ######################################
   Ermittelt die Fabrbe! */
-  Color Renderer::givacolor(Ray const& ray)
+  Color Renderer::raytrace(Ray const& ray, unsigned int depth)
   {
      Hit Hitze =m_scene.m_composite->intersect(ray);
      
