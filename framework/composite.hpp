@@ -6,7 +6,6 @@ Feel free to compost!
 
 #include <memory>
 #include <string>
-#include <map>
 #include <vector>
 
 
@@ -22,9 +21,6 @@ class Composite : public Shape
 {
  public:
     typedef std::shared_ptr<Shape> shape_pointer;
-    //
-
-
     //KONSTRUTOREN----------------------------------------------------------------------
     Composite();
     Composite(std::string const& name);
@@ -38,7 +34,6 @@ class Composite : public Shape
     void scale(double scale_factor) override;
     */
     void add(shape_pointer  shape_ptr);
- 
 
  private:
     std::string m_name;

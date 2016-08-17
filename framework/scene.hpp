@@ -20,7 +20,6 @@ struct Scene
 		Color m_ambient;
 	//-Shapes
 		std::shared_ptr<Composite> m_composite; 
-		std::vector <std::shared_ptr<Shape>> m_shapes;
 	//-Material
 		std::map<std::string, std::shared_ptr<Material>> m_materials;
 	//-Camera

@@ -93,11 +93,8 @@ Scene SDFLoader::load(std::string const& inpath)
                         std::shared_ptr<Material> material=(scene.m_materials.find(materialname)->second);
         
                         shape_pointer box= std::make_shared<Box>(boxname, material, min, max);
-                        scene.m_shapes.push_back(box); //dele
-                        
-                        //Composite...
                         tmpcomp.insert(std::pair<std::string, shape_pointer>(box->name(), box));
-                 /*!!*/ //scene.m_composite->add(box);
+                 
                     }else if(firstWord == "sphere") //##############-Sphere
                     {   
                         std::cout << "Sphere\n";
@@ -119,7 +116,6 @@ Scene SDFLoader::load(std::string const& inpath)
                         std::shared_ptr<Material> material=(scene.m_materials.find(materialname)->second);
 
                         shape_pointer sphere= std::make_shared<Sphere>(spherename, material, center, radius);
-                        scene.m_shapes.push_back(sphere);
                         tmpcomp.insert(std::pair<std::string, shape_pointer>(sphere->name(), sphere));
                         
                     }else if (firstWord == "composite")
