@@ -85,7 +85,7 @@ Feel free to render!
   Ermittelt die Fabrbe! */
   Color Renderer::givacolor(Ray const& ray)
   {
-     Hit Hitze =m_scene.m_composite->ohit(ray);
+     Hit Hitze =m_scene.m_composite->intersect(ray);
      
     if(Hitze.m_hit==true) //Treffer?
     {
@@ -103,7 +103,7 @@ Feel free to render!
         };       
 
         int distance= glm::length(Hitze.m_point-light->m_point);
-        Hit LightHitze = m_scene.m_composite->ohit(raylight);
+        Hit LightHitze = m_scene.m_composite->intersect(raylight);
         
         if (LightHitze.m_distance>distance) //Licht?
         {

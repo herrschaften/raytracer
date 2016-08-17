@@ -17,7 +17,7 @@ Feel free to hit!
 
 	//Custom 1 
 		Hit::Hit(bool hit, double distance, glm::vec3 const& intersection,
-		    glm::vec3 const& normal, Shape* shape):
+		    glm::vec3 const& normal, Shape* const shape):
 			m_hit{hit},
 			m_distance{distance},
 			m_point{intersection},

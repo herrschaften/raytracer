@@ -18,7 +18,7 @@ Feel free to compost!
 
 
 
-class Composite //: public Shape 
+class Composite : public Shape 
 {
  public:
     typedef std::shared_ptr<Shape> shape_pointer;
@@ -31,7 +31,7 @@ class Composite //: public Shape
     ~Composite();
 
     //FUNKTIONEN-------------------------------------------------------------------------
-    Hit ohit(Ray const& ray) const;
+    Hit intersect(Ray const& ray) const;
     /*
     void translate(glm::vec3 const& distance) override;
     void rotate(double angle, glm::vec3 const& point) override;

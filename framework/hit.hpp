@@ -14,7 +14,7 @@ struct Hit
 	//KONSTRUTOREN----------------------------------------------------------------
 	Hit();
 	Hit(bool hit, double distance, glm::vec3 const& intersection,
-        glm::vec3 const& normal, Shape* shape);
+        glm::vec3 const& normal, Shape* const shape);
     Hit(Hit const& tmp_hit);
     //FUNKTIONEN------------------------------------------------------------------
     Hit& operator=(Hit const& tmp_hit);
@@ -23,7 +23,7 @@ struct Hit
     double m_distance;
     glm::vec3 m_point;
     glm::vec3 m_normal;
-    Shape* m_shape; //Soll RAW-Pointer sein, damit this funktioniert und und...
+    Shape* m_shape; //Soll RAW-Pointer sein, damit this funktioniert und und... vlt noch const setzen?
 };
 
 #endif

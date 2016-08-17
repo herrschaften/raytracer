@@ -34,18 +34,17 @@ NOT WORKING
 	  ######################################
 	  Gibt das durch einen Ray als erstes
 	  getroffene Objekt mit DATA zurück! */
-  Hit Composite::ohit(Ray const& ray) const
-  {
-    Hit hit;
-    Hit temphit;
-    for( auto &i : m_shapes)
-    {
-      temphit= i->intersect(ray);
-      if(temphit.m_distance<hit.m_distance)
-      {
-        hit = temphit;
-        //hit.m_shape=i; //Unschön... aber ist jetzt so basta
-      }
-    } 
-    return hit;
-  }
+	Hit Composite::intersect(Ray const& ray) const
+	{
+	Hit hit;
+	Hit temphit;
+	for( auto &i : m_shapes)
+	{
+	  temphit= i->intersect(ray);
+	  if(temphit.m_distance<hit.m_distance)
+	  {
+	    hit = temphit;
+	  }
+	} 
+	return hit;
+	}
