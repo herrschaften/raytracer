@@ -14,7 +14,7 @@ struct Hit
 	//KONSTRUTOREN----------------------------------------------------------------
 	Hit();
 	Hit(bool hit, double distance, glm::vec3 const& intersection,
-        glm::vec3 const& normal, std::shared_ptr<Shape> shape);
+        glm::vec3 const& normal, Shape* shape);
     Hit(Hit const& tmp_hit);
     //FUNKTIONEN------------------------------------------------------------------
     Hit& operator=(Hit const& tmp_hit);
@@ -23,7 +23,7 @@ struct Hit
     double m_distance;
     glm::vec3 m_point;
     glm::vec3 m_normal;
-    std::shared_ptr<Shape> m_shape;
+    Shape* m_shape; //Soll RAW-Pointer sein, damit this funktioniert und und...
 };
 
 #endif

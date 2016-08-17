@@ -95,7 +95,7 @@ Feel free to sphere around.
       if (spherehit.m_hit) //=true ->extra Info
       {
         spherehit.m_distance = glm::distance(ray.m_origin, spherehit.m_point);
-        //spherehit.m_shape = std::make_shared<Sphere> (*this); Unschön, aber sonst destruction... deswegen
+        spherehit.m_shape = this;
         //Ebene höher!
       }
         

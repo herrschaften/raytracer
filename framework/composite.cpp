@@ -44,7 +44,7 @@ NOT WORKING
       if(temphit.m_distance<hit.m_distance)
       {
         hit = temphit;
-        hit.m_shape=i; //Unschön... aber ist jetzt so basta
+        //hit.m_shape=i; //Unschön... aber ist jetzt so basta
       }
     } 
     return hit;

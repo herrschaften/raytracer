@@ -137,7 +137,7 @@ Feel free to be a box!
                                 ray.m_direction.y*ray.m_direction.y +
                                 ray.m_direction.z*ray.m_direction.z));
         
-        //boxhit.m_shape = std::make_shared<Box>(*this);
+        boxhit.m_shape = this;
         boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z};
         
         if ((boxhit.m_point.x)==Approx(m_max.x))
