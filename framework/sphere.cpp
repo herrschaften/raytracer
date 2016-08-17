@@ -60,6 +60,7 @@ Feel free to sphere around.
   }
 
 //FUNKTIONEN----------------------------------------------------------------------
+ /* Uninteressant:
   float Sphere::area() const 
   {
     return (4.0f*M_PI*pow(m_radius,2.0f));
@@ -67,7 +68,7 @@ Feel free to sphere around.
   float Sphere::volume() const 
   {
     return (4.0f*M_PI*pow(m_radius,3.0f)/3.0f);//Betrag unnötig?
-  }
+  }*/
   //print
   std::ostream& Sphere::print(std::ostream& os) const 
   {

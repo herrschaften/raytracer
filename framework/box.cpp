@@ -64,6 +64,7 @@ Feel free to be a box!
   }
 
 //FUNKTIONEN------------------------------------------------------------------
+  /*Uninnteressant:
   float Box::area() const 
   {
     glm::vec3 diff= m_max - m_min; //Differenz
@@ -74,7 +75,7 @@ Feel free to be a box!
   {
     glm::vec3 diff = m_max - m_min; //Differenz
     return abs(diff.x * diff.y * diff.z);
-  }
+  }*/
 
   // print
   std::ostream& Box::print(std::ostream& os) const 

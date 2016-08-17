@@ -25,8 +25,8 @@ public:
   virtual ~Shape(); 
 
   //FUNKTIONEN------------------------------------------------------------------------
-  virtual float area() const = 0;
-  virtual float volume() const = 0;
+  //virtual float area() const = 0;
+  //virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
   virtual Hit intersect(Ray const& ray) const = 0;
   

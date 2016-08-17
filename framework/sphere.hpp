@@ -24,8 +24,8 @@ public:
   void center(glm::vec3 const& ctr);
   void radius(float const& rad);
 
-  float area() const override;
-  float volume() const override;
+  //float area() const override;
+  //float volume() const override;
   
   std::ostream& print(std::ostream& os) const override;
   Hit intersect(Ray const& ray) const override;

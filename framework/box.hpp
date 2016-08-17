@@ -25,8 +25,8 @@ public:
   void min(glm::vec3 const& min);
 
   //FUNKTIONEN------------------------------------------------------------------
-  float area() const override;
-  float volume() const override;
+  //float area() const override;
+  //float volume() const override;
   std::ostream& print(std::ostream& os) const override; 
   Hit intersect(Ray const& ray) const override;
   
