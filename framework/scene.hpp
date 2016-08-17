@@ -5,9 +5,9 @@ Feel free in any scenario?!
 #define SCENE_HPP
 #include <vector>
 #include <map>
+
 #include "composite.hpp"
 #include "shape.hpp"
-#include "material.hpp"
 #include "light.hpp"
 #include "camera.hpp"
 

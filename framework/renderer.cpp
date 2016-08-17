@@ -85,7 +85,7 @@ Feel free to render!
   Ermittelt die Fabrbe! */
   Color Renderer::givacolor(Ray const& ray)
   {
-     Hit Hitze =ohit(ray);
+     Hit Hitze =m_scene.m_composite->ohit(ray);
      
     if(Hitze.m_hit==true) //Treffer?
     {
@@ -103,7 +103,7 @@ Feel free to render!
         };       
 
         int distance= glm::length(Hitze.m_point-light->m_point);
-        Hit LightHitze = ohit(raylight);
+        Hit LightHitze = m_scene.m_composite->ohit(raylight);
         
         if (LightHitze.m_distance>distance) //Licht?
         {
@@ -124,13 +124,13 @@ Feel free to render!
           
           glm::vec3 view= glm::normalize(raylight.m_origin);
           glm::vec3 ref(glm::normalize(glm::reflect(raylight.m_direction, Hitze.m_normal)));
-          float cosb = glm::dot(ref, view); 
-          if(cosb<0)
+          float bill_cosb = glm::dot(ref, view); 
+          if(bill_cosb<0)
           {
-            cosb = 0;
+            bill_cosb = 0;
           }
 
-          float faktor2 = pow(cosb,Hitze.m_shape->material()->m);
+          float faktor2 = pow(bill_cosb,Hitze.m_shape->material()->m);
           
           clr+= light->m_color
             *Hitze.m_shape->material()->ks
@@ -152,7 +152,7 @@ Feel free to render!
   ######################################
   Gibt das durch einen Ray als erstes
   getroffene Objekt mit DATA zurück! */
-  Hit Renderer::ohit(Ray const& ray) const
+  /*Hit Renderer::ohit(Ray const& ray) const
   {
     Hit hit;
     Hit temphit;
@@ -169,4 +169,4 @@ Feel free to render!
     return hit;
   }
 
-
+*/

@@ -28,7 +28,7 @@ public:
   void render();
   void write(Pixel const& p);
 
-  Hit ohit(Ray const& ray) const; //Optional Hit
+  //Hit ohit(Ray const& ray) const; //Optional Hit
   Color givacolor(Ray const& ray);
   
   inline std::vector<Color> const& colorbuffer() const //für Preview

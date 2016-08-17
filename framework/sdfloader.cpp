@@ -13,6 +13,8 @@ Scene SDFLoader::load(std::string const& inpath)
     typedef std::shared_ptr<Shape> shape_pointer;
 
     Scene scene;
+    std::map<std::string, shape_pointer> tmpcomp;
+
 
     std::string line;
     std::ifstream myfile(inpath);
@@ -91,15 +93,11 @@ Scene SDFLoader::load(std::string const& inpath)
                         std::shared_ptr<Material> material=(scene.m_materials.find(materialname)->second);
         
                         shape_pointer box= std::make_shared<Box>(boxname, material, min, max);
-                        scene.m_shapes.push_back(box);
+                        scene.m_shapes.push_back(box); //dele
                         
-                        //Composite...?
-                        /*
-                        shape_pointer box1= std::make_shared<Box>(boxname, material, min, max);
-                        std::cout<<"Hier1\n";
-                        scene.m_composite->add(box1);
-                        std::cout<<"Hier4\n";
-                        */
+                        //Composite...
+                        tmpcomp.insert(std::pair<std::string, shape_pointer>(box->name(), box));
+                 /*!!*/ //scene.m_composite->add(box);
                     }else if(firstWord == "sphere") //##############-Sphere
                     {   
                         std::cout << "Sphere\n";
@@ -122,9 +120,25 @@ Scene SDFLoader::load(std::string const& inpath)
 
                         shape_pointer sphere= std::make_shared<Sphere>(spherename, material, center, radius);
                         scene.m_shapes.push_back(sphere);
-                        //Sphere* sphere = new Sphere(spherename, material1, center, radius);
+                        tmpcomp.insert(std::pair<std::string, shape_pointer>(sphere->name(), sphere));
                         
-                        //scene.m_shapes.push_back(sphere);
+                    }else if (firstWord == "composite")
+                    {
+                        std::cout<< "Composite\n";
+                        std::string compname;
+                        std::string shapename;
+
+                        ss>> compname;
+                        scene.m_composite= std::make_shared<Composite>(compname);
+                        while (!ss.eof())
+                        {
+                            ss>>shapename;
+                            auto search = tmpcomp.find(shapename);
+                            if(search != tmpcomp.end()) 
+                            {
+                                scene.m_composite->add(search->second);
+                            }   
+                        }
                     }
                 }
                 else if(firstWord == "light") //##############-Light
