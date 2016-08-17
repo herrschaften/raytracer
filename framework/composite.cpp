@@ -34,7 +34,7 @@ NOT WORKING
 	  ######################################
 	  Gibt das durch einen Ray als erstes
 	  getroffene Objekt mit DATA zurück! */
-	Hit Composite::intersect(Ray const& ray) const
+	Hit Composite::intersect(Ray ray) const
 	{
 	Hit hit;
 	Hit temphit;

@@ -83,7 +83,7 @@ Feel free to sphere around.
 
     return os;
   }
-  Hit Sphere::intersect(Ray const& ray) const
+  Hit Sphere::intersect(Ray ray) const
     {
       Hit spherehit;
       spherehit.m_hit = glm::intersectRaySphere

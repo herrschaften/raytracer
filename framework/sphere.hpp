@@ -28,7 +28,7 @@ public:
   //float volume() const override;
   
   std::ostream& print(std::ostream& os) const override;
-  Hit intersect(Ray const& ray) const override;
+  Hit intersect(Ray ray) const override;
   
 private:
   glm::vec3 m_center;

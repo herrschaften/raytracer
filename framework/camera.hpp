@@ -23,6 +23,7 @@ struct Camera
     glm::vec3 m_eye; //<eye>, <dir>
     glm::vec3 m_dir;
     glm::vec3 m_up;
+    
 
 };
 #endif

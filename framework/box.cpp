@@ -110,9 +110,15 @@ Feel free to be a box!
   minimal-ray-tracer-rendering
   -simple-shapes/ray-box-intersection
    */
-  Hit Box::intersect(Ray const& ray) const
+  Hit Box::intersect(Ray ray) const
   {
-
+    //Transform Ray
+    //-Translation inkl.
+    if (transf())
+    {
+      ray.m_origin-=transl();
+    }
+    //
     Hit boxhit;
     
     double t1 = (m_min.x - ray.m_origin.x)*ray.m_inv_direction.x;
@@ -139,7 +145,14 @@ Feel free to be a box!
                                 ray.m_direction.z*ray.m_direction.z));
         
         boxhit.m_shape = this;
-        boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z};
+        if (transf())
+        {
+          boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
+          +transl();
+        }else
+        {
+          boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z};
+        }
         
         if ((boxhit.m_point.x)==Approx(m_max.x))
         {

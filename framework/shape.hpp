@@ -28,17 +28,29 @@ public:
   //virtual float area() const = 0;
   //virtual float volume() const = 0;
   virtual std::ostream& print(std::ostream& os) const; 
-  virtual Hit intersect(Ray const& ray) const = 0;
+  virtual Hit intersect(Ray ray) const = 0;
   
   std::string name() const;
   std::shared_ptr<Material> material() const;
+  //
+  bool transf()const;
+  glm::vec3 const& transl() const;
+  //
   void scale(glm::vec3 const& vec);
   void rotate(float angle,glm::vec3 const& vec);
   void translate(glm::vec3 const& vec);
 
+
 private: 
   std::string m_name;
   std::shared_ptr<Material> m_mat;
+  //
+  bool m_transf;
+  glm::vec3 m_transl;
+  /*
+  glm::mat4 m_tmat;
+  glm::mat4 m_tmatinv;
+  */
 
 };
 
