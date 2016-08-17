@@ -25,13 +25,11 @@ NOT WORKING
 	 
 	 /*ADD
 	  ######################################
-	  Fügt Shape hinzu, wenn nicht schon vom
-	  Namen vorhanden */
+	  Fügt Shape hinzu! */
 	void Composite::add(shape_pointer shape) 
 	{
-		m_shapes.insert(std::pair<std::string, shape_pointer>(shape->name(), shape)); 	
-   	}  //Alternative: stackoverflow.com/questions/5106170/how-do-i-know-if-stdmap-insert-succeeded-or-failed
-
+		m_shapes.push_back(shape);
+   	}
       /*Fkt: ohit
 	  ######################################
 	  Gibt das durch einen Ray als erstes
@@ -40,14 +38,13 @@ NOT WORKING
   {
     Hit hit;
     Hit temphit;
-
-    for(auto i = m_shapes.begin(); i!= m_shapes.end(); i++)
+    for( auto &i : m_shapes)
     {
-      temphit= i->second->intersect(ray);
+      temphit= i->intersect(ray);
       if(temphit.m_distance<hit.m_distance)
       {
         hit = temphit;
-        hit.m_shape=i->second; //Unschön... aber ist jetzt so basta
+        hit.m_shape=i; //Unschön... aber ist jetzt so basta
       }
     } 
     return hit;

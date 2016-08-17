@@ -7,6 +7,7 @@ Feel free to compost!
 #include <memory>
 #include <string>
 #include <map>
+#include <vector>
 
 
 
@@ -41,8 +42,7 @@ class Composite //: public Shape
 
  private:
     std::string m_name;
-    std::map<std::string, shape_pointer> m_shapes;
-
+    std::vector<shape_pointer> m_shapes;
 };
 
 #endif
