@@ -21,7 +21,7 @@ Feel free to be a box!
   m_min {min}, 
   m_max {max} {}
 
-  /*// Custom 2
+  /*// Custom 2 //Material Umstellung, deswegen unnötig!
   Box::Box(std::string const& name, Material const& mat, glm::vec3 const& min, glm::vec3 const& max) : 
   Shape {name, mat},
   m_min {min}, 
