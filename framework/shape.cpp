@@ -59,3 +59,16 @@ Feel free to shape yourself.
 	{
 	  return s.print(os);
 	}
+
+	void Shape::scale(glm::vec3 const& vec)
+	{
+
+	}
+  	void Shape::rotate(float angle, glm::vec3 const& vec)
+  	{
+
+  	}
+  	void Shape::translate(glm::vec3 const& vec)
+  	{
+
+  	}

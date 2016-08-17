@@ -186,6 +186,47 @@ Scene SDFLoader::load(std::string const& inpath)
                     //Einspeichern
                     scene.m_camera=Camera(camname,fovx);
                 }
+            }else if (firstWord == "transform")
+            {
+                std::string shapename, transform;
+                float x, y, z;
+
+                ss >> shapename;
+                
+
+                auto shape = tmpcomp.find(shapename);
+                if(shape != tmpcomp.end()) 
+                {   
+                    ss >> transform;
+                    if (transform == "scale") 
+                    {
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
+
+                        shape->second->scale(glm::vec3(x,y,z));
+                    }else if (transform == "rotate") 
+                    {     
+                        float angle;
+                        ss >> angle;
+
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
+
+                        shape->second->rotate(angle,glm::vec3(x,y,z));
+                    }else if (transform == "translate")
+                    {
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
+
+                        shape->second->translate(glm::vec3(x,y,z));
+                    }
+                }/*else if(shapename == scene.m_camera.m_name)
+                {
+                    hier
+                } */                    
             }
         }
     myfile.close();
