@@ -145,15 +145,19 @@ Feel free to be a box!
                                 ray.m_direction.z*ray.m_direction.z));
         
         boxhit.m_shape = this;
+        
         if (transf())
         {
-          boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
-          +transl();
+          boxhit.m_point =
+          glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
+          +ray.m_origin+transl();;
         }else
         {
-          boxhit.m_point = glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z};
+          boxhit.m_point =
+          glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
+          +ray.m_origin;
         }
-        
+                
         if ((boxhit.m_point.x)==Approx(m_max.x))
         {
            boxhit.m_normal=glm::vec3(1.0f,0.0f,0.0f); // right 

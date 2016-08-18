@@ -36,15 +36,19 @@ NOT WORKING
 	  getroffene Objekt mit DATA zurück! */
 	Hit Composite::intersect(Ray ray) const
 	{
-	Hit hit;
-	Hit temphit;
-	for( auto &i : m_shapes)
-	{
-	  temphit= i->intersect(ray);
-	  if(temphit.m_distance<hit.m_distance)
-	  {
-	    hit = temphit;
-	  }
-	} 
-	return hit;
+		/*if (transf())
+    	{
+      		ray.m_origin-=transl();
+    	}*/
+		Hit hit;
+		Hit temphit;
+		for( auto &i : m_shapes)
+		{
+		  temphit= i->intersect(ray);
+		  if(temphit.m_distance<hit.m_distance)
+		  {
+		    hit = temphit;
+		  }
+		} 
+		return hit;
 	}
