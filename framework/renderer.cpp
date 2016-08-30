@@ -47,7 +47,7 @@ Feel free to render!
 
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
-        p.color=raytrace(rayman, 1);
+        p.color=raytrace(rayman, 15); //Tiefe 
         std::cout<<"Hier2?\n";
 
         write(p);
@@ -82,13 +82,19 @@ Feel free to render!
 
    /*Fkt: givacolor
   ######################################
-  Ermittelt die Fabrbe! */
+  Ermittelt die Fabrbe!:
+    +1.ambientlight * ka
+    +2.lights?
+      +2.1 light *kd*(normal*direc)
+      +2.2 light*ks*()
+       */
   Color Renderer::raytrace(Ray const& ray, unsigned int depth)
   {
-     Hit Hitze =m_scene.m_composite->intersect(ray);
+
+     Hit Hitze =m_scene.m_composite->intersect(ray); 
      
     if(Hitze.m_hit==true) //Treffer?
-    {
+    {  //AMBIENT
        Color clr= //+=I_a*k_a
        (m_scene.m_ambient) * (Hitze.m_shape->material()->ka); 
       
@@ -112,11 +118,11 @@ Feel free to render!
             glm::dot(glm::normalize(Hitze.m_normal) , raylight.m_direction)
           );
 
-          if (faktor<0) //Unter Oberfläche?
+          if (faktor<0) //Unter Oberfläche? //lieber std::max?
           {
             faktor=0;
           }
-          
+          //DIFFUSE
           clr+= 
           light->m_color 
           *Hitze.m_shape->material()->kd 
@@ -125,19 +131,31 @@ Feel free to render!
           glm::vec3 view= glm::normalize(raylight.m_origin);
           glm::vec3 ref(glm::normalize(glm::reflect(raylight.m_direction, Hitze.m_normal)));
           float bill_cosb = glm::dot(ref, view); 
-          if(bill_cosb<0)
+          if(bill_cosb<0) //lieber std::max?
           {
             bill_cosb = 0;
           }
 
           float faktor2 = pow(bill_cosb,Hitze.m_shape->material()->m);
-          
+          //SPECUALR
           clr+= light->m_color
             *Hitze.m_shape->material()->ks
             *faktor2;
-          //Reflektion?
         }//else{Schatten
       }
+      //Reflection:
+      if (depth>0)
+      {
+        glm::vec3 direct=glm::normalize(glm::reflect(ray.m_direction,Hitze.m_normal));
+        Ray rayrefly
+        {
+          Hitze.m_point+(direct*0.001f), //nicht selbst Treffen
+          direct
+        };  
+        
+        Color refColor = raytrace(rayrefly, depth-1);   // Ebene tiefer bitte!
+        clr += (refColor) * Hitze.m_shape->material()->ks * (Hitze.m_shape->material()->kr);
+      }//REFRACTION?
      
 
       std::cout<<"Hier1\n";
