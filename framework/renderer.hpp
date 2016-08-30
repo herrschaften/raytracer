@@ -39,6 +39,13 @@ public:
   {
     return m_processing;
   }
+  //Lichtberechnung:
+  void add_ambientlight(Color & clr, Color const& ka);
+  void add_pointlight(Color & clr, std::shared_ptr<Light> const& light, Hit const& Schlag);
+  /*->*/void add_diffuselight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light, Ray const& raylight);
+  /*->*/void add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight);
+  void add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int);
+
 
 private:
   Scene m_scene;
