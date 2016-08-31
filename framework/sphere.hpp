@@ -29,6 +29,8 @@ public:
   
   std::ostream& print(std::ostream& os) const override;
   Hit intersect(Ray ray) const override;
+  //
+  void scale(float faktor) override;
   
 private:
   glm::vec3 m_center;

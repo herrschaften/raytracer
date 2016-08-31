@@ -111,3 +111,8 @@ Feel free to sphere around.
         
       return spherehit;
     }
+
+    void Sphere::scale(float faktor)
+    {
+      m_radius*=faktor;
+    }

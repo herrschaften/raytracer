@@ -74,9 +74,9 @@ Feel free to shape yourself.
 		return m_transl;
 	}
 
-	void Shape::scale(glm::vec3 const& vec)
+	void Shape::scale(float faktor)
 	{
-	    m_transf=true;
+	    m_transf=true;//per virtual ebene tiefer
 	}
   	void Shape::rotate(float angle, glm::vec3 const& vec)
   	{

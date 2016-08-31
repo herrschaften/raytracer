@@ -203,11 +203,9 @@ Scene SDFLoader::load(std::string const& inpath)
                     ss >> transform;
                     if (transform == "scale") 
                     {
-                        ss >> x;
-                        ss >> y;
-                        ss >> z;
-
-                        shape->second->scale(glm::vec3(x,y,z));
+                        float faktor;
+                        ss >> faktor;
+                        shape->second->scale(faktor);
                     }else if (transform == "rotate") 
                     {     
                         float angle;

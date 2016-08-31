@@ -180,3 +180,11 @@ Feel free to be a box!
     }
     return boxhit;
   }
+  //
+  void Box::scale(float faktor)
+  {
+    //Skaliere von min ausgehend!
+    glm::vec3 diff=m_max-m_min;
+    m_max=m_min+(diff*faktor);
+    //translate(XXX); Damit Zentrum bleibt?
+  }

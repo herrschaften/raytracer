@@ -36,9 +36,11 @@ public:
   bool transf()const;
   glm::vec3 const& transl() const;
   //
-  void scale(glm::vec3 const& vec);
+  virtual void scale(float faktor);
   void rotate(float angle,glm::vec3 const& vec);
   void translate(glm::vec3 const& vec);
+  //
+  //virtual glm::vec3 const& getFixpoint() const = 0;
 
 
 private: 
