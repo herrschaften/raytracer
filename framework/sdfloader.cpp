@@ -204,7 +204,7 @@ Scene SDFLoader::load(std::string const& inpath)
                     if (transform == "scale") 
                     {
                         float faktor;
-                        ss >> faktor;
+                        ss >> faktor;   //EASY VERSION
                         shape->second->scale(faktor);
                     }else if (transform == "rotate") 
                     {     

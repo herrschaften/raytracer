@@ -80,7 +80,7 @@ Feel free to shape yourself.
 	}
   	void Shape::rotate(float angle, glm::vec3 const& vec)
   	{
-  		m_transf=true;
+  		m_transf=true;//per virtual ebene tiefer
   	}
   	void Shape::translate(glm::vec3 const& vec)
   	{

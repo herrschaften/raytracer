@@ -31,6 +31,7 @@ public:
   Hit intersect(Ray ray) const override;
   //
   void scale(float faktor) override;
+  void rotate(float angle,glm::vec3 const& vec) override;
   
 private:
   glm::vec3 m_center;

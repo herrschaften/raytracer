@@ -116,3 +116,10 @@ Feel free to sphere around.
     {
       m_radius*=faktor;
     }
+
+    void Sphere::rotate(float angle,glm::vec3 const& vec)
+    {
+      //DO NOTHING: YOu ALWAYS lOOk tHe Same, beautifull shape
+      //my dear, you are a Sphere!
+      //-and not an Egg or whatever!
+    }

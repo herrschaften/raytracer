@@ -117,6 +117,8 @@ Feel free to be a box!
     if (transf())
     {
       ray.m_origin-=transl();
+      //Rotate pls:
+      //ray.m_origin-=rotate();
     }
     //
     Hit boxhit;

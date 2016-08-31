@@ -37,7 +37,7 @@ public:
   glm::vec3 const& transl() const;
   //
   virtual void scale(float faktor);
-  void rotate(float angle,glm::vec3 const& vec);
+  virtual void rotate(float angle,glm::vec3 const& vec);
   void translate(glm::vec3 const& vec);
   //
   //virtual glm::vec3 const& getFixpoint() const = 0;
@@ -49,6 +49,7 @@ private:
   //
   bool m_transf;
   glm::vec3 m_transl;
+  //glm::vec3 m_rotate;
   /*
   glm::mat4 m_tmat;
   glm::mat4 m_tmatinv;
