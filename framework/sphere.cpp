@@ -121,5 +121,5 @@ Feel free to sphere around.
     {
       //DO NOTHING: YOu ALWAYS lOOk tHe Same, beautifull shape
       //my dear, you are a Sphere!
-      //-and not an Egg or whatever!
+      //-and not an Egg, or some other dreck!
     }
