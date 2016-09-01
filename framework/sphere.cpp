@@ -85,10 +85,7 @@ Feel free to sphere around.
   }
   Hit Sphere::intersect(Ray ray) const
     {
-      if (transf())
-      {
-        ray.m_origin-=transl();
-      }
+      
       Hit spherehit;
 
       spherehit.m_hit = glm::intersectRaySphere
@@ -102,10 +99,7 @@ Feel free to sphere around.
       {
         spherehit.m_distance = glm::distance(ray.m_origin, spherehit.m_point);
         spherehit.m_shape = this;
-         if (transf())
-        {
-          spherehit.m_point+=transl();
-        }
+        
 /*!!!*/ if(glm::distance(spherehit.m_point-0.001f*ray.m_direction, m_center) < m_radius)
         {
           spherehit.m_normal = -spherehit.m_normal;
@@ -114,6 +108,11 @@ Feel free to sphere around.
       }
         
       return spherehit;
+    }
+
+    void Sphere::translate(glm::vec3 const& vec)
+    {
+      m_center+=vec;
     }
 
     void Sphere::scale(float faktor)

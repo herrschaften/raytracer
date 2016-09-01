@@ -6,9 +6,7 @@ Feel free to shape yourself.
   //Default
 	Shape::Shape() :
 	m_name {"Shape"}, 
-	m_mat {},
-	m_transf{false},
-	m_transl{}
+	m_mat {}
 	{ 
 		std::cout << "Shape-Construction" << m_name << std::endl;
 	}
@@ -25,9 +23,7 @@ Feel free to shape yourself.
 	//Custom
 	Shape::Shape(std::string const& name, std::shared_ptr<Material> mat) : 
 	m_name {name},
-	m_mat {mat},
-	m_transf{false} ,
-	m_transl{} 
+	m_mat {mat}
 	{
 		std::cout <<":Shape-Construction: " << m_name << std::endl;
 	}
@@ -63,7 +59,7 @@ Feel free to shape yourself.
 	{
 	  return s.print(os);
 	}
-
+	/*
 	bool Shape::transf() const
 	{
 		return m_transf;
@@ -73,17 +69,5 @@ Feel free to shape yourself.
 	{
 		return m_transl;
 	}
-
-	void Shape::scale(float faktor)
-	{
-	    m_transf=true;//per virtual ebene tiefer
-	}
-  	void Shape::rotate(float angle, glm::vec3 const& vec)
-  	{
-  		m_transf=true;//per virtual ebene tiefer
-  	}
-  	void Shape::translate(glm::vec3 const& vec)
-  	{
-  		m_transl=vec;
-  		m_transf=true;
-  	}
+*/
+	

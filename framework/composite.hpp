@@ -34,6 +34,11 @@ class Composite : public Shape
     void scale(double scale_factor) override;
     */
     void add(shape_pointer  shape_ptr);
+    //
+    void scale(float faktor) override;
+    void rotate(float angle,glm::vec3 const& vec) override;
+    void translate(glm::vec3 const& vec) override;
+
 
  private:
     std::string m_name;

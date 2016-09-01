@@ -33,12 +33,12 @@ public:
   std::string name() const;
   std::shared_ptr<Material> material() const;
   //
-  bool transf()const;
-  glm::vec3 const& transl() const;
+  //bool transf()const;
+  //glm::vec3 const& transl() const;
   //
-  virtual void scale(float faktor);
-  virtual void rotate(float angle,glm::vec3 const& vec);
-  void translate(glm::vec3 const& vec);
+  virtual void scale(float faktor) = 0;
+  virtual void rotate(float angle,glm::vec3 const& vec) = 0;
+  virtual void translate(glm::vec3 const& vec)  = 0;
   //
   //virtual glm::vec3 const& getFixpoint() const = 0;
 
@@ -47,8 +47,8 @@ private:
   std::string m_name;
   std::shared_ptr<Material> m_mat;
   //
-  bool m_transf;
-  glm::vec3 m_transl;
+  //bool m_transf;
+  //glm::vec3 m_transl;
   //glm::vec3 m_rotate;
   /*
   glm::mat4 m_tmat;

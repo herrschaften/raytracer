@@ -32,7 +32,8 @@ public:
   //
   void scale(float faktor) override;
   void rotate(float angle,glm::vec3 const& vec) override;
-  
+  void translate(glm::vec3 const& vec) override;
+
 private:
   glm::vec3 m_center;
   float m_radius;

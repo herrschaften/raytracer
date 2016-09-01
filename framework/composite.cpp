@@ -52,3 +52,24 @@ NOT WORKING
 		} 
 		return hit;
 	}
+
+	void Composite::scale(float faktor)
+	  {
+	    for( auto &i : m_shapes)
+		{
+		  i->scale(faktor);
+		} 
+	  }
+
+  void Composite::translate(glm::vec3 const& vec)
+    {
+     	for( auto &i : m_shapes)
+		{
+		  i->translate(vec);
+		} 
+    }
+
+ void Composite::rotate(float angle,glm::vec3 const& vec)
+  {
+    //NOT YET IMPLEMENTED
+  }

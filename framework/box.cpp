@@ -112,15 +112,6 @@ Feel free to be a box!
    */
   Hit Box::intersect(Ray ray) const
   {
-    //Transform Ray
-    //-Translation inkl.
-    if (transf())
-    {
-      ray.m_origin-=transl();
-      //Rotate pls:
-      //ray.m_origin-=rotate();
-    }
-    //
     Hit boxhit;
     
     double t1 = (m_min.x - ray.m_origin.x)*ray.m_inv_direction.x;
@@ -147,18 +138,10 @@ Feel free to be a box!
                                 ray.m_direction.z*ray.m_direction.z));
         
         boxhit.m_shape = this;
-        
-        if (transf())
-        {
-          boxhit.m_point =
-          glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
-          +ray.m_origin+transl();;
-        }else
-        {
-          boxhit.m_point =
-          glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
-          +ray.m_origin;
-        }
+
+        boxhit.m_point =
+        glm::vec3{tmin*ray.m_direction.x, tmin*ray.m_direction.y, tmin*ray.m_direction.z}
+        +ray.m_origin;
                 
         if ((boxhit.m_point.x)==Approx(m_max.x))
         {
@@ -189,4 +172,15 @@ Feel free to be a box!
     glm::vec3 diff=m_max-m_min;
     m_max=m_min+(diff*faktor);
     //translate(XXX); Damit Zentrum bleibt?
+  }
+
+  void Box::translate(glm::vec3 const& vec)
+    {
+      m_min+=vec;
+      m_max+=vec;
+    }
+
+  void Box::rotate(float angle,glm::vec3 const& vec)
+  {
+    //NOT YET IMPLEMENTED
   }
