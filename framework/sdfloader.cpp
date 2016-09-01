@@ -41,6 +41,7 @@ Scene SDFLoader::load(std::string const& inpath)
                     Color kd;
                     Color ks;
                     float kr;
+                    float ko;
                     float faktor;
                     //-------------------
 
@@ -61,11 +62,11 @@ Scene SDFLoader::load(std::string const& inpath)
                     ss >> ks.b;
 
                     ss >> kr;
-
+                    ss >> ko;
                     ss >> faktor;
 
                     //Einspeichern
-                    std::shared_ptr<Material> material=std::make_shared<Material>(matname, ka, kd, ks, kr, faktor);
+                    std::shared_ptr<Material> material=std::make_shared<Material>(matname, ka, kd, ks, kr, ko, faktor);
                     scene.m_materials.insert(std::pair<std::string, std::shared_ptr<Material>>(matname, material));
                 }           
                 else if(firstWord == "shape")//##############-Shape

@@ -106,6 +106,10 @@ Feel free to sphere around.
         {
           spherehit.m_point+=transl();
         }
+/*!!!*/ if(glm::distance(spherehit.m_point-0.001f*ray.m_direction, m_center) < m_radius)
+        {
+          spherehit.m_normal = -spherehit.m_normal;
+        }
         
       }
         

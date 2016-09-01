@@ -47,7 +47,7 @@ Feel free to render!
 
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
-        p.color=raytrace(rayman, 15); //Tiefe 
+        p.color=raytrace(rayman, 5); //Tiefe 
         std::cout<<"Hier2?\n";
 
         write(p);
@@ -104,6 +104,10 @@ Feel free to render!
       if (depth>0)
       {
         add_reflectedlight(clr, Hitze,ray, depth);              //REFLECTION
+        if (Hitze.m_shape->material()->opac)
+        {
+          refractedlight(clr, Hitze,ray, depth);
+        }
       }
                                                                 //REFRACTION?
     return clr;   
@@ -163,4 +167,15 @@ void Renderer::add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray
   
   Color refColor = raytrace(rayrefly, depth-1);   // Ebene tiefer bitte!
   clr += (refColor) * (Schlag.m_shape->material()->ks) * (Schlag.m_shape->material()->kr);
+}
+
+void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth)
+{
+  glm::vec3 direct=glm::normalize(glm::refract(ray.m_direction,Schlag.m_normal, Schlag.m_shape->material()->opac));
+  Ray refr_ray{Schlag.m_point+(direct*0.001f),direct}; 
+
+  Color refr_Color = raytrace(refr_ray, depth-1);
+
+  clr = clr * (1.0f-Schlag.m_shape->material()->opac) + refr_Color * (Schlag.m_shape->material()->opac);
+ // clr += refr_Color * (1.0f-Hitze.m_shape->material()->opac);// + refr_Color * (Hitze.m_shape->material()->opac);
 }
