@@ -175,7 +175,5 @@ void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, un
   Ray refr_ray{Schlag.m_point+(direct*0.001f),direct}; 
 
   Color refr_Color = raytrace(refr_ray, depth-1);
-
-  clr = clr * (1.0f-Schlag.m_shape->material()->opac) + refr_Color * (Schlag.m_shape->material()->opac);
- 
+  clr+=(refr_Color-clr)*(Schlag.m_shape->material()->opac); 
 }

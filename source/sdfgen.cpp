@@ -7,9 +7,11 @@
 #include <sys/stat.h>
 #include <cmath>
 #include <math.h> 
+#include <tuple>
 
 float calcradius(float value)
-{
+{	
+	//SPECIAL FUNCTION ACHIEVED WITH LAGRANGE INTERPOLATION
 	return (-0.00326885*pow(value,6)
 			+0.000624217*pow(value,5)
 			+0.0888064*pow(value,4)
@@ -18,77 +20,103 @@ float calcradius(float value)
 			-1.10534*value +4);
 }
 
-int main(int argc, char* argv[]) {
-	const int imagecount = 2;
+std::tuple<float, float, float> generateCoord()
+{
+	float dist=-30.0f; //Distance in z-axis
+	float y_max=5.0f;
+	float y_min=-5.0f;
+	float xz_max;
+	//
+	std::tuple<float, float, float> coordinate;
+	std::get<1>(coordinate)=y_min + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(y_max-y_min)));
+		xz_max=calcradius(-(std::get<1>(coordinate)));
+		//std::cout<<std::to_string(xz_max)<<"\n";
+	std::get<0>(coordinate)=-xz_max + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2*xz_max)));
+	std::get<2>(coordinate)=dist-xz_max+ static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2*xz_max)));
+	
+	return coordinate;
+}
 
+float generateRadius()
+{
+	return (0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0f-0.0f))));
+}
 
-	std::array<std::string, imagecount> outputNames;
-
-	for (int  i = 0; i < imagecount; ++i) 
-	{
-		outputNames[i] = "scene" + std::to_string(i) + ".txt";
-		
-		std::cout << outputNames[i] <<"\n";
-	}
+std::string generateMat(std::tuple<float, float, float> coordinate)
+{
+	float glass=(std::get<2>(coordinate)+40)/10;
+	glass=0;
+	
+	int Summe=abs(std::get<0>(coordinate))+abs(std::get<1>(coordinate));
+	/*
+	//std::cout<<std::to_string(Summe)<<"\n";
+	std::string r=std::to_string(abs(std::get<0>(coordinate))/Summe);
+	std::string g=std::to_string(abs(std::get<1>(coordinate))/Summe);
+	std::string b=std::to_string(abs(std::get<2>(coordinate))/Summe);
+	b="0,0";
+	std::cout<<r+" "+g+" "+b<<"\n";
+	return( r+" "+g+" "+b+" "+r+" "+g+" "+b+" 1 1 1 0 "+std::to_string(glass)+" 40");
+	*/
+	return("0 1 0 0.5 0.5 0.5 1 1 1 0.0 0.0 40"); //+std::to_string(static_cast <float> (rand()) /( static_cast <float> (RAND_MAX)))+" 0.0 0.0 40");
+	/*
+	std::to_string(
+		//ka
+		//kd
+		//ks
+		//kr
+		//ko
+		//faktor
+		)"1 1 0 1 1 0 1 1 1 0 0 40");*/
+}
+/*
+###############################*/
+int main(int argc, char* argv[]) 
+{
+	const int imagecount = 1;	//total number of images
 
 	for (int i = 0; i < imagecount; ++i)
 	{
-		std::ofstream fOut("zurendern/"+outputNames[i]);
+		std::ofstream fOut("zurendern/scene" + std::to_string(i) + ".txt"); //SDF-Datei
+
 		//BASIC SCENE GEN:
-		fOut
-			<<"define material red   1 0 0 1 0 0 1 1 1 0 0 40" << std::endl
-			<<"define material green 0 1 0 0 1 0 1 1 1 0 0 40" << std::endl
-			<<"define material blue  0 0 1 0 0 1 1 1 1 0 0 40" << std::endl
-			<<"define material mat_yellow  0.70 0.30 0.15 0.70 0.30 0.15 0.90 0.90 0.90 0.5 0 40" << std::endl
-			<<"define material mat_red     0.46 0.00 0.18 0.46 0.00 0.18 0.90 0.90 0.90 0.1 0.3 40" << std::endl
-			<<"define material mat_blue    0.36 0.48 0.78 0.36 0.48 0.78 0.90 0.90 0.90 0.3 0 40" << std::endl
-			<<"define material mat_lblue   0.42 0.82 1.00 0.42 0.82 1.00 0.90 0.90 0.90 0 0 40" << std::endl
-			<<"define material mat_orange  0.60 0.20 0.20 0.60 0.20 0.20 0.90 0.90 0.90 0.3 0 40" << std::endl
-			<<"define material yellow  1 1 0 1 1 0 0.90 0.90 0.90 0.8 0 40" << std::endl;
+		
 
+		int objects=20; //total number of objects per scene 
 
-		int anglex;
-		float z = 1;
-		float x = 1;
-				
-		int objects=2000;
-		//
-		float dist=-30.0f;
-		float HIy=5.0f;
-		float LOy=-5.0f;
-		float radius;
 		for(int j=0;j<objects; j++) //SET UP: SPHERERS
 		{
-			float x;
-			float y;
-			float z;
+			//generate Coordinates:
+			std::tuple<float, float, float> coordinate=generateCoord();
 
-			float r;
-			//y=LOy+static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2-0.0)));
+			//generate Radius:
+			float r=generateRadius();
 
-			y=LOy + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HIy-LOy)));
-			radius=calcradius(-y);
-			//LOx=-(−0.00326885x^6+0.000624217x^5+0.0888064x^4+0.0474312x^3−0.630738x^2−1.10534x+4)
-			x=-radius + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2*radius)));
-			z=dist-radius+ static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2*radius)));		
-
-			r=0.0 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(0.125-0.0)));
-
+			//generate Material:
 			fOut
-			<<"define shape sphere num"+std::to_string(j)+" "
-/* cen*/	+std::to_string(x)+" "
-			+std::to_string(y)+" "
-			+std::to_string(z)+" "
+			<<"define material num"<<std::to_string(j)<<" "<<generateMat(coordinate)<< std::endl;
 
-			+std::to_string(r)+" "
+			fOut//WRITE SPHERE
+				<<"define shape sphere num"+std::to_string(j)+" "
 
-			+"mat_orange" << std::endl;
+				+std::to_string(std::get<0>(coordinate))+" "
+				+std::to_string(std::get<1>(coordinate))+" "
+				+std::to_string(std::get<2>(coordinate))+" "
+
+				+std::to_string(r)+" "
+
+				+"num"+std::to_string(j) << std::endl;
 		}
 			
 			//Box
-		/*
+		
 		fOut
-			<<"define shape box num1  -1  -1   -1    1    1    1   mat_orange" << std::endl
+		<<"define material nana 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 0 0 40"<<std::endl;
+
+
+		fOut
+			<<"define shape box nana1  -50 -50 49 50 50 50   nana" << std::endl
+			<<"define shape box nana2  -50 -50 -50 50 50 -49   nana" << std::endl;
+			/*
 			<<"define shape box num2   7  -6  -93    17 -16  -83   mat_blue" << std::endl
 			<<"define shape box num3 -29   5  -93   -19  -5  -83   red" << std::endl
 			<<"define shape box num4  -5   5  -93     5  -5  -83   red" << std::endl
@@ -99,18 +127,19 @@ int main(int argc, char* argv[]) {
 		
 			//SET UP: COMPOSITE!
 			fOut
-			<<"define shape composite root";
+			<<"define shape composite root ";
 			for(int j=0;j<objects; j++)
 			{
 				fOut
 				<<"num"+std::to_string(j)+" ";
 			}
 			fOut
-			<<std::endl;
+			<<"nana1 nana2"<<std::endl;
 			
 
-			//transform
-			//<<"transform num1 rotate " << to_string(anglex)<< " 1 1 0" << endl
+			//fOut
+			//<<"transform nana scale 2" << std::endl
+			//<<"transform nana translate 0 0 0" << std::endl;
 			//<<"transform num6 rotate " << to_string(anglex)<< " 1 1 0"<< endl
 
 			/*
@@ -144,11 +173,11 @@ int main(int argc, char* argv[]) {
 
 			//Lights
 			fOut
-			<<"define light diffuse sun1 0 0 3 1 1 1" << std::endl
-			<<"define light ambient ambient 0.1 0.08 0.1" << std::endl
+			<<"define light diffuse sun1 15 5 -30 0.0 0.5 0.5" << std::endl
+			<<"define light ambient ambient 0.1 0.1 0.1" << std::endl
 
 			//Camera
-			<<"define camera guck 30 0 0 0" << std::endl;
+			<<"define camera guck 35 0 0 0" << std::endl;
 			//<< cameraCmd << endl
 		fOut.close();
 
