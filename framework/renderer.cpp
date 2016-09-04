@@ -47,7 +47,7 @@ Feel free to render!
 
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
-        p.color=raytrace(rayman, 5); //Tiefe 
+        p.color=raytrace(rayman, 3); //Tiefe 
         std::cout<<"Hier2?\n";
 
         write(p);
@@ -98,7 +98,7 @@ Feel free to render!
       //Überprüfe nun alle direkten Lichtwege
       for(auto& light : m_scene.m_lights) 
       {
-        add_pointlight(clr, light, Hitze);                      //DIFFUSE & SPECULAR 
+        add_pointlight(clr, light, Hitze, ray);                      //DIFFUSE & SPECULAR 
       }
 
       if (depth>0)
@@ -122,7 +122,7 @@ void Renderer::add_ambientlight(Color & clr, Color const& ka)
   clr+=(m_scene.m_ambient)*(ka);  //+=I_a*k_a
 }
 
-void Renderer::add_pointlight(Color & clr, std::shared_ptr<Light> const& light, Hit const& Schlag)
+void Renderer::add_pointlight(Color & clr, std::shared_ptr<Light> const& light, Hit const& Schlag, Ray const& ray)
 {
         
         glm::vec3 direct=glm::normalize(light->m_point-Schlag.m_point);
@@ -138,7 +138,7 @@ void Renderer::add_pointlight(Color & clr, std::shared_ptr<Light> const& light, 
         if (LightHitze.m_distance>distance) //Licht?
         {
           add_diffuselight(clr, Schlag, light, raylight);
-          add_specularlight(clr, Schlag, light, raylight);
+          add_specularlight(clr, Schlag, light, raylight, ray);
         }//else{Schatten
 }
 
@@ -148,10 +148,11 @@ void Renderer::add_pointlight(Color & clr, std::shared_ptr<Light> const& light, 
         clr+= (light->m_color) * (Schlag.m_shape->material()->kd) * (std::max(faktor,0.0f));  
       }
 
-/*->*/void Renderer::add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight)
+/*->*/void Renderer::add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight, Ray const& ray)
       {
+        
         float bill_cosb = glm::dot(
-                                  glm::normalize(raylight.m_origin), 
+                                  glm::normalize(ray.m_direction), 
                                   glm::normalize(glm::reflect(raylight.m_direction, Schlag.m_normal))
                                   ); 
         

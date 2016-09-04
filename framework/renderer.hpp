@@ -41,9 +41,9 @@ public:
   }
   //Lichtberechnung:
   void add_ambientlight(Color & clr, Color const& ka);
-  void add_pointlight(Color & clr, std::shared_ptr<Light> const& light, Hit const& Schlag);
+  void add_pointlight(Color & clr, std::shared_ptr<Light> const& light, Hit const& Schlag, Ray const& ray);
   /*->*/void add_diffuselight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light, Ray const& raylight);
-  /*->*/void add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight);
+  /*->*/void add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight, Ray const& ray);
   void add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int);
   void refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth);
 
