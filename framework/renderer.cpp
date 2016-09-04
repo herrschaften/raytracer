@@ -47,7 +47,7 @@ Feel free to render!
 
         //Erzeuge Ray
         Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
-        p.color=raytrace(rayman, 3); //Tiefe 
+        p.color=raytrace(rayman, 10); //Tiefe 
         std::cout<<"Hier2?\n";
 
         write(p);
@@ -151,13 +151,12 @@ void Renderer::add_pointlight(Color & clr, std::shared_ptr<Light> const& light, 
 /*->*/void Renderer::add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight, Ray const& ray)
       {
         
-        float bill_cosb = glm::dot(
+        float faktor = glm::dot(
                                   glm::normalize(ray.m_direction), 
                                   glm::normalize(glm::reflect(raylight.m_direction, Schlag.m_normal))
                                   ); 
         
-
-        float faktor = pow(std::max(bill_cosb, 0.0f),Schlag.m_shape->material()->m);
+        faktor = pow(std::max(faktor, 0.0f),Schlag.m_shape->material()->m);
         clr+= (light->m_color) * (Schlag.m_shape->material()->ks) * (faktor);
       }
 
@@ -172,11 +171,11 @@ void Renderer::add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray
 
 void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth)
 {
-  glm::vec3 direct=glm::normalize(glm::refract(ray.m_direction,Schlag.m_normal, Schlag.m_shape->material()->opac));
+  glm::vec3 direct=glm::normalize(glm::refract(ray.m_direction,Schlag.m_normal, Schlag.m_shape->material()->eta));
   Ray refr_ray{Schlag.m_point+(direct*0.001f),direct}; 
 
   Color refr_Color = raytrace(refr_ray, depth-1);
 
   clr = clr * (1.0f-Schlag.m_shape->material()->opac) + refr_Color * (Schlag.m_shape->material()->opac);
- // clr += refr_Color * (1.0f-Hitze.m_shape->material()->opac);// + refr_Color * (Hitze.m_shape->material()->opac);
+ 
 }
