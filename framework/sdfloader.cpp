@@ -207,6 +207,8 @@ Scene SDFLoader::load(std::string const& inpath)
                     ss >> up.z;
 
                     //Rechnung
+                    dir=glm::normalize(dir);
+                    up=glm::normalize(up);
                     cam[3]= glm::vec4(pos,1.0f);
 
                     cam[2]= glm::vec4(dir*-1.0f,0.0f);

@@ -63,7 +63,7 @@ Feel free to render!
         rayman=transformRay(m_scene.m_camera.m_cam,rayman);
 
 
-        p.color=raytrace(rayman, 10); //Tiefe 
+        p.color=raytrace(rayman, 2); //Tiefe 
         std::cout<<"Hier2?\n";
 
         write(p);
