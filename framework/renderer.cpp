@@ -46,7 +46,23 @@ Feel free to render!
         write(p); 
 
         //Erzeuge Ray
-        Ray rayman {m_scene.m_camera.m_eye, glm::normalize(glm::vec3(width, height, distance))};
+
+        /*
+        glm::vec3 direction{float(x)*1.0/float(width) -0.5,
+                        float(y)*1.0/float(height) -0.5, 
+                        -1.0*(0.5/tan(fov_x_*M_PI/360))}; // distance = 0.5 / tan(winkel/2)
+        Ray ray{{0,0,0}, direction};
+
+        transf_ =  transformMatrix(); // transformieren
+
+        transformRay(transf_ , ray);
+        */
+
+
+        Ray rayman {{0,0,0}, glm::normalize(glm::vec3(width, height, distance))};
+        rayman=transformRay(m_scene.m_camera.m_cam,rayman);
+
+
         p.color=raytrace(rayman, 10); //Tiefe 
         std::cout<<"Hier2?\n";
 

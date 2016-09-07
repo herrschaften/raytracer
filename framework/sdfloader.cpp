@@ -183,14 +183,40 @@ Scene SDFLoader::load(std::string const& inpath)
                 {
                     std::string camname;
                     float fovx;
+                    glm::vec3 pos;
+                    glm::vec3 dir;
+                    glm::vec3 up;
+
+                    glm::mat4 cam;
 
                     std::cout << "Camera\n";
 
                     ss >> camname;
                     ss >> fovx;
-                
+           
+                    ss >> pos.x;
+                    ss >> pos.y;
+                    ss >> pos.z;
+
+                    ss >> dir.x;
+                    ss >> dir.y;
+                    ss >> dir.z;
+
+                    ss >> up.x;
+                    ss >> up.y;
+                    ss >> up.z;
+
+                    //Rechnung
+                    cam[3]= glm::vec4(pos,1.0f);
+
+                    cam[2]= glm::vec4(dir*-1.0f,0.0f);
+
+                    cam[0]= glm::vec4(glm::cross(glm::normalize(dir),up),0.0f);
+
+                    cam[1]= glm::vec4(up,0.0f);
+                    
                     //Einspeichern
-                    scene.m_camera=Camera(camname,fovx);
+                    scene.m_camera=Camera(camname,fovx, cam);
                 }
             }else if (firstWord == "transform")
             {
