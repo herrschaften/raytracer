@@ -66,9 +66,7 @@ Feel free to render!
         p.color=raytrace(rayman, 2); //Tiefe 
         std::cout<<"pmml?"<<p.color.r<<"\n";
         
-        p.color.r= p.color.r/(p.color.r+1);
-        p.color.g= p.color.g/(p.color.g+1);
-        p.color.b= p.color.b/(p.color.b+1);
+       tonemapping(p);
 
         std::cout<<"pmml"<<p.color.r<<"\n";
 
@@ -199,4 +197,11 @@ void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, un
 
   Color refr_Color = raytrace(refr_ray, depth-1);
   clr+=refr_Color*(Schlag.m_shape->material()->opac); 
+}
+
+void Renderer::tonemapping(Pixel & p)
+{
+  p.color.r= p.color.r/(p.color.r+1);
+  p.color.g= p.color.g/(p.color.g+1);
+  p.color.b= p.color.b/(p.color.b+1);
 }

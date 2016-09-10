@@ -28,6 +28,7 @@ public:
   void render();
   void write(Pixel const& p);
 
+
   //Hit ohit(Ray const& ray) const; //Optional Hit
   Color raytrace(Ray const& ray, unsigned int depth);
   
@@ -46,6 +47,7 @@ public:
   /*->*/void add_specularlight(Color & clr, Hit const& Schlag, std::shared_ptr<Light> const& light,  Ray const& raylight, Ray const& ray);
   void add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int);
   void refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth);
+  void tonemapping(Pixel & p);
 
 private:
   Scene m_scene;
