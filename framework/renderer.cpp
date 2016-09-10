@@ -39,7 +39,7 @@ Feel free to render!
       
       for (unsigned x = 0; x < m_width; ++x) {    //Vertikal
         Pixel p(x,y);
-        std::cout<<"Pixel"<<x<<","<<y<<"\n";
+        //std::cout<<"Pixel"<<x<<","<<y<<"\n";
 
         //For Preview
         p.color=Color(1.0,1.0,1.0);
@@ -64,7 +64,14 @@ Feel free to render!
 
 
         p.color=raytrace(rayman, 2); //Tiefe 
-        std::cout<<"Hier2?\n";
+        std::cout<<"pmml?"<<p.color.r<<"\n";
+        
+        p.color.r= p.color.r/(p.color.r+1);
+        p.color.g= p.color.g/(p.color.g+1);
+        p.color.b= p.color.b/(p.color.b+1);
+
+        std::cout<<"pmml"<<p.color.r<<"\n";
+
 
         write(p);
         width++;
@@ -191,5 +198,5 @@ void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, un
   Ray refr_ray{Schlag.m_point+(direct*0.001f),direct}; 
 
   Color refr_Color = raytrace(refr_ray, depth-1);
-  clr+=(refr_Color-clr)*(Schlag.m_shape->material()->opac); 
+  clr+=refr_Color*(Schlag.m_shape->material()->opac); 
 }

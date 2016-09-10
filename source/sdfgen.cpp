@@ -73,7 +73,7 @@ std::string generateMat(std::tuple<float, float, float> coordinate)
 ###############################*/
 int main(int argc, char* argv[]) 
 {
-	const int imagecount = 60;	//total number of images
+	const int imagecount = 1;	//total number of images
 
 	for (int i = 0; i < imagecount; ++i)
 	{
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 		//BASIC SCENE GEN:
 		
 
-		int objects=500; //total number of objects per scene 
+		int objects=20; //total number of objects per scene 
 
 		for(int j=0;j<objects; j++) //SET UP: SPHERERS
 		{
@@ -191,7 +191,7 @@ int main(int argc, char* argv[])
 			float diry=0-posy;
 			float dirz=-30-posz;
 			fOut
-			<<"define camera guck 50 "
+			<<"define camera guck 120 "
 			+std::to_string(posx)+" "+std::to_string(posy)+" "+std::to_string(posz)+" "
 			+std::to_string(dirx)+" "+std::to_string(diry)+" "+std::to_string(dirz)+" 0 1 0" << std::endl;
 			//<< cameraCmd << endl
