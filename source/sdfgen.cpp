@@ -57,11 +57,11 @@ std::string generateMat(std::tuple<float, float, float> coordinate)
 	std::cout<<r+" "+g+" "+b<<"\n";
 	return( r+" "+g+" "+b+" "+r+" "+g+" "+b+" 1 1 1 0 "+std::to_string(glass)+" 40");
 	*/
-	return("1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.0 0.0 40"); //+std::to_string(static_cast <float> (rand()) /( static_cast <float> (RAND_MAX)))+" 0.0 0.0 40");
+	return("0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.0 0 0.0 40"); //+std::to_string(static_cast <float> (rand()) /( static_cast <float> (RAND_MAX)))+" 0.0 0.0 40");
 	/*
 	std::to_string(
 		//ka
-		//kd
+		//k8
 		//ks
 		//kr
 		//ko
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 		//BASIC SCENE GEN:
 		
 
-		int objects=20; //total number of objects per scene 
+		int objects=50; //total number of objects per scene 
 
 		for(int j=0;j<objects; j++) //SET UP: SPHERERS
 		{
@@ -112,13 +112,13 @@ int main(int argc, char* argv[])
 		
 		fOut
 		<<"define material eye 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0 0.0 0 40"<<std::endl
-		<<"define material nana 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 1 0 0 40"<<std::endl;
+		<<"define material nana 0.1 0.1 0.8 0.1 0.1 0.7 0.7 0.7 0 0 0 40"<<std::endl;
 
 
 		fOut
 			<<"define shape box nana1  -50 -50 49 50 50 50   nana" << std::endl
-			<<"define shape box eye2  -3 1 -27 -2 2 -26   eye" << std::endl
-			<<"define shape box eye1  2 1 -27 3 2 -26   eye" << std::endl
+			//<<"define shape box eye2  -3 1 -27 -2 2 -26   eye" << std::endl
+			//<<"define shape box eye1  2 1 -27 3 2 -26   eye" << std::endl
 			<<"define shape box nana2  -50 -50 -50 50 50 -49   nana" << std::endl;
 			/*
 			<<"define shape box num2   7  -6  -93    17 -16  -83   mat_blue" << std::endl
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 				<<"num"+std::to_string(j)+" ";
 			}
 			fOut
-			<<"nana1 nana2 eye1 eye2"<<std::endl;
+			<<"nana1 nana2 "<<std::endl;
 			
 
 			//fOut
@@ -178,9 +178,9 @@ int main(int argc, char* argv[])
 			//Lights
 			
 			fOut
-			<<"define light diffuse sun1 15 5 -15 0.1 0.1 0.7" << std::endl
-			<<"define light diffuse sun2 -15 -5 -15 0.0 0.7 0.1" << std::endl
-			<<"define light ambient ambient 0.0 0.0 0.0" << std::endl;
+			<<"define light diffuse sun1 15 5 5 0.0 0.8 0.3" << std::endl
+			<<"define light diffuse sun2 -15 -5 5 0.0 0.6 0.2" << std::endl
+			<<"define light ambient ambient 0.10 0.10 0.10" << std::endl;
 
 			//Camera
 			float posx=0+15*std::sin(2*M_PI*i/60);
@@ -191,7 +191,7 @@ int main(int argc, char* argv[])
 			float diry=0-posy;
 			float dirz=-30-posz;
 			fOut
-			<<"define camera guck 120 "
+			<<"define camera guck 55 "
 			+std::to_string(posx)+" "+std::to_string(posy)+" "+std::to_string(posz)+" "
 			+std::to_string(dirx)+" "+std::to_string(diry)+" "+std::to_string(dirz)+" 0 1 0" << std::endl;
 			//<< cameraCmd << endl

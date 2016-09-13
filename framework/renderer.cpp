@@ -34,10 +34,10 @@ Feel free to render!
     std::cout<<distance<<"\n";
     
     float height = (-float(m_height)/2); 
-    for (unsigned y = 0; y < m_height; ++y) {     //Horizontal
+    for (unsigned y = 0; y < m_height; ++y) {     //Vertikal
       float width = (-float(m_width)/2);
       
-      for (unsigned x = 0; x < m_width; ++x) {    //Vertikal
+      for (unsigned x = 0; x < m_width; ++x) {    //Horizontal
         Pixel p(x,y);
         //std::cout<<"Pixel"<<x<<","<<y<<"\n";
 
@@ -45,31 +45,11 @@ Feel free to render!
         p.color=Color(1.0,1.0,1.0);
         write(p); 
 
-        //Erzeuge Ray
+        Ray rayman {{0,0,0}, glm::vec3(width, height, distance)};
 
-        /*
-        glm::vec3 direction{float(x)*1.0/float(width) -0.5,
-                        float(y)*1.0/float(height) -0.5, 
-                        -1.0*(0.5/tan(fov_x_*M_PI/360))}; // distance = 0.5 / tan(winkel/2)
-        Ray ray{{0,0,0}, direction};
-
-        transf_ =  transformMatrix(); // transformieren
-
-        transformRay(transf_ , ray);
-        */
-
-
-        Ray rayman {{0,0,0}, glm::normalize(glm::vec3(width, height, distance))};
-        rayman=transformRay(m_scene.m_camera.m_cam,rayman);
-
-
-        p.color=raytrace(rayman, 2); //Tiefe 
-        std::cout<<"pmml?"<<p.color.r<<"\n";
-        
-       tonemapping(p);
-
-        std::cout<<"pmml"<<p.color.r<<"\n";
-
+       p.color=antialiasing(rayman, m_scene.aliasfaktor, m_scene.depth);   //ANTIALIASIN
+       std::cout<<p.color.r<<" "<<p.color.g<<" "<<"\n";
+       tonemapping(p); 
 
         write(p);
         width++;
@@ -187,7 +167,7 @@ void Renderer::add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray
   Ray rayrefly{Schlag.m_point+(direct*0.001f),direct};  
   
   Color refColor = raytrace(rayrefly, depth-1);   // Ebene tiefer bitte!
-  clr += (refColor) * (Schlag.m_shape->material()->ks) * (Schlag.m_shape->material()->kr);
+  clr += (refColor) * (Schlag.m_shape->material()->ks);// * (Schlag.m_shape->material()->kr);
 }
 
 void Renderer::refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth)
@@ -205,3 +185,50 @@ void Renderer::tonemapping(Pixel & p)
   p.color.g= p.color.g/(p.color.g+1);
   p.color.b= p.color.b/(p.color.b+1);
 }
+
+  //antialiasing(renderer.rayman, m_scene.aliasfaktor, m_scene.depth)
+  Color Renderer::antialiasing(Ray const& ray,float aliasfaktor, unsigned int depth)
+  {
+    Color clr;
+    int breite= sqrt(aliasfaktor);
+   
+
+    if (aliasfaktor>0) //antialiasing
+      {
+        float height = (-1.0f); 
+        for (unsigned y = 0; y < breite; ++y) {     //Vertikal
+          float width = (-1.0f);
+          
+          for (unsigned x = 0; x < breite; ++x) {    //Horizontal
+           
+            
+            Ray rayman {{0,0,0}, glm::normalize(glm::vec3(ray.m_direction.x+width, ray.m_direction.y+height, ray.m_direction.z))};
+
+            rayman=transformRay(m_scene.m_camera.m_cam,rayman);
+            clr +=raytrace((rayman), depth);
+
+            width+=2/breite;
+          }
+          height+=2/breite;
+        }
+
+     
+
+        clr.r=clr.r/aliasfaktor; 
+        clr.g=clr.g/aliasfaktor;
+        clr.b=clr.b/aliasfaktor;
+      }
+
+      else{
+        ray.m_direction=glm::normalize(ray.m_direction);
+        ray=transformRay(m_scene.m_camera.m_cam,ray);
+        clr = raytrace(ray, depth);
+      }
+
+      
+      return clr;
+      
+
+      
+     
+    }

@@ -48,6 +48,7 @@ public:
   void add_reflectedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int);
   void refractedlight(Color & clr, Hit const& Schlag, Ray const& ray, unsigned int depth);
   void tonemapping(Pixel & p);
+  Color antialiasing(Ray const& ray,float aliasfaktor, unsigned int depth);
 
 private:
   Scene m_scene;

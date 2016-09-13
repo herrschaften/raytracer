@@ -24,6 +24,11 @@ struct Scene
 		std::map<std::string, std::shared_ptr<Material>> m_materials;
 	//-Camera
 		Camera m_camera;
+	//-antialiasing faktor
+		int aliasfaktor = 2;
+	//- reflection depth
+		int depth = 3;		
+
 
 
 };
