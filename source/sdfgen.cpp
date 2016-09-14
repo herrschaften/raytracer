@@ -183,15 +183,15 @@ int main(int argc, char* argv[])
 			<<"define light ambient ambient 0.10 0.10 0.10" << std::endl;
 
 			//Camera
-			float posx=0+15*std::sin(2*M_PI*i/60);
+			float posx=0+15*std::sin(M_PI*i/60);
 			float posy=0;
-			float posz=-30+15*std::cos(2*M_PI*i/60);
+			float posz=-30+15*std::cos(M_PI*i/60);
 
 			float dirx=0-posx;
 			float diry=0-posy;
 			float dirz=-30-posz;
 			fOut
-			<<"define camera guck 55 "
+			<<"define camera guck 50 "
 			+std::to_string(posx)+" "+std::to_string(posy)+" "+std::to_string(posz)+" "
 			+std::to_string(dirx)+" "+std::to_string(diry)+" "+std::to_string(dirz)+" 0 1 0" << std::endl;
 			//<< cameraCmd << endl

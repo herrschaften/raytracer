@@ -52,7 +52,7 @@ Feel free to be rat-race!
       return((s.size() >= suffix.size() )&& (equal(suffix.rbegin(), suffix.rend(), s.rbegin())));
       };
 
-    unsigned int count=1;
+    //unsigned int count=1;
     while((entry = readdir(dir))!=nullptr)    //Durch alle Files
     {
       if(fit(entry->d_name))

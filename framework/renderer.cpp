@@ -47,8 +47,16 @@ Feel free to render!
 
         Ray rayman {{0,0,0}, glm::vec3(width, height, distance)};
 
-       p.color=antialiasing(rayman, m_scene.aliasfaktor, m_scene.depth);   //ANTIALIASIN
-       std::cout<<p.color.r<<" "<<p.color.g<<" "<<"\n";
+       if (m_scene.aliasfaktor>0)
+       {
+         p.color=antialiasing(rayman, m_scene.aliasfaktor, m_scene.depth);   //ANTIALIASIN
+       }else{
+        rayman.m_direction=glm::normalize(rayman.m_direction);
+        rayman=transformRay(m_scene.m_camera.m_cam,rayman);
+        p.color = raytrace(rayman, m_scene.depth);
+      }
+      
+       
        tonemapping(p); 
 
         write(p);
@@ -193,8 +201,6 @@ void Renderer::tonemapping(Pixel & p)
     int breite= sqrt(aliasfaktor);
    
 
-    if (aliasfaktor>0) //antialiasing
-      {
         float height = (-1.0f); 
         for (unsigned y = 0; y < breite; ++y) {     //Vertikal
           float width = (-1.0f);
@@ -217,15 +223,7 @@ void Renderer::tonemapping(Pixel & p)
         clr.r=clr.r/aliasfaktor; 
         clr.g=clr.g/aliasfaktor;
         clr.b=clr.b/aliasfaktor;
-      }
-
-      else{
-        ray.m_direction=glm::normalize(ray.m_direction);
-        ray=transformRay(m_scene.m_camera.m_cam,ray);
-        clr = raytrace(ray, depth);
-      }
-
-      
+    
       return clr;
       
 
